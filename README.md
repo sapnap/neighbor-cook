@@ -1,4 +1,4 @@
 neighbor-cook
 =============
 
-Borrow and supply ingredients!
+Borrow and supply ingredients from people around you.
