@@ -19,27 +19,16 @@ exports.view = function(req, res){
       { 'name': 'Prototyping',
         'image': 'lorempixel.technics.1.jpeg',
         'id': 'project3'
-      },
-      { 'name': 'Heuristic Evaluation',
-        'image': 'lorempixel.abstract.1.jpeg',
-        'id': 'project4'
-      },
-      { 'name': 'Visualization',
-        'image': 'lorempixel.abstract.8.jpeg',
-        'id': 'project5'
-      },
-      { 'name': 'Social design',
-        'image': 'lorempixel.people.2.jpeg',
-        'id': 'project6'
-      },
-      { 'name': 'Gestural interaction',
-        'image': 'lorempixel.technics.2.jpeg',
-        'id': 'project7'
-      },
-      { 'name': 'Design tools',
-        'image': 'lorempixel.city.2.jpeg',
-        'id': 'project8'
       }
     ]  
+  });
+};
+
+exports.login = function(req, res){
+  console.log('logging user in');
+  var authResponse = req.params;
+  console.log(authResponse);
+  res.render('index', {
+    'myvar': 'sfdasdf'  
   });
 };

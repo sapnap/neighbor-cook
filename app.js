@@ -36,7 +36,7 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
-app.get('/auth/facebook/callback', index.view);
+app.post('/auth/facebook/callback', index.login);
 app.get('/project/:name', project.viewProject);
 // Example route
 // app.get('/users', user.list);
