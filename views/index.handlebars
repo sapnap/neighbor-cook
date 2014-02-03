@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
 <div id="navigation" class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -25,7 +26,7 @@
 	    	<span class="beta-tag">beta</span>
       </p>
       <p class="navbar-text pull-right">
-      	<a href="#">Sign in with Facebook</a>
+      	<a href="#" id="sign_in">Sign in with Facebook</a>      	
      </p>
     </div>
   </div>
@@ -42,6 +43,7 @@
 		
 
 		<h4>Projects</h4>
+		<p>cool {{myvar}}</p>
 		{{#each projects}}
 		<div class="project" id="{{id}}">
 			<a href="project/{{name}}" class="thumbnail">
@@ -54,5 +56,6 @@
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/facebook.js"></script>
 </body>
 </html>

@@ -4,9 +4,11 @@
  */
 
 exports.view = function(req, res){
+  console.log('index.js file');
   res.render('index', {
+    'myvar': 'sfdasdf', 
     'projects': [
-      { 'name': 'Waiting in Line',
+      { 'name': 'HELLLOOOOO',
         'image': 'lorempixel.people.1.jpeg',
         'id': 'project1'
       },
