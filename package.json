@@ -1,0 +1,25 @@
+{
+  "name": "NeighborCook",
+  "version": "0.0.1",
+  "author": "rpandey1234, smnguyen, patels",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neighbor-cook/neighbor-cook"
+  },
+  "license": "MIT",
+
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "express3-handlebars": "*",
+    "mongodb": "*",
+    "mongoose": "*"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }  
+}
