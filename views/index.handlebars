@@ -17,41 +17,17 @@
 </head>
 
 <body>
-<div id="fb-root"></div>
-<div id="navigation" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-  		<p class="pull-left navbar-text">
-	  		<a class="brand" href="/">Neighbor Cook</a>
-	    	<span class="beta-tag">beta</span>
-      </p>
-      <p class="navbar-text pull-right">
-      	<a href="#" id="sign_in">Sign in with Facebook</a>      	
-     </p>
-    </div>
-  </div>
-</div>
+    <div id="fb-root"></div>
+    {{> nav }}
 
 	<div class="container">
-		<h1>Neighbor Cook</h1>
+		<h1>NeighborCook</h1>
 		<p>Borrow ingredients from the people around you.</p>
 		<ul>
 			<li>Borrow foods from people around you.</li>
 			<li>Help out your neighbor who's missing that one ingredient.</li>
 			<li>Be more involved in your community!</li>
 		</ul>
-		
-
-		<h4>Projects</h4>
-		<p>cool {{myvar}}</p>
-		{{#each projects}}
-		<div class="project" id="{{id}}">
-			<a href="project/{{name}}" class="thumbnail">
-				<img src="images/{{image}}" alt="Lorem Pixel image" class="img">
-				<p>{{name}}</p>
-			</a>
-		</div>
-		{{/each}}
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
