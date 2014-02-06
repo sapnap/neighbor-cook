@@ -5,7 +5,6 @@
 
 .jumbotron:after {
   content:"";
-  background: url("../images/lorempixel.jumbotron.jpeg");
   opacity: 0.2;
   top: 0;
   left: 0;
@@ -34,6 +33,12 @@
   text-decoration: none;
 }
 
-.container {
-  padding-top: 60px;
+@media (min-width: 320px) {
+    .nav-justified > li {
+        display: table-cell;
+        width: 1%;
+    }
+    .nav-justified > li > a {
+        margin-bottom: 0;
+    }
 }
