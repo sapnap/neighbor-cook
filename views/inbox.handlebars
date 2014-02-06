@@ -1,0 +1,11 @@
+<h3>Messages</h3>
+<div id="message-list" class="list-group">
+    {{#each messages}}
+        <a href="/messages/{{id}}" class="list-group-item">
+            <h5 class="list-group-item-heading"><b>{{name}}</b>: {{title}}</h5>
+            <p class="list-group-item-text">Lorem ipsum...</p>
+        </a>
+    {{else}}
+        {{! TODO: say something when no messages }}
+    {{/each}}
+</div>
