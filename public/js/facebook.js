@@ -14,6 +14,7 @@ window.fbAsyncInit = function() {
   // }
   $('#sign_in').click(function(event) {
     event.preventDefault();
+    console.log('hi1');
     FB.login(function(response) {
       // equivalent to response.status === 'connected'?
       if (response.authResponse) { 
@@ -22,8 +23,10 @@ window.fbAsyncInit = function() {
         var accessToken = response.authResponse.accessToken;
         // might want to trigger this remotely using AJAX to stay on same page
         // window.location = '/auth/facebook/callback';
-        $.post( "/auth/facebook/callback", { authResponse: response.authResponse} );
-        
+        $.post( "/auth/facebook/callback", { authResponse: response.authResponse}, function(data) {
+          console.log(data);
+          $('body').html(data);
+        });
       }
     });
   });

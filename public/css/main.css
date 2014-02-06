@@ -13,7 +13,9 @@
 }
 
 body {
-  background-color: #AFEEEE;
+  background-image: url('/images/fabric_plaid.png'); background-repeat:repeat;
+  /*background-image: url('/images/green_cup.png'); background-repeat:repeat;*/
+  /*background-color: #AFEEEE;*/
 }
 
 li {
@@ -64,4 +66,18 @@ img {
 
 .clear {
   clear: both;
+}
+
+.profileContainer {
+  padding: 10px;
+  background-color: white;
+  box-shadow: 1px 2px 5px 5px #ffe;
+}
+
+.font-small {
+  font-size: 12px;
+}
+
+.messageButton {
+  padding: 3px;
 }

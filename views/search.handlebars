@@ -1,4 +1,19 @@
-<h3>Search</h3>
+<h3>Search for foods</h3>
 <!-- search box: name, quantity -->
-<!-- results: quantity, location -->
+<form id="newsearch" method="get">
+  <input type="text" class="inputtext" name="query" size="20" maxlength="100">
+  <input type="submit" value="search" class="button">
+</form>
+
+{{#if query}}
+<div class="list-group">
+	<p>Your search for <strong>{{query}}</strong> returned {{results.length}} results:</p>
+  {{#each results}}
+      <a href="/profile/{{id}}" class="list-group-item">
+        <h5 class="list-group-item-heading"><b>{{name}}</b> has quantity {{quantity}}</h5>
+        <p class="list-group-item-text">{{location}}</p>
+      </a>
+  {{/each}}
+</div>
+{{/if}}
 <!-- TODO: support infinite scroll -->
