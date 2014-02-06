@@ -1,39 +1,14 @@
-.jumbotron {
-	position: relative;
-	background: none;
-}
-
-.jumbotron:after {
-  content:"";
-  background: url("../images/lorempixel.jumbotron.jpeg");
-  opacity: 0.2;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;	
-}
-
-.jumbotron p {
-  color: #6e6e6e;
-}
-
-.project a {
-  text-align: center;
-}
-
-.navbar-inverse .brand {
-  font-size: 20px;
-  font-weight: bold;
-  color: #FFF;
-  padding-right: 10px;
-}
-
-.brand:hover {
-  text-decoration: none;
-}
-
 .container {
-  padding-top: 60px;
+    padding-top: 50px;
+}
+
+@media (min-width: 320px) {
+    .nav-justified > li {
+        display: table-cell;
+        width: 1%;
+    }
+    .nav-justified > li > a {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }

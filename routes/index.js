@@ -5,18 +5,10 @@
 var FB = require('fb');
 
 exports.view = function(req, res){
-  res.render('index', {
-    'myvar': 'sfdasdf', 
-    'projects': [
-      { 'name': 'HELLLOOOOO',
-        'image': 'lorempixel.people.1.jpeg',
-        'id': 'project1'
-      }
-    ]  
-  });
+  res.render('index');
 };
 
-exports.login = function(req, res){
+exports.login = function(req, res) {
   console.log('logging user in');
   // console.log(req.body);
   var access_token = req.body.authResponse.accessToken;
@@ -34,12 +26,7 @@ exports.login = function(req, res){
     user = {
       name: result.name,
       id: result.id
-    };    
-    res.redirect('index', {
-      'user': user
-    });
+    };
   });
-  // res.render('project', {
-  //   'user': 'smile'
-  // });
+  res.render('index');
 };

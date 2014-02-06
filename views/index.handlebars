@@ -1,64 +1,7 @@
-<!doctype html>
-
-<html>
-<head>
-	<title>NeighborCook</title>	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/main.css" rel="stylesheet">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-  <![endif]-->        
-</head>
-
-<body>
-<div id="fb-root"></div>
-<div id="navigation" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-  		<p class="pull-left navbar-text">
-	  		<a class="brand" href="/">Neighbor Cook</a>
-	    	<span class="beta-tag">beta</span>
-      </p>
-      <p class="navbar-text pull-right">
-      	{{#if user}}
-			    <span>{{name}}</span>
-			  {{else}}
-      		<a href="#" id="sign_in">Sign in with Facebook</a>
-      	{{/if}}
-     </p>
-    </div>
-  </div>
-</div>
-
-	<div class="container">
-		<h1>Neighbor Cook</h1>
-		<p>Borrow ingredients from the people around you.</p>
-		<ul>
-			<li>Borrow foods from people around you.</li>
-			<li>Help out your neighbor who's missing that one ingredient.</li>
-			<li>Be more involved in your community!</li>
-		</ul>
-
-		<h4>Projects</h4>
-		<p>cool {{myvar}}</p>
-		{{#each projects}}
-		<div class="project" id="{{id}}">
-			<a href="project/{{name}}" class="thumbnail">
-				<img src="images/{{image}}" alt="Lorem Pixel image" class="img">
-				<p>{{name}}</p>
-			</a>
-		</div>
-		{{/each}}
-	</div>
-
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/facebook.js"></script>
-</body>
-</html>
+<h1>NeighborCook</h1>
+<p>Borrow ingredients from the people around you.</p>
+<ul>
+    <li>Borrow foods from people around you.</li>
+    <li>Help out your neighbor who's missing that one ingredient.</li>
+    <li>Be more involved in your community!</li>
+</ul>
