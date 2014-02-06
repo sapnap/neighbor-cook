@@ -2,10 +2,13 @@
 <h3>
 	{{name}}
 	{{#if editable}}
-		<a href="#"><span class="glyphicon glyphicon-pencil font-small"></span></a>
+		<a href="#"><span class="glyphicon glyphicon-pencil font-small"></span></a>	
+		<!-- TODO: this button should allow users to edit the page (profile.js) -->
+	{{else}}
+		<button class="button messageButton font-small">Message</button>
+		<!-- TODO: this button should allow user to send message-->
 	{{/if}}
 </h3>
-<!-- TODO: this button should allow users to edit the page (profile.js) -->
 
 <!-- profile pic -->
 <img class="img-rounded" src="http://lorempixel.com/300/300/people" alt="Profile Puicture"></img>

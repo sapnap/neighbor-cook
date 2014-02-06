@@ -13,7 +13,9 @@
 }
 
 body {
-  background-color: #AFEEEE;
+  background-image: url('/images/fabric_plaid.png'); background-repeat:repeat;
+  /*background-image: url('/images/green_cup.png'); background-repeat:repeat;*/
+  /*background-color: #AFEEEE;*/
 }
 
 li {
@@ -74,4 +76,8 @@ img {
 
 .font-small {
   font-size: 12px;
+}
+
+.messageButton {
+  padding: 3px;
 }
