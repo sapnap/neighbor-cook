@@ -10,7 +10,7 @@ var handlebars = require('express3-handlebars');
 var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
-var search = require('./routes/messages');
+var search = require('./routes/search');
 var friends = require('./routes/friends');
 
 var app = express();
@@ -18,7 +18,7 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', handlebars());
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use(express.favicon());
 app.use(express.logger('dev'));
