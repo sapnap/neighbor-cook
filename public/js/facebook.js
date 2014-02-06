@@ -1,7 +1,7 @@
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '1457400784472890',
-    status     : false, // check login status
+    status     : true, // check login status
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
@@ -14,6 +14,7 @@ window.fbAsyncInit = function() {
   // }
   $('#sign_in').click(function(event) {
     event.preventDefault();
+    console.log('hi1');
     FB.login(function(response) {
       // equivalent to response.status === 'connected'?
       if (response.authResponse) { 
@@ -22,8 +23,10 @@ window.fbAsyncInit = function() {
         var accessToken = response.authResponse.accessToken;
         // might want to trigger this remotely using AJAX to stay on same page
         // window.location = '/auth/facebook/callback';
-        $.post( "/auth/facebook/callback", { authResponse: response.authResponse} );
-        
+        $.post( "/auth/facebook/callback", { authResponse: response.authResponse}, function(data) {
+          console.log(data);
+          $('body').html(data);
+        });
       }
     });
   });
