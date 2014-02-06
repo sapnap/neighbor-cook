@@ -37,10 +37,18 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
-app.get('/profile', profile.view);
-app.get('/messages', messages.view);
+app.get('/profile/me', profile.viewSelf);
+app.get('/profile/:id', profile.view);
+
+app.get('/messages', messages.viewInbox);
+app.get('/messages/:id', messages.viewMessage);
+app.get('/compose/new', messages.composeNew);
+app.get('/compose/:messageID', messages.composeResponse);
+//app.post('send', messages.send);
+
 app.get('/search', search.view);
-app.get('/friends', friends.view);
+//app.get('/friends', friends.view);
+
 app.post('/auth/facebook/callback', index.login);
 
 http.createServer(app).listen(app.get('port'), function(){
