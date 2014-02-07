@@ -16,6 +16,7 @@ exports.viewSelf = function(req, res) {
 };
 
 exports.view = function(req, res) {
+    console.log(req.user);
     var userID = req.params.id;
     var data = { 'editable': false,
     	'name': 'Sapna Patel',

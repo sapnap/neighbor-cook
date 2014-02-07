@@ -6,12 +6,12 @@ var FB = require('fb');
 
 exports.view = function(req, res){
   console.log(req.session);
-  if (req.session.user_id) {
-    res.render('index', 
-      {'user_id': 81920}
-    );
+  if (req.user) {     
+    console.log('found user', req.user.id, req.user.name);
+    res.render('index', {'user': req.user}
+    );    
   } else {
-    res.render('index', {'user_id': 81920});
+    res.render('index');
   }
   
 };
