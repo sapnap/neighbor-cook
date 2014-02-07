@@ -1,36 +1,31 @@
-<div class="profileContainer">
-<h3>
-	{{name}}
-	{{#if editable}}
-		<a href="#"><span class="glyphicon glyphicon-pencil font-small"></span></a>	
-		<!-- TODO: this button should allow users to edit the page (profile.js) -->
-	{{else}}
-		<button class="button messageButton font-small">Message</button>
-		<!-- TODO: this button should allow user to send message-->
-	{{/if}}
-</h3>
-
-<!-- profile pic -->
-<img class="img-rounded" src="http://lorempixel.com/300/300/people" alt="Profile Puicture"></img>
-<p>Location: <strong>{{location}}</strong></p>
-<p>Usage Stats:</p>
-<table class="table table-bordered">
-	<tr>
-	<td>Donated</td>
-	<td>Received</td>
-	</tr>
-	<tr>
-	<td>{{donated}}</td>
-	<td>{{received}}</td>
-	</tr>
-</table>
-<div class="inventory">
-	<p>Available Foods in Inventory:</p>
-	<ul>
-	{{#each inventory}}
-		<li>{{name}}</li>
-	{{/each}}
-	</ul>
-</div>
-
+<div class="panel panel-default profileContainer">
+    <div class="panel-heading">
+        <div class="media">
+            <img class="pull-left media-object img-rounded" src="http://lorempixel.com/72/72/people" alt="Profile Picture" />
+            <div class="media-body">
+                <h4 class="media-heading">
+                    {{name}}
+                    {{#if editable}}
+                        <a href="#">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+                        <!-- TODO: this button should allow users to edit the page (profile.js) -->
+                    {{else}}
+                        <button class="button messageButton font-small">Message</button>
+                        <!-- TODO: this button should allow user to send message-->
+                    {{/if}}
+                </h4>
+                Location: <strong>{{location}}</strong><br />
+                Rating: <strong>+{{donated}} / -{{received}}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="inventory">
+            <h5>Available Foods in Inventory:</h5>
+            <ul class="list-group">
+                {{#each inventory}}
+                    <li class="list-group-item">{{name}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </div>
