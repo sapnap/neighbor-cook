@@ -13,44 +13,44 @@
 }
 
 body {
-  background-image: url('/images/fabric_plaid.png'); background-repeat:repeat;
-  /*background-image: url('/images/green_cup.png'); background-repeat:repeat;*/
-  /*background-color: #AFEEEE;*/
+    background: url('/images/fabric_plaid.png') repeat;
+    /*background-image: url('/images/green_cup.png'); background-repeat:repeat;*/
+    /*background-color: #AFEEEE;*/
 }
 
 li {
-  display: inline;
-  font-family: 'Raleway', sans-serif;
+    display: inline;
+    font-family: 'Raleway', sans-serif;
 }
 
 #search {
-  font-family: 'Raleway', sans-serif;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
 }
 
 #newsearch {
-  padding: 10px;
+    padding: 10px;
 }
 
 .inputtext {
-  margin: 0;
-  padding: 10px 20px;
-  font-size: 18px;
-  border:1px solid black;
-  border-radius: 5px 5px;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    border:1px solid black;
+    border-radius: 5px 5px;
 }
 
 .button {
-  margin:0;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  text-align: center;
-  color: white;
-  border: solid 1px #1E90FF;
-  background: #778899;
-  border-radius: 5px 5px;
+    margin:0;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    border: solid 1px #1E90FF;
+    background: #778899;
+    border-radius: 5px 5px;
 }
 
 img {
@@ -80,4 +80,8 @@ img {
 
 .messageButton {
   padding: 3px;
+}
+
+.conversation {
+    margin: 0;
 }
