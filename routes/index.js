@@ -5,7 +5,15 @@
 var FB = require('fb');
 
 exports.view = function(req, res){
-  res.render('index');
+  console.log(req.session);
+  if (req.session.user_id) {
+    res.render('index', 
+      {'user_id': 81920}
+    );
+  } else {
+    res.render('index', {'user_id': 81920});
+  }
+  
 };
 
 exports.login = function(req, res) {
