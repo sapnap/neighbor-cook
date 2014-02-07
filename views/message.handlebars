@@ -1,5 +1,49 @@
-<h3>{{title}}</h3>
-<p>From: {{name}}</p>
-<p>{{text}}</p>
+<div class="conversation row">
+    <h3>{{recipient}}</h3> <!-- TODO make this fixed as the page scrolls? -->
+    {{#each messages}}
+        {{#if userIsAuthor}}
+            <div class="panel panel-default col-xs-7 pull-right">
+                <div class="panel-body text-right">
+                    {{text}}
+                </div>
+            </div>
+        {{else}}
+            <div class="panel panel-default col-xs-7">
+                <div class="panel-body">
+                    {{text}}
+                </div>
+            </div>
+        {{/if}}
+    {{/each}}
+</div>
+<div class="row center-block">
+    <!-- TODO the most annoying thing in the world: centering content -->
+    <div class="col-xs-8 col-xs-push-2 btn-group">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-modal-sm">
+            <span class="glyphicon glyphicon-share-alt"></span>
+        </button>
+        <a class="btn btn-default" href="/messages">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</div>
 
-<a href="/messages"><span class="glyphicon glyphicon-backward"></span></a>
+<!-- reply to messages -->
+<div class="modal fade bs-modal-sm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    <textarea class="form-control" id="reply" rows="3"></textarea>
+                    <button type="submit" class="btn btn-default">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

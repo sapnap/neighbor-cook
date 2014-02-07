@@ -42,9 +42,8 @@ app.get('/profile/me', profile.viewSelf);
 app.get('/profile/:id', profile.view);
 
 app.get('/messages', messages.viewInbox);
-app.get('/messages/:id', messages.viewMessage);
+app.get('/messages/:id', messages.viewConversation);
 app.get('/compose/new', messages.composeNew);
-app.get('/compose/:messageID', messages.composeResponse);
 //app.post('send', messages.send);
 
 app.get('/search', search.view);
