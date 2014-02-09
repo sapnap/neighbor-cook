@@ -19,13 +19,16 @@
         </div>
     </div>
     <div class="panel-body">
-        <div class="inventory">
-            <h5>Available Foods in Inventory:</h5>
-            <ul class="list-group">
-                {{#each inventory}}
-                    <li class="list-group-item">{{name}}</li>
-                {{/each}}
-            </ul>
+        <h5>Available Foods in Inventory:</h5>
+        <div class="list-group">
+            {{#each inventory}}
+                <a href="#" class="list-group-item">
+                    <p class="list-group-heading">{{name}}</p>
+                    <p class="list-group-item-text">
+                        {{inventoryItem.quantity}} {{inventoryItem.unit}}
+                    </p>
+                </a>
+            {{/each}}
         </div>
     </div>
 </div>

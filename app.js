@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
 var search = require('./routes/search');
+var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
 
 var app = express();
@@ -71,7 +72,7 @@ passport.use(new FacebookStrategy(
     callbackURL: process.env.FACEBOOK_CALLBACK_URL
   },
   function(accessToken, refreshToken, profile, done) {
-    // TODO save accessToken somewhere so we can get more data from facebook
+    // TODO save accessToken somewhere so we can get more data from FB (e.g. friends)
 
     db.User
       .findOrCreate({ fb_id: profile.id })
@@ -88,6 +89,7 @@ passport.use(new FacebookStrategy(
                 // TODO redirect somewhere
                 console.log('The instance has not been saved:', err);
               } else {
+                // TODO redirect to profile initialization (inventory, location)
                 done(null, user);
               }
             });
@@ -112,11 +114,20 @@ app.get('/profile/:id', profile.view);
 app.get('/search', search.view);
 app.get('/friends', friends.view);
 
+// inventory management (RESTful)
+app.get('/inventory', ensureLoggedIn, inventory.view);
+app.post('/inventory', ensureLoggedIn, inventory.addItem);
+app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
+app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
+//app.get('/inventory/add/:itemName', ensureLoggedIn, inventory.addItem);
+//app.get('/inventory/edit/:itemName', ensureLoggedIn, inventory.editItem);
+//app.get('/inventory/delete/:itemName', ensureLoggedIn, inventory.deleteItem);
+
 // messaging
 app.get('/messages', ensureLoggedIn, messages.viewInbox);
 app.get('/messages/:id', ensureLoggedIn, messages.viewConversation);
-//app.get('/compose/new', messages.composeNew);
-//app.post('send', messages.send);
+//app.get('/messages/compose', messages.composeNew);
+//app.post('/messages/send', messages.send);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -124,15 +135,14 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication
-    res.redirect('/profile/' + req.user.id);
+    res.redirect('/');
   });
 app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
 
-db
-  .sequelize
+db.sequelize
   .sync()
   .complete(function(err) {
     if (err) throw err;

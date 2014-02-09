@@ -8,6 +8,13 @@ module.exports = function(sequelize, DataTypes) {
     location: DataTypes.STRING,
     gps: DataTypes.STRING
   }, {
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Item, {
+          through: models.InventoryItem
+        });
+      }
+    },
     instanceMethods: {
       getFullname: function() {
         return [this.first_name, this.last_name].join(' ');
