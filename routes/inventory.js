@@ -37,7 +37,7 @@ exports.addItem = function(req, res) {
 };
 
 exports.editItem = function(req, res) {
-  var itemName = req.body.itemName;
+  var itemName = req.params.itemName;
   var quantity = req.body.quantity;
   var unit = req.body.unit;
 

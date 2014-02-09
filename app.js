@@ -117,11 +117,13 @@ app.get('/friends', friends.view);
 // inventory management (RESTful)
 app.get('/inventory', ensureLoggedIn, inventory.view);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
-app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
-app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
-//app.get('/inventory/add/:itemName', ensureLoggedIn, inventory.addItem);
-//app.get('/inventory/edit/:itemName', ensureLoggedIn, inventory.editItem);
-//app.get('/inventory/delete/:itemName', ensureLoggedIn, inventory.deleteItem);
+app.put('/inventory/:itemName', ensureLoggedIn, inventory.editItem);
+app.delete('/inventory/:itemName', ensureLoggedIn, inventory.deleteItem);
+
+// inventory mangement (dev testing)
+// app.get('/inventory/add/:itemName', ensureLoggedIn, inventory.addItem);
+// app.get('/inventory/edit/:itemName', ensureLoggedIn, inventory.editItem);
+// app.get('/inventory/delete/:itemName', ensureLoggedIn, inventory.deleteItem);
 
 // messaging
 app.get('/messages', ensureLoggedIn, messages.viewInbox);
