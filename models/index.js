@@ -6,7 +6,7 @@ var path = require('path');
 var lodash = require('lodash');
 var Sequelize = require('sequelize');
 var pg = require('pg');
-var sequelize = new Sequelize(process.env.POSTGRES_URL, { dialect: 'postgres', native: true });
+var sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_ORANGE_URL, { dialect: 'postgres', native: true });
 var db = {};
 
 // load all models
