@@ -9,11 +9,11 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-    // highlight appropriate nav item
-    var pathStart = location.pathname.split('/')[1];
-    if (pathStart === '') {
-        pathStart = 'index';
-    }
-    console.log(pathStart);
-	$('#' + pathStart + '-nav').addClass("active");
+  // highlight appropriate nav item
+  var pathStart = location.pathname.split('/')[1];
+  if (pathStart === '') {
+      pathStart = 'index';
+  }
+  $('#' + pathStart + '-nav').addClass("active");
+  $('#' + pathStart + '-nav a').attr('href', '#');
 }
