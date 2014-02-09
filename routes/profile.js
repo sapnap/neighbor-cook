@@ -1,34 +1,27 @@
-
-exports.viewSelf = function(req, res) {
-    var data = { 'editable': true,
-    	'name': 'Sapna Patel',
-    	'location': 'Stanford, CA',
-    	'donated': 19,
-    	'received': 4,
-    	'inventory': [
-    		{'id': 1, 'name': 'Apple'},
-    		{'id': 2, 'name': 'Banana'},
-    		{'id': 3, 'name': 'Milk'},
-    		{'id': 4, 'name': 'Salt'}
-    	] 
-     };
-    res.render('profile', data);
-};
+var db = require('../models');
 
 exports.view = function(req, res) {
-    console.log(req.user);
-    var userID = req.params.id;
-    var data = { 'editable': false,
-    	'name': 'Sapna Patel',
-    	'location': 'Stanford, CA',
-    	'donated': 19,
-    	'received': 4,
-    	'inventory': [
-    		{'id': 1, 'name': 'Apple'},
-    		{'id': 2, 'name': 'Banana'},
-    		{'id': 3, 'name': 'Milk'},
-    		{'id': 4, 'name': 'Salt'}
-    	] 
-     };
-    res.render('profile', data);
+  db.User
+    .find({
+      where: { id: req.params.id },
+      include: [ db.Item ]
+    })
+    .success(function(user) {
+      if (!user) {
+        // TODO: alert user doesn't exist
+        console.log('User ' + req.params.id + ' does not exist');
+        res.redirect('/');
+      } else {
+        var data = {
+          editable: req.isAuthenticated() && user.id == req.user.id,
+          name: user.getFullname(),
+          image: user.img_path,
+          location: 'Stanford, CA',
+          donated: 19,
+          received: 4,
+          inventory: user.items
+        };
+        res.render('profile', data);
+      }
+    });
 };

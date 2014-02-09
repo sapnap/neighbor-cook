@@ -1,7 +1,7 @@
 <div class="panel panel-default profileContainer">
     <div class="panel-heading">
         <div class="media">
-            <img class="pull-left media-object img-rounded" src="http://lorempixel.com/72/72/people" alt="Profile Picture" />
+            <img class="pull-left media-object img-rounded" src="{{image}}" alt="Profile Picture" />
             <div class="media-body">
                 <h4 class="media-heading">
                     {{name}}
@@ -19,13 +19,16 @@
         </div>
     </div>
     <div class="panel-body">
-        <div class="inventory">
-            <h5>Available Foods in Inventory:</h5>
-            <ul class="list-group">
-                {{#each inventory}}
-                    <li class="list-group-item">{{name}}</li>
-                {{/each}}
-            </ul>
+        <h5>Available Foods in Inventory:</h5>
+        <div class="list-group">
+            {{#each inventory}}
+                <a href="#" class="list-group-item">
+                    <p class="list-group-heading">{{name}}</p>
+                    <p class="list-group-item-text">
+                        {{inventoryItem.quantity}} {{inventoryItem.unit}}
+                    </p>
+                </a>
+            {{/each}}
         </div>
     </div>
 </div>

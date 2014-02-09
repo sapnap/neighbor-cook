@@ -1,2 +1,5 @@
+# IntelliJ IDE
 *.iml
 .idea/
+
+.env
