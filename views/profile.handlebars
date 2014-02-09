@@ -28,6 +28,12 @@
                         {{inventoryItem.quantity}} {{inventoryItem.unit}}
                     </p>
                 </a>
+            {{else}}
+                <a href="#" class="list-group-item">
+                    <p class="list-group-item-heading">
+                        Empty inventory :(
+                    </p>
+                </a>
             {{/each}}
         </div>
     </div>

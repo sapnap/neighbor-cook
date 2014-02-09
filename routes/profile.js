@@ -12,6 +12,7 @@ exports.view = function(req, res) {
         console.log('User ' + req.params.id + ' does not exist');
         res.redirect('/');
       } else {
+        console.log(JSON.stringify(user.items));
         var data = {
           editable: req.isAuthenticated() && user.id == req.user.id,
           name: user.getFullname(),
@@ -23,5 +24,9 @@ exports.view = function(req, res) {
         };
         res.render('profile', data);
       }
+    })
+    .error(function(err) {
+      // TODO alert user of error (given id probably wasn't numeric)
+      res.redirect('/');
     });
 };

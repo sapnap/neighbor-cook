@@ -10,7 +10,10 @@
         {{/if}}
         <li id="messages-nav"><a href="/messages"><span class="glyphicon glyphicon-envelope"></span></a></li>
         {{#if user}}
-        	<li><a href="/logout" id="sign_out">Logout</a></li>
+            {{! TODO replace with a dropdown button }}
+            {{! TODO find a better icon for inventory }}
+            <li id="inventory-nav"><a href="/inventory"><span class="glyphicon glyphicon-list-alt"></span></a></li>
+            <li><a href="/logout" id="sign_out">Logout</a></li>
         {{else}}
         	<li><a href="/auth/facebook">Login</a></li>
         {{/if}}
