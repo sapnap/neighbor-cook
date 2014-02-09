@@ -3,68 +3,110 @@ var db = require('../models');
 exports.view = function(req, res) {
   db.sequelize
     .query(
-      'SELECT "Items".*, "InventoryItems"."quantity" as "quantity", ' +
-             '"InventoryItems"."unit" as "unit" ' +
+      'SELECT "Items".*, "InventoryItems"."quantity" as "inventoryItem.quantity", ' +
+             '"InventoryItems"."unit" as "inventoryItem.unit" ' +
         'FROM "Items", "InventoryItems" ' +
-        'WHERE "InventoryItems"."UserId"=:userID AND "InventoryItems"."ItemId"="Items"."id"',
+       'WHERE "InventoryItems"."UserId"=:userID AND "InventoryItems"."ItemId"="Items"."id"',
       null,
       { raw: true },
       { userID: req.user.id })
     .success(function(items) {
-      // TODO: put results into frontend
-      res.send(JSON.stringify(items));
+      res.render('inventory', { inventory: items, editable: true })
     });
 };
 
 exports.addItem = function(req, res) {
-  var itemName = req.body.itemName;
-  var quantity = req.body.quantity;
-  var unit = req.body.unit;
+  var itemName, quantity, unit;
+  if (req.method === 'GET') {
+    itemName = req.params.itemName;
+    quantity = req.query.quantity;
+    unit = req.query.unit;
+  } else if (req.method === 'POST') {
+    itemName = req.body.itemName;
+    quantity = req.body.quantity;
+    unit = req.body.unit;
+  }
 
-  // make sure user doesn't already have the item
-  req.user
-    .getItems({ name: itemName })
-    .success(function(items) {
-      console.log(items);
-      if (items.length == 0) {
-        replace(req, res, itemName, quantity, unit);
-      } else {
-        // TODO: alert user already has item
-        console.log('User already has ' + itemName);
-        res.redirect('/inventory');
-      }
-    });
-};
+  if (quantity === '') quantity = null;
 
-exports.editItem = function(req, res) {
-  var itemName = req.params.itemName;
-  var quantity = req.body.quantity;
-  var unit = req.body.unit;
-
-  replace(req, res, itemName, quantity, unit);
-};
-
-exports.deleteItem = function(req, res) {
   db.Item
-    .find({ name: req.params.itemName })
-    .success(function(item) {
-      req.user
-        .removeItem(item)
-        .success(function() {
-          res.redirect('/inventory');
-        })
-    });
-};
-
-var replace = function(req, res, itemName, quantity, unit) {
-  db.Item
-    .find({ name: itemName })
+    .find({ where: { name: itemName }})
     .success(function(item) {
       if (!item) {
         // TODO: alert item doesn't exist
         console.log('Item ' + itemName + ' does not exist');
         res.redirect('/inventory');
       } else {
+        addInventoryItem(req, res, item, quantity, unit, false);
+      }
+    });
+};
+
+exports.editItem = function(req, res) {
+  var itemID, quantity, unit;
+  if (req.method === 'GET') {
+    itemID = req.params.itemID;
+    quantity = req.query.quantity;
+    unit = req.query.unit;
+  } else if (req.method === 'PUT') {
+    itemID = req.params.itemID;
+    quantity = req.body.quantity;
+    unit = req.body.unit;
+  }
+
+  if (quantity === '') quantity = null;
+
+  db.Item
+    .find(itemID)
+    .success(function(item) {
+      if (!item) {
+        // TODO: alert item doesn't exist
+        console.log('Item with id ' + itemID + ' does not exist');
+        res.redirect('/inventory');
+      } else {
+        addInventoryItem(req, res, item, quantity, unit, true);
+      }
+    });
+};
+
+exports.deleteItem = function(req, res) {
+  db.Item
+    .find(req.params.itemID)
+    .success(function(item) {
+      if (!item) {
+        // TODO: alert item doesn't exist
+        console.log('Item with id ' + req.params.itemID + ' does not exist');
+        res.redirect('/inventory');
+      } else {
+        req.user
+          .removeItem(item)
+          .success(function() {
+            res.redirect('/inventory');
+          });
+      }
+    });
+};
+
+/**
+ * Adds a new item to a user's inventory.
+ * @param req HTTP request object
+ * @param res HTTP response object
+ * @param item db.Item instance
+ * @param quantity
+ * @param unit
+ * @param replace if the item already exists, whether it should be replaced
+ */
+var addInventoryItem = function(req, res, item, quantity, unit, replace) {
+  db.InventoryItem
+    .find({ where: { UserId: req.user.id, ItemId: item.id }})
+    .success(function(inventoryItem) {
+      if (inventoryItem && !replace) {
+        // TODO
+        // * alert user already has item
+        // * add new quantity to existing item (unit conversions needed)
+        console.log('User already has ' + item.name);
+        res.redirect('/inventory');
+      } else if (!inventoryItem || replace) {
         req.user
           .addItem(item, {
             quantity: quantity,
