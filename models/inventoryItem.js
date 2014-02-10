@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    unit: DataTypes.STRING(8)
+    unit: DataTypes.STRING
   });
   return InventoryItem;
 };
