@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Item, {
           through: models.InventoryItem
         });
+        User.hasMany(models.Bulletin);
       }
     },
     instanceMethods: {
