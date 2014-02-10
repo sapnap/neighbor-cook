@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
         Item.hasMany(models.User, {
           as: 'Owner',
           through: models.InventoryItem
-        })
+        });
+        Item.hasMany(models.Bulletin);
       }
     }
   });

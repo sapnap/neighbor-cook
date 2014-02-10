@@ -1,0 +1,34 @@
+<h1>Bulletin create</h1>
+
+ <form class="form-inline" role="form" method="post" action="/bulletins">
+  <div class="form-group">
+      <label class="sr-only" for="inputItem">Item</label>
+      <input type="text" class="form-control" id="inputItem" name="itemName" required="true" placeholder="Enter item">
+  </div>
+  <div class="form-group">
+      <label class="sr-only" for="inputQuantity">Quantity</label>
+      <input type="number" class="form-control" id="inputQuantity" name="quantity">
+  </div>
+  <div class="form-group">
+      <label class="sr-only" for="inputUnits">Units</label>
+      <select class="form-control" id="inputUnits" name="unit">
+          {{>measurement-units}}
+      </select>
+  </div>
+  <div class="form-group">
+      <label class="sr-only" for="inputMessage">Message</label>
+      <textarea id="inputMessage" name="message"></textarea>
+  </div>
+  <div class="form-group">
+      <label class="sr-only" for="inputType">Type</label>
+      <select class="form-control" id="inputType" name="type">
+          <option value="request">Request</option>
+          <option value="offer">Offer</option>
+      </select>
+  </div>  
+  <div class="form-group">
+      <label class="sr-only" for="inputExpiryTime">Expiration Time</label>
+      <input type="date" class="form-control" id="inputExpiryTime" name="expiration">
+  </div>
+  <button type="submit" class="btn btn-default">Add Bulletin</button>
+</form>

@@ -83,3 +83,11 @@ img {
 .conversation {
     margin: 0;
 }
+
+td.offer {
+    background-color: #B2FFB9;
+}
+
+td.request {
+    background-color: #FFA9AA;
+}

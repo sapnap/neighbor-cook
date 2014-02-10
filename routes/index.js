@@ -1,14 +1,23 @@
+var db = require('../models');
 
 /*
  * GET home page.
  */
 
 exports.view = function(req, res){
-  console.log(req.session);
-  if (req.user) {
-    res.render('index', { user: req.user });
-  } else {
-    res.render('index');
-  }
-  
+	db.Bulletin
+    .findAll({
+      include: [ db.Item, db.User ]
+    })
+    .success(function(bulletins) {
+      console.log("bulletins", JSON.stringify(bulletins));
+      var data = {
+      	bulletins: bulletins
+      }
+      // res.send(JSON.stringify(data));
+      res.render('index', data);
+    })
+    .error(function(err) {
+      res.redirect('/');
+    });  
 };

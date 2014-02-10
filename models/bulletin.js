@@ -30,6 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Bulletin.belongsTo(models.User);
+        Bulletin.belongsTo(models.Item);
       }
     }
   });

@@ -15,6 +15,7 @@ var messages = require('./routes/messages');
 var search = require('./routes/search');
 var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
+var bulletin = require('./routes/bulletin');
 
 var app = express();
 var db = require('./models');
@@ -130,6 +131,10 @@ app.get('/messages', ensureLoggedIn, messages.viewInbox);
 app.get('/messages/:id', ensureLoggedIn, messages.viewConversation);
 //app.get('/messages/compose', messages.composeNew);
 //app.post('/messages/send', messages.send);
+
+app.get('/bulletins', bulletin.view);
+app.get('/bulletins/create', ensureLoggedIn, bulletin.create);
+app.post('/bulletins',  ensureLoggedIn, bulletin.add);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
