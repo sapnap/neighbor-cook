@@ -16,16 +16,16 @@
         Location: <strong>{{location}}</strong><br />
         Rating: <strong>+{{donated}} / -{{received}}</strong>
       </div>
+    </div>
   </div>
-</div>
-<div class="panel-body">
-  <h5>
-    Available Foods in Inventory:
-    {{#if editable}}
-    <a href="/inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
-    {{/if}}
-  </h5>
-  <div class="list-group">
+  <div class="panel-body">
+    <h5>
+      Available Foods in Inventory:
+      {{#if editable}}
+      <a href="/inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+      {{/if}}
+    </h5>
+    <div class="list-group">
       {{#each inventory}}
         <p class="list-group-item">{{name}}</p>
       {{else}}
