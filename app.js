@@ -16,7 +16,7 @@ var search = require('./routes/search');
 var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
-//var inventoryInit = require('./routes/inventoryInit');
+var inventoryInit = require('./routes/inventoryInit');
 var help = require('./routes/help');
 
 var app = express();
@@ -93,6 +93,7 @@ passport.use(new FacebookStrategy(
                 console.log('The instance has not been saved:', err);
               } else {
                 // TODO redirect to profile initialization (inventory, location)
+                console.log('new user');
                 done(null, user);
               }
             });
@@ -117,7 +118,8 @@ app.get('/', index.view);
 app.get('/profile/:id', profile.view);
 app.get('/search', search.view);
 app.get('/friends', friends.view);
-//app.get('/initialize/inventory', inventoryInit.view);
+app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
+app.post('/initialize/inventory', ensureLoggedIn, inventoryInit.addItems);
 app.get('/help', help.view);
 
 // inventory management (RESTful)
@@ -146,8 +148,15 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
+    console.log('inside the callback');
+    console.log(req.user);
     // Successful authentication
-    res.redirect('/');
+    if (req.user.options.isNewRecord) {
+      res.redirect('/initialize/inventory');
+    } else {
+      res.redirect('/');
+    }
+    
   });
 app.get('/logout', function(req, res) {
   req.logout();
