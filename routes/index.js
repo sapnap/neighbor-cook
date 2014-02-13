@@ -5,14 +5,17 @@ var db = require('../models');
  */
 
 exports.view = function(req, res){
+	var errorNotLoggedIn = false
+	if (req.query.errorNotLoggedIn) errorNotLoggedIn = true;
 	db.Bulletin
     .findAll({
       include: [ db.Item, db.User ]
     })
     .success(function(bulletins) {
-      console.log("bulletins", JSON.stringify(bulletins));
+      // console.log("bulletins", JSON.stringify(bulletins));
       var data = {
-      	bulletins: bulletins
+      	bulletins: bulletins,
+      	errorNotLoggedIn: errorNotLoggedIn
       }
       // res.send(JSON.stringify(data));
       res.render('index', data);

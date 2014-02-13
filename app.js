@@ -107,7 +107,8 @@ function ensureLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		next();
   } else {
-	  res.redirect('/auth/facebook');
+    // Include error message to be displayed
+	  res.redirect('/?errorNotLoggedIn=true');
   }
 }
 
