@@ -1,33 +1,5 @@
 var db = require('../models');
 
-exports.view = function(req, res) {
-  db.Bulletin
-    .findAll({
-      include: [ db.Item, db.User ]
-    })
-    .success(function(bulletins) {
-      console.log("bulletins", JSON.stringify(bulletins));
-      var data = {
-        bulletins: bulletins
-      };
-      res.redirect('/', data);
-    })
-    .error(function(err) {
-      res.redirect('/');
-    });
-};
-
- // id         | integer                  | not null default nextval('"Bulletins_id_seq"'::regclass)
- // status     | character varying(16)    |
- // quantity   | double precision         |
- // unit       | character varying(255)   |
- // expiration | timestamp with time zone |
- // message    | character varying(255)   |
- // type       | character varying(255)   |
- // createdAt  | timestamp with time zone | not null
- // updatedAt  | timestamp with time zone | not null
- // UserId     | integer                  |
- // ItemId     | integer                  |
 exports.add = function(req, res) {
   db.Item
     .find({ where: { name: req.body.itemName }})
@@ -40,13 +12,26 @@ exports.add = function(req, res) {
         addBulletin(req, res, item);
       }
     });
-}
+};
 
 exports.create = function(req, res) {
   res.render('bulletin/create');
-}
+};
 
-var addBulletin = function(req, res, item, user) {
+exports.delete = function(req, res) {
+  db.Bulletin
+    .find(req.params.id)
+    .success(function(bulletin) {
+      bulletin.status = "deleted";
+      bulletin
+        .save()
+        .success(function() {
+          res.redirect('/');
+        });
+    });
+};
+
+var addBulletin = function(req, res, item) {
   db.Bulletin
     .create({
       status: 'open',
@@ -61,6 +46,6 @@ var addBulletin = function(req, res, item, user) {
       bulletin.setUser(req.user);
       res.redirect('/');
     });
-}
+};
 
 

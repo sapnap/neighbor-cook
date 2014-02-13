@@ -137,9 +137,9 @@ app.get('/messages/:id', ensureLoggedIn, messages.viewConversation);
 //app.get('/messages/compose', messages.composeNew);
 //app.post('/messages/send', messages.send);
 
-app.get('/bulletins', bulletin.view);
 app.get('/bulletins/create', ensureLoggedIn, bulletin.create);
 app.post('/bulletins',  ensureLoggedIn, bulletin.add);
+app.delete('/bulletins/:id', bulletin.delete);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
