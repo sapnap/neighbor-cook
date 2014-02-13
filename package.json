@@ -20,7 +20,8 @@
     "passport-facebook": "1.0.x",
     "sequelize": "1.7.x",
     "pg": "2.x",
-    "lodash": "2.4.x"
+    "lodash": "2.4.x",
+    "node-schedule": "0.1.x"
   },
   "engines": {
     "node": "0.10.x"
