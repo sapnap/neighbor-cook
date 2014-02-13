@@ -16,7 +16,15 @@ function initializePage() {
   }
   $('#' + pathStart + '-nav').addClass("active");
   $('#' + pathStart + '-nav a').attr('href', '#');
+
   $('#searchBtn').click(performSearch);
+  $('#searchQuery').keypress(function (e) {
+	  // press enter key on search box
+	  if (e.which == 13) {
+	    $('#searchBtn').click();
+	    return false;
+	  }
+	});
 }
 
 function performSearch(e) {
