@@ -15,6 +15,7 @@ exports.view = function(req, res) {
     });
 };
 
+//getting info from adding to inventory request
 exports.addItem = function(req, res) {
   var itemName, quantity, unit;
   if (req.method === 'GET') {
@@ -29,6 +30,7 @@ exports.addItem = function(req, res) {
 
   if (quantity === '') quantity = null;
 
+//finding item in database
   db.Item
     .find({ where: { name: itemName }})
     .success(function(item) {
@@ -98,6 +100,7 @@ exports.deleteItem = function(req, res) {
  */
 var addInventoryItem = function(req, res, item, quantity, unit, replace) {
   db.InventoryItem
+    //find item if it exists, find unique user item id pair
     .find({ where: { UserId: req.user.id, ItemId: item.id }})
     .success(function(inventoryItem) {
       if (inventoryItem && !replace) {
@@ -106,7 +109,9 @@ var addInventoryItem = function(req, res, item, quantity, unit, replace) {
         // * add new quantity to existing item (unit conversions needed)
         console.log('User already has ' + item.name);
         res.redirect('/inventory');
+      //actually adding item to inventory
       } else if (!inventoryItem || replace) {
+        //for initialization call this 10 times for baseline
         req.user
           .addItem(item, {
             quantity: quantity,

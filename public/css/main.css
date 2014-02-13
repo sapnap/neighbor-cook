@@ -91,3 +91,13 @@ td.offer {
 td.request {
     background-color: #FFA9AA;
 }
+
+.bottom-nav {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+
+.help-options ul {
+    list-style-type: circle; 
+}

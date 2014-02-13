@@ -8,7 +8,7 @@ var handlebars = require('express3-handlebars');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-// routes
+// routes - linking to controllers (what info to retrieve)
 var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
@@ -16,6 +16,8 @@ var search = require('./routes/search');
 var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
+//var inventoryInit = require('./routes/inventoryInit');
+var help = require('./routes/help');
 
 var app = express();
 var db = require('./models');
@@ -115,6 +117,8 @@ app.get('/', index.view);
 app.get('/profile/:id', profile.view);
 app.get('/search', search.view);
 app.get('/friends', friends.view);
+//app.get('/initialize/inventory', inventoryInit.view);
+app.get('/help', help.view);
 
 // inventory management (RESTful)
 app.get('/inventory', ensureLoggedIn, inventory.view);
