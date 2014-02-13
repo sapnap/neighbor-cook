@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     gps: DataTypes.STRING
   }, {
     classMethods: {
+      //tels you relationship btw diff models
       associate: function(models) {
         User.hasMany(models.Item, {
           through: models.InventoryItem
