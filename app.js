@@ -12,7 +12,6 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
-var search = require('./routes/search');
 var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
