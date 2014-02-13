@@ -92,8 +92,6 @@ passport.use(new FacebookStrategy(
                 // TODO redirect somewhere
                 console.log('The instance has not been saved:', err);
               } else {
-                // TODO redirect to profile initialization (inventory, location)
-                console.log('new user');
                 done(null, user);
               }
             });
@@ -148,8 +146,6 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    console.log('inside the callback');
-    console.log(req.user);
     // Successful authentication
     if (req.user.options.isNewRecord) {
       res.redirect('/initialize/inventory');
