@@ -19,7 +19,12 @@
         </div>
     </div>
     <div class="panel-body">
-        <h5>Available Foods in Inventory:</h5>
+        <h5>
+            Available Foods in Inventory:
+            {{#if editable}}
+            <a href="/inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+            {{/if}}
+        </h5>
         <div class="list-group">
             {{#each inventory}}
                 <a href="#" class="list-group-item">
