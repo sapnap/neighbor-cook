@@ -1,3 +1,10 @@
+{{#if errorNotLoggedIn}}
+    <div class="alert alert-warning">
+        <a class="close" data-dismiss="alert">×</a>
+        <div id="flash_error">You must be logged in to do that.</div>
+    </div>
+{{/if}}
+
 <div id="search">
     <h2 style="font-family: 'Raleway', sans-serif;">Search for food items in your neighborhood:</h2>
     <div id="bar">
