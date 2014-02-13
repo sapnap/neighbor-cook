@@ -112,6 +112,7 @@ function ensureLoggedIn(req, res, next) {
 
 // pages
 app.get('/', index.view);
+app.get('/search', index.search);
 app.get('/profile/:id', profile.view);
 app.get('/friends', friends.view);
 app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
