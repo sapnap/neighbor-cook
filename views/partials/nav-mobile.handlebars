@@ -1,21 +1,16 @@
 <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
     <ul class="nav nav-pills nav-justified">
-        <li id="index-nav"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li id="search-nav"><a href="/search"><span class="glyphicon glyphicon-search"></span></a></li>
+        <li id="index-nav"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>        
         {{#if user}}
+            <li id="search-nav"><a href="/search"><span class="glyphicon glyphicon-search"></span></a></li>        
             <li id="profile-nav"><a href="/profile/{{user.id}}"><span class="glyphicon glyphicon-user"></span></a></li>
-        {{else}}
-            {{! TODO create a dummy page }}
-            <li id="profile-nav"><a href="/profile/1"><span class="glyphicon glyphicon-user"></span></a></li>
-        {{/if}}
-        <li id="messages-nav"><a href="/messages"><span class="glyphicon glyphicon-envelope"></span></a></li>
-        {{#if user}}
+            <li id="messages-nav"><a href="/messages"><span class="glyphicon glyphicon-envelope"></span></a></li>
             {{! TODO replace with a dropdown button }}
             {{! TODO find a better icon for inventory }}
             <li id="inventory-nav"><a href="/inventory"><span class="glyphicon glyphicon-list-alt"></span></a></li>
-            <li><a href="/logout" id="sign_out">Logout</a></li>
+            <li><a href="/logout" id="sign_out">Logout</a></li>	
         {{else}}
-        	<li><a href="/auth/facebook">Login</a></li>
-        {{/if}}
+            <li><a href="/auth/facebook">Login</a></li>
+        {{/if}}    
     </ul>
 </nav>
