@@ -23,16 +23,6 @@ li {
     font-family: 'Raleway', sans-serif;
 }
 
-#search {
-    font-family: 'Raleway', sans-serif;
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
-}
-
-#newsearch {
-    padding: 10px;
-}
-
 .inputtext {
     margin: 0;
     padding: 10px 20px;
@@ -51,13 +41,6 @@ li {
     border: solid 1px #1E90FF;
     background: #778899;
     border-radius: 5px 5px;
-}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
-    width:auto;
-    height:auto;
 }
 
 .button:hover {
