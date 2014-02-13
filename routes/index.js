@@ -8,6 +8,19 @@ var _ = require('lodash');
 exports.view = function(req, res){
   var errorNotLoggedIn = false;
   if (req.query.errorNotLoggedIn) errorNotLoggedIn = true;
+  var searchResults = undefined;
+  var query = req.query.query;	
+	if (query !== undefined) {
+		// populate searchResults with data
+		searchResults = {
+			'query': query,
+			'results': [
+				{'name': 'Rahul', 'id': '1', 'location': 'Stanford, CA'},
+				{'name': 'Sammy', 'id': '2', 'location': 'Menlo Park, CA'},
+				{'name': 'Sapna', 'id': '3', 'location': 'Stanford, CA'},
+			]
+		}
+	}
 
   // TODO expiration times stored in UTC, convert to user time zone
   db.Bulletin
@@ -27,7 +40,8 @@ exports.view = function(req, res){
         offers: bulletins,
         requests: requests,
         authored: authored,
-        errorNotLoggedIn: errorNotLoggedIn
+        errorNotLoggedIn: errorNotLoggedIn,
+        searchResults: searchResults
       };
       res.render('index', data);
     });

@@ -12,6 +12,19 @@
   <input type="submit" value="search" class="button">
 </form>
 
+{{#if searchResults}}
+<div class="list-group">
+  <p>Your search for <strong>{{searchResults.query}}</strong> returned {{searchResults.results.length}} results:</p>
+  {{#each searchResults.results}}
+      <a href="/profile/{{id}}" class="list-group-item">
+        <h5 class="list-group-item-heading">{{name}}</h5>
+        <p class="list-group-item-text">{{location}}</p>
+      </a>
+  {{/each}}
+  <!-- TODO: support infinite scroll -->
+</div>
+{{/if}}
+
 {{#if requests}}
 <h4>People around you need...</h4>
 <table class="table table-hover">
