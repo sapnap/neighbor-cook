@@ -18,11 +18,6 @@ body {
     /*background-color: #AFEEEE;*/
 }
 
-li {
-    display: inline;
-    font-family: 'Raleway', sans-serif;
-}
-
 .inputtext {
     margin: 0;
     padding: 10px 20px;
@@ -75,12 +70,6 @@ td.request {
     background-color: #FFA9AA;
 }
 
-.bottom-nav {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: black;
-}
-
-.help-options ul {
+.help-links ul {
     list-style-type: circle; 
 }
