@@ -14,7 +14,8 @@
   <tr class="row">
     <td>{{item.name}}</td>
     <td>{{message}}</td>
-    <td><a href="/profile/{{user.id}}">{{user.first_name}}</a></td>
+    <!-- <td><a href="/profile/{{user.id}}">{{user.first_name}}</a></td> -->
+    <td><a href="/messages/{{user.id}}?subject={{item.name}}&offer=1">Message {{user.first_name}}</a></td>
   </tr>
   {{/each}}
 </table>
@@ -27,7 +28,8 @@
     <tr class="row">
       <td>{{item.name}}</td>
       <td>{{message}}</td>
-      <td><a href="/profile/{{user.id}}">{{user.first_name}}</a></td>
+      <!-- <td><a href="/profile/{{user.id}}">{{user.first_name}}</a></td> -->
+      <td><a href="/messages/{{user.id}}?subject={{item.name}}&offer=0">Message {{user.first_name}}</a></td>
     </tr>
   {{/each}}
 </table>

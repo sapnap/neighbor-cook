@@ -134,7 +134,7 @@ app.get('/inventory/delete/:itemID', ensureLoggedIn, inventory.deleteItem);
 
 // messaging
 app.get('/messages', ensureLoggedIn, messages.viewInbox);
-app.get('/messages/:id', ensureLoggedIn, messages.viewConversation);
+app.get('/messages/:id', ensureLoggedIn, messages.composeNew);
 //app.get('/messages/compose', messages.composeNew);
 //app.post('/messages/send', messages.send);
 

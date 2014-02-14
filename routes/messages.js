@@ -1,3 +1,5 @@
+var db = require('../models');
+
 exports.viewInbox = function(req, res) {
     // TODO get messages from server
     var conversations = {
@@ -30,7 +32,28 @@ exports.viewConversation = function(req, res) {
 };
 
 exports.composeNew = function(req, res) {
-
+    console.log(req.query.subject);
+    var subject = req.query.subject;
+    var offer = (req.query.offer == '1') ? true : false;
+    var recipientUserId = req.params.id;
+    console.log(recipientUserId);
+    console.log(offer);
+        
+    db.User
+        .find({ where: { id: recipientUserId } })
+        .success(function(user) {
+          if (!user) {
+            res.redirect('/');
+          } else {
+            console.log(user);
+            var data = {
+                'subject': subject,
+                'offer': offer,
+                'recipientUser': user
+            }
+            res.render('message_email', data);
+          }
+        });    
 };
 
 /* TODO: resolve messages

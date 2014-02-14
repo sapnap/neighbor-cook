@@ -17,6 +17,7 @@ function initializePage() {
   $('#' + pathStart + '-nav').addClass("active");
   $('#' + pathStart + '-nav a').attr('href', '#');
 
+  $('#sendMessageButton').click(sendEmail);
   $('#searchBtn').click(performSearch);
   $('#searchQuery').keypress(function (e) {
 	  // press enter key on search box
@@ -25,6 +26,15 @@ function initializePage() {
 	    return false;
 	  }
 	});
+}
+
+function sendEmail(e) {
+	var subject = $("#messageSubject").val();
+	var body = $("#messageBody").val();
+	var email = $("#messageEmail").text();
+	var url = "mailto:" + email + "?subject=" + subject + "&body=" + body; 
+	console.log(subject, body, email, url);
+	window.open(url,'_blank');
 }
 
 function performSearch(e) {
