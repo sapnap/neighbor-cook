@@ -17,7 +17,7 @@ exports.view = function(req, res) {
           editable: req.isAuthenticated() && user.id == req.user.id,
           name: user.getFullname(),
           image: user.img_path,
-          location: 'Stanford, CA',
+          location: user.location,
           donated: 19,
           received: 4,
           inventory: user.items

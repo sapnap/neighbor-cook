@@ -19,9 +19,29 @@ exports.view = function(req, res) {
 };
 
 exports.addItems = function(req, res) {
+  var userInfo = req.body.user;
+  console.log("user info", userInfo); 
+  db.User
+    .find({ where: {id: req.user.id} })
+    .success(function(user) {
+      if (!user) {
+        console.log('unable to find user with id ' + req.user.id);
+      } else {
+        console.log(user);
+        user.updateAttributes({
+          email: userInfo.email,
+          location: userInfo.location
+        }).success(function() {
+          console.log("updated user successfully!!");
+        });
+      }
+    })
+    .error(function(err) {
+      console.log('user info was not updated');
+    });;
   var inventory = req.body.inventory;
   var inventoryToAdd = [];
-  
+
   _.each(inventory, function(val, key) {
     if (val === 'on') inventoryToAdd.push(key);
   });
