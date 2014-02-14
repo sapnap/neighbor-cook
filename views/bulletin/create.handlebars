@@ -1,24 +1,28 @@
 <h1>Create a Bulletin</h1>
 
- <form class="form-inline" role="form" method="post" action="/bulletins">
+<div class="col-xs-12">
+ <form class="form-horizontal" role="form" method="post" action="/bulletins">
   <div class="form-group">
-      <label class="sr-only" for="inputItem">Item</label>
+      <label class="col-xs-2" for="inputItem">Item</label>
       <input type="text" class="form-control" id="inputItem" name="itemName" required="true" placeholder="Enter item" />
   </div>
   <div class="form-group">
-      <label class="sr-only" for="inputMessage">Message</label>
-      <textarea class="form-control" id="inputMessage" name="message" placeholder="Enter a message"></textarea>
+      <label class="col-xs-2" for="inputMessage">Message</label>
+      <textarea class="form-control" id="inputMessage" name="message" rows="3" placeholder="Enter a message"></textarea>
   </div>
   <div class="form-group">
-      <label class="sr-only" for="inputType">Type</label>
+      <label class="col-xs-2" for="inputType">Type</label>
       <select class="form-control" id="inputType" name="type">
           <option value="request">Request</option>
           <option value="offer">Offer</option>
       </select>
   </div>  
   <div class="form-group">
-      <label class="sr-only" for="inputExpiryTime">Expiration Time</label>
-      <input type="date" class="form-control" id="inputExpiryTime" name="expiration">
+      <label class="col-xs-2" for="inputExpiryDate">Expiration</label>
+      <input type="date" class="form-control" id="inputExpiryDate" name="expiration[date]">
+      <input type="time" class="form-control" id="inputExpiryDate" name="expiration[time]">
+      <!-- TODO analog clock that users can manipulate -->
   </div>
   <button type="submit" class="btn btn-default">Add Bulletin</button>
 </form>
+</div>

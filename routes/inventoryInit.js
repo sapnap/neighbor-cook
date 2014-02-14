@@ -21,32 +21,25 @@ exports.view = function(req, res) {
 exports.addItems = function(req, res) {
   var inventory = req.body.inventory;
   var inventoryToAdd = [];
+  
+  _.each(inventory, function(val, key) {
+    if (val === 'on') inventoryToAdd.push(key);
+  });
 
-  for (var inventoryItem in inventory) {
-    if (inventory[inventoryItem] === 'on') {
-      inventoryToAdd.push(inventoryItem);
-    }
-  }
-  function doRender(){
-    res.redirect('/profile/' + req.user.id);
-  } 
-  // creates a function that only executes after being called a certain number of times.
-  var finished = _.after(inventoryToAdd.length, doRender);
-  for (var i = 0; i < inventoryToAdd.length; i++) {
-    db.Item
-      .find({ where: { name: inventoryToAdd[i] }})
-      .success(function(item) {
-        if (!item) {
-          console.log('Item ' + itemName + ' does not exist');
-        } else {
-          req.user
-          .addItem(item, {
+  db.Item
+    .findAll({ where: { name: inventoryToAdd }})
+    .success(function(items) {
+      if (!items) {
+        console.log('Items do not exist');
+      } else {
+        req.user
+          .setItems(items, {
             quantity: 1,
             unit: 'unit'
           }).success(function() {
-            finished();
+            res.redirect('/profile/' + req.user.id);
           });  
-        }      
-      });
-  }   
+      }      
+    });
+  
 }

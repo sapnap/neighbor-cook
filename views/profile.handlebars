@@ -1,51 +1,47 @@
 <div class="panel panel-default profileContainer">
-    <div class="panel-heading">
-        <div class="media">
-            <img class="pull-left media-object img-rounded" src="{{image}}" alt="Profile Picture" />
-            <div class="media-body">
-                <h4 class="media-heading">
-                    {{name}}
-                    {{#if editable}}
-                        <a href="#">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
-                        <!-- TODO: this button should allow users to edit the page (profile.js) -->
-                    {{else}}
-                        <button class="button messageButton font-small">Message</button>
-                        <!-- TODO: this button should allow user to send message-->
-                    {{/if}}
-                </h4>
-                Location: <strong>{{location}}</strong><br />
-                Rating: <strong>+{{donated}} / -{{received}}</strong>
-            </div>
-        </div>
+  <div class="panel-heading">
+    <div class="media">
+      <img class="pull-left media-object img-rounded" src="{{image}}" alt="Profile Picture" />
+      <div class="media-body">
+        <h4 class="media-heading">
+          {{name}}
+          {{#if editable}}
+            <a href="#">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+            <!-- TODO: this button should allow users to edit the page (profile.js) -->
+          {{else}}
+            <button class="button messageButton font-small">Message</button>
+            <!-- TODO: this button should allow user to send message-->
+          {{/if}}
+        </h4>
+        Location: <strong>{{location}}</strong><br />
+        Rating: <strong>+{{donated}} / -{{received}}</strong>
+      </div>
     </div>
-    <div class="panel-body">
-        <h5>
-            Available Foods in Inventory:
-            {{#if editable}}
-            <a href="/inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
-            {{/if}}
-        </h5>
-        <div class="list-group">
-            {{#each inventory}}
-                <a href="#" class="list-group-item">
-                    <p class="list-group-heading">{{name}}</p>
-                    <p class="list-group-item-text">
-                        {{inventoryItem.quantity}} {{inventoryItem.unit}}
-                    </p>
-                </a>
-            {{else}}
-                <a href="#" class="list-group-item">
-                    <p class="list-group-item-heading">
-                        Empty inventory :(
-                    </p>
-                </a>
-            {{/each}}
-        </div>
+  </div>
+  <div class="panel-body">
+    <h5>
+      Available Foods in Inventory:
+      {{#if editable}}
+      <a href="/inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+      {{/if}}
+    </h5>
+    <div class="list-group">
+      {{#each inventory}}
+        <p class="list-group-item">{{name}}</p>
+      {{else}}
+        <a href="#" class="list-group-item">
+          <p class="list-group-item-heading">Empty inventory :(</p>
+        </a>
+      {{/each}}
     </div>
+<<<<<<< HEAD
 </div>
 
 <div class="container">
     <div class="help">
         <a href="/help">Help Center</a>
     </div>
+=======
+  </div>
+>>>>>>> upstream/master
 </div>

@@ -12,7 +12,6 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
-var search = require('./routes/search');
 var inventory = require('./routes/inventory');
 var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
@@ -113,8 +112,8 @@ function ensureLoggedIn(req, res, next) {
 
 // pages
 app.get('/', index.view);
+app.get('/search', index.search);
 app.get('/profile/:id', profile.view);
-app.get('/search', search.view);
 app.get('/friends', friends.view);
 app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
 app.post('/initialize/inventory', ensureLoggedIn, inventoryInit.addItems);
