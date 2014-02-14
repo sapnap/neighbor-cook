@@ -14,6 +14,7 @@ exports.view = function(req, res) {
       } else {
         console.log(JSON.stringify(user.items));
         var data = {
+          id: user.id,
           editable: req.isAuthenticated() && user.id == req.user.id,
           name: user.getFullname(),
           image: user.img_path,
