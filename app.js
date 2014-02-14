@@ -17,6 +17,7 @@ var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
 var inventoryInit = require('./routes/inventoryInit');
 var help = require('./routes/help');
+var getStart = require('./routes/getStart');
 
 var app = express();
 var db = require('./models');
@@ -118,6 +119,7 @@ app.get('/friends', friends.view);
 app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
 app.post('/initialize/inventory', ensureLoggedIn, inventoryInit.addItems);
 app.get('/help', help.view);
+app.get('/help/getStart', getStart.view);
 
 // inventory management (RESTful)
 app.get('/inventory', ensureLoggedIn, inventory.view);
