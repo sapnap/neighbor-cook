@@ -1,6 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define('Item', {
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    category: DataTypes.STRING
   }, {
     timestamps: false,
     classMethods: {
