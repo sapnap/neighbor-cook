@@ -1,0 +1,415 @@
+1,Apples,Fruits
+2,Oranges,Fruits
+3,Banana,Fruits
+4,Peaches,Fruits
+5,Pears,Fruits
+6,Strawberries,Fruits
+7,Blueberries,Fruits
+8,Raspberrries,Fruits
+9,Tangerines,Fruits
+10,Watermelon,Fruits
+11,Grapes,Fruits
+12,Plums,Fruits
+13,Apricots,Fruits
+14,Kiwis,Fruits
+15,Pomegranates,Fruits
+16,Lemons,Fruits
+17,Limes,Fruits
+18,Grapefruit,Fruits
+19,Passionfruit,Fruits
+20,Mangos,Fruits
+21,Papayas,Fruits
+22,Clementines,Fruits
+23,Cherries,Fruits
+24,Blackberries,Fruits
+25,Cranberries,Fruits
+26,Elderberries,Fruits
+27,Blood orange,Fruits
+28,Mulberries,Fruits
+29,Dates,Fruits
+30,Prunes,Fruits
+31,Figs,Fruits
+32,Lychees,Fruits
+33,Honeydew,Fruits
+34,Canteloupe,Fruits
+35,Huckleberries,Fruits
+36,Jackfruit,Fruits
+37,Starfruit,Fruits
+38,Kumquats,Fruits
+39,Pineapple,Fruits
+40,Guava,Fruits
+41,Tamarind,Fruits
+42,Citron,Fruits
+43,Pomelo,Fruits
+44,Lucuma,Fruits
+45,Acai,Fruits
+46,Dragonfruit,Fruits
+47,Tomatoes,Vegetables
+48,Lettuce,Vegetables
+49,Cucumbers,Vegetables
+50,Bell Peppers,Vegetables
+51,Zucchinni,Vegetables
+52,Eggplant,Vegetables
+53,Broccoli,Vegetables
+54,Peas,Vegetables
+55,Spinach,Vegetables
+56,Kale,Vegetables
+57,Celery,Vegetables
+58,Carrots,Vegetables
+59,Squash,Vegetables
+60,Scallions,Vegetables
+61,Brussel Sprouts,Vegetables
+62,Bean sprouts,Vegetables
+63,Okra,Vegetables
+64,Cauliflower,Vegetables
+65,Amaranth,Vegetables
+66,Arugula,Vegetables
+67,Beets,Vegetables
+68,Bok choy,Vegetables
+69,Broccoli rabe,Vegetables
+70,Cabbage,Vegetables
+71,Catsear,Vegetables
+72,Collard greens,Vegetables
+73,Radicchio,Vegetables
+74,Swiss chard,Vegetables
+75,Turnips,Vegetables
+76,Watercress,Vegetables
+77,Yarrow,Vegetables
+78,Avocado,Vegetables
+79,Chayote,Vegetables
+80,Pumpkin,Vegetables
+81,Tomatillo,Vegetables
+82,Jalepeño,Vegetables
+83,Artichoke,Vegetables
+84,Corn,Vegetables
+85,Apsaragus,Vegetables
+86,Leeks,Vegetables
+87,Onion ,Vegetables
+88,Potatoes,Vegetables
+89,Shallots,Vegetables
+90,Cassava,Vegetables
+91,Jicama,Vegetables
+92,Parsnips,Vegetables
+93,Radishes,Vegetables
+94,Rutabaga,Vegetables
+95,Sweet potato,Vegetables
+96,Yams,Vegetables
+97,Green beans,Vegetables
+98,Snap peas,Vegetables
+99,Snow peas,Vegetables
+100,Onion ,Vegetables
+101,Garlic,Vegetables
+102,Mushrooms,Vegetables
+103,Olives,Vegetables
+104,Romaine,Vegetables
+105,Escarole,Vegetables
+106,Alfalfa sprouts,Vegetables
+107,Asparagus,Vegetables
+108,String beans,Vegetables
+109,Milk,Dairy
+110,Butter,Dairy
+111,Heavy Cream,Dairy
+112,Cottage Cheese,Dairy
+113,Yogurt,Dairy
+114,Half & Half,Dairy
+115,Sour Cream,Dairy
+116,Cheese,Dairy
+117,Cream cheese,Dairy
+118,Whipping cream,Dairy
+119,Creamer,Dairy
+120,Whipped cream,Dairy
+121,Greek yogurt,Dairy
+122,Buttermilk,Dairy
+123,Clotted cream,Dairy
+124,Cream,Dairy
+125,Kefir,Dairy
+126,Pudding,Dairy
+127,Flour,Grains
+128,Grits,Grains
+129,Quinoa,Grains
+130,Barley,Grains
+131,Millet,Grains
+132,Corn meal,Grains
+133,Cornstarch,Grains
+134,Oats,Grains
+135,Oatmeal,Grains
+136,Couscous,Grains
+137,Brown rice,Grains
+138,Wild rice,Grains
+139,Black rice,Grains
+140,Amaranth,Grains
+141,Buckwheat,Grains
+142,Bulgur,Grains
+143,Farro,Grains
+144,Flaxseed,Grains
+145,Grano,Grains
+146,Kamut,Grains
+147,Muesli,Grains
+148,Rolled Oats,Grains
+149,Rye,Grains
+150,Spelt,Grains
+151,Teff,Grains
+152,Sorghum,Grains
+153,Triticale,Grains
+154,Wheat berrues,Grains
+155,Eggs,Meat
+156,Beef,Meat
+157,Chicken,Meat
+158,Turkey,Meat
+159,Ham,Meat
+160,Sausage,Meat
+161,Lamb,Meat
+162,Bologna,Meat
+163,Pastrami,Meat
+164,Hot dogs,Meat
+165,Pepperoni,Meat
+166,Ribs,Meat
+167,Meatballs,Meat
+168,Veal,Meat
+169,Ground beef,Meat
+170,Tuna,Seafood
+171,Clams,Seafood
+172,Oysters,Seafood
+173,Scallops,Seafood
+174,Lobster,Seafood
+175,Crab,Seafood
+176,Sea bass,Seafood
+177,Salmon,Seafood
+178,Tilapia,Seafood
+179,Cod,Seafood
+180,Rainbow,Seafood
+181,Trout,Seafood
+182,Pollock,Seafood
+183,Catfish,Seafood
+184,Flounder,Seafood
+185,Halibut,Seafood
+186,Whitefish,Seafood
+187,Mahi mahi,Seafood
+188,Swordfish,Seafood
+189,Snapper,Seafood
+190,Anchovies,Seafood
+191,Herring,Seafood
+192,Sardines,Seafood
+193,Sole,Seafood
+194,Wahoo,Seafood
+195,Whitefish,Seafood
+196,Caviar,Seafood
+197,Crawfish,Seafood
+198,Squid,Seafood
+199,Octopus,Seafood
+200,Mussel,Seafood
+201,Loco,Seafood
+202,Abalone,Seafood
+203,Clams,Seafood
+204,Cockle,Seafood
+205,Conch,Seafood
+206,Cuttlefish,Seafood
+207,Sugar,Spices
+208,Salt,Spices
+209,Pepper,Spices
+210,Tumeric,Spices
+211,Cumin,Spices
+212,Cayenne pepper,Spices
+213,Allspice,Spices
+214,Cinnamon,Spices
+215,Nutmeg,Spices
+216,Sea salt,Spices
+217,Crushed red pepper,Spices
+218,Paprika,Spices
+219,Angelica,Spices
+220,Star anise,Spices
+221,Bay leaf,Spices
+222,Cardamom,Spices
+223,Mustard seeds,Spices
+224,Caraway,Spices
+225,Carob,Spices
+226,Catnip,Spices
+227,Chili pepper,Spices
+228,Celery leaf,Spices
+229,Celery seed,Spices
+230,Chervil,Spices
+231,Chicory,Spices
+232,Cicely,Spices
+233,Cloves,Spices
+234,Coriander seed,Spices
+235,Curry powder,Spices
+236,Dill seed,Spices
+237,Fennel,Spices
+238,Ginger,Spices
+239,Liccorice,Spices
+240,Horseradish,Spices
+241,Saffron,Spices
+242,Safflower,Spices
+243,Sassafras,Spices
+244,Tarragon ,Spices
+245,Arrowroot,Spices
+246,Onion powder,Spices
+247,Garlic powder,Spices
+248,Dill weed,Spices
+249,Peppercorns,Spices
+250,Lima beans,Legumes
+251,Chickpeas,Legumes
+252,Kidney beans,Legumes
+253,Black beans,Legumes
+254,Baked beans,Legumes
+255,Soy beans,Legumes
+256,Fava beans,Legumes
+257,Edamame benas,Legumes
+258,Lentils,Legumes
+259,Bacon,Meat
+260,Tofu,Meat substitutes
+261,Tempeh,Meat substitutes
+262,Seitan,Meat substitutes
+263,Texturized vegetable protein,Meat substitutes
+264,Veggie burger,Meat substitutes
+265,Soy Milk,Dairy substitutes
+266,Almond Milk,Dairy substitutes
+267,Rice Milk,Dairy substitutes
+268,Coconut Milk,Dairy substitutes
+269,Almonds,Nuts and seeds
+270,Pecans,Nuts and seeds
+271,Walnuts,Nuts and seeds
+272,Peanuts,Nuts and seeds
+273,Pistachios,Nuts and seeds
+274,Cashews,Nuts and seeds
+275,Hazelnuts,Nuts and seeds
+276,Macadamia,Nuts and seeds
+277,Coconut,Nuts and seeds
+278,Sunflower seeds,Nuts and seeds
+279,Flaxseed,Nuts and seeds
+280,Chia seeds,Nuts and seeds
+281,Chestnuts,Nuts and seeds
+282,Water chestnuts,Nuts and seeds
+283,Pine nuts,Nuts and seeds
+284,Brazil nuts,Nuts and seeds
+285,Parsley,Herbs
+286,Sage,Herbs
+287,Rosemary,Herbs
+288,Thyme,Herbs
+289,Cilantro,Herbs
+290,Mint,Herbs
+291,Oregano,Herbs
+292,Dill,Herbs
+293,Basil,Herbs
+294,Chives,Herbs
+295,Fenugreek,Herbs
+296,Lemongrass,Herbs
+297,Spearmint,Herbs
+298,Peppermint,Herbs
+299,Honey,Condiments and sauces
+300,Ketchup,Condiments and sauces
+301,Mustard,Condiments and sauces
+302,Relish,Condiments and sauces
+303,Sriracha,Condiments and sauces
+304,Salsa,Condiments and sauces
+305,Soy sauce,Condiments and sauces
+306,Hoisin sauce,Condiments and sauces
+307,Molasses,Condiments and sauces
+308,Salad dressing,Condiments and sauces
+309,Balsamic vinegar,Condiments and sauces
+310,Apple vinegar,Condiments and sauces
+311,Rice vinegar,Condiments and sauces
+312,Sauerkraut,Condiments and sauces
+313,Teriyaki sauce,Condiments and sauces
+314,Agave,Condiments and sauces
+315,BBQ sauce,Condiments and sauces
+316,Mayonaise,Condiments and sauces
+317,Fish sauce,Condiments and sauces
+318,Wasabi,Condiments and sauces
+319,Miso paste,Condiments and sauces
+320,Soba noodles,Pastas
+321,Rice noodles,Pastas
+322,Egg noodles,Pastas
+323,Spaghetti,Pastas
+324,Tortellini,Pastas
+325,Elbows,Pastas
+326,Maccaroni,Pastas
+327,Ravioli,Pastas
+328,Lasagna noodles,Pastas
+329,Gnocchi,Pastas
+330,Manicotti,Pastas
+331,Linguini,Pastas
+332,Penne,Pastas
+333,Farfalle,Pastas
+334,Fusilli,Pastas
+335,Orzo,Pastas
+336,Rotini,Pastas
+337,Condensed milk,Dairy
+338,Evaporated milk,Dairy
+339,Margarine,Dairy substitutes
+340,Baking powder,Baking
+341,Baking soda,Baking
+342,Vanilla extract,Baking
+343,Chocolate chips,Baking
+344,Cocoa powder,Baking
+345,Cake mix,Baking
+346,Brownie mix,Baking
+347,Pie crust,Baking
+348,Gelatin,Baking
+349,Pudding mix,Baking
+350,Tapioca,Baking
+351,Powdered sugar,Baking
+352,Almond extract,Baking
+353,Marshmallows,Baking
+354,Maple syrup,Baking
+355,Raisins,Baking
+356,Craisins,Baking
+357,Puff pastry,Baking
+358,Yeast,Baking
+359,Sprinkles,Baking
+360,Chocolate syrup,Baking
+361,Caramel sauce,Baking
+362,Cooking spray,Cooking liquids
+363,Olive oil,Cooking liquids
+364,Canola oil,Cooking liquids
+365,Mazola oil,Cooking liquids
+366,Corn syrup,Cooking liquids
+367,Lemon juice,Cooking liquids
+368,Lime juice,Cooking liquids
+369,Flaxseed oil,Cooking liquids
+370,Coconut oil,Cooking liquids
+371,Cereal,Packaged goods
+372,Cookies,Packaged goods
+373,Crackers,Packaged goods
+374,Rice cakes,Packaged goods
+375,Baby food,Packaged goods
+376,Applesauce,Packaged goods
+377,Peanut Butter,Packaged goods
+378,Almond Butter,Packaged goods
+379,Baby formula,Packaged goods
+380,Popcorn,Packaged goods
+381,Potato chips,Packaged goods
+382,Pretzels,Packaged goods
+383,Croutons,Packaged goods
+384,Chicken stock,Packaged goods
+385,Vegetable stock,Packaged goods
+386,Beef stock,Packaged goods
+387,Granola bars,Packaged goods
+388,Granola,Packaged goods
+389,Gravy,Packaged goods
+390,Jam,Packaged goods
+391,Jelly,Packaged goods
+392,Ice cream,Packaged goods
+393,Ice cream cones,Packaged goods
+394,Pancake mix,Packaged goods
+395,Pickles,Packaged goods
+396,Hummus,Packaged goods
+397,Guacamole,Packaged goods
+398,Sundried tomatoes,Packaged goods
+399,Instant potatoes,Packaged goods
+400,Instant rice,Packaged goods
+401,Macaroni and cheese,Packaged goods
+402,Bread crumbs,Packaged goods
+403,Bagels,Bakery
+404,Croissants,Bakery
+405,Baguette,Bakery
+406,Hamburger buns,Bakery
+407,Rolls,Bakery
+408,Biscuits,Bakery
+409,Donuts,Bakery
+410,Bread,Bakery
+411,Muffins,Bakery
+412,Hotdog buns,Bakery
+413,English muffins,Bakery
+414,Focaccia,Bakery
+415,Ciabatta,Bakery
