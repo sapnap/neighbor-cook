@@ -1,0 +1,73 @@
+<div ng-show="errorNotLoggedIn" class="alert alert-warning">
+	<a class="close" data-dismiss="alert">×</a>
+  <div id="flash_error">You must be logged in to do that.</div>
+</div>
+
+<h2>Welcome to NeighborCook</h2>
+
+<hr>
+<div ng-show="requests">
+	<h4>People around you need...</h4>
+	<table class="table table-hover">
+	  <tr class="row" ng-repeat="req in requests">
+	    <td>{{req.item.name}}</td>
+	    <td>{{req.message}}</td>
+	    <td><a href="/profile/{{req.user.id}}">{{req.user.first_name}}</a></td>
+	    <td><a href="/messages/{{req.user.id}}?subject={{req.item.name}}&offer=1">Message {{req.user.first_name}}</a></td>
+	  </tr>
+	</table>
+</div>
+
+
+<div ng-show="offers">
+	<h4>People around you are offering...</h4>
+	<table class="table table-hover">
+	  <tr class="row" ng-repeat="offer in offers">
+	    <td>{{offer.item.name}}</td>
+	    <td>{{offer.message}}</td>
+	    <td><a href="/profile/{{offer.user.id}}">{{offer.user.first_name}}</a></td>
+	    <td><a href="/messages/{{offer.user.id}}?subject={{offer.item.name}}&offer=0">Message {{offer.user.first_name}}</a></td>
+	  </tr>
+	</table>
+</div>
+
+<div ng-show="authored">
+	<h4>Your open bulletins:</h4>
+	<table class="table table-hover">
+	    <tr class="row" ng-repeat="myBulletin in authored">
+	      <td class="{{myBulletin.type}}">{{myBulletin.type}}</td>
+	      <td>{{myBulletin.item.name}}</td>
+	      <td>{{myBulletin.message}}</td>
+	    </tr>
+	</table>
+</div>
+
+<hr>
+<div>
+  <input type="text" class="inputtext" name="query" size="20" maxlength="100" placeholder="Ingredient Search" ng-model="query" ng-enter="search()">
+  <button class="button" ng-click="search()">Search</button>
+
+  <div id="searchTemplate" ng-show="results">
+	  <div class="list-group">
+	  <p>Your search for <strong>{{doneQuery}}</strong> returned {{results.length}} results:</p>
+	  <div ng-repeat="result in results">
+      <a href="/profile/{{result.id}}" class="list-group-item">
+        <h5 class="list-group-item-heading">{{result.first_name}}</h5>
+        <img ng-src="{{result.img_path}}"></img>
+        <p class="list-group-item-text">{{result.location}}</p>
+      </a>
+	  </div>
+	  <!-- TODO: support infinite scroll -->
+	  </div>
+	</div>
+</div>
+<hr> 
+
+
+<footer class="navbar">
+  <ul class="list-inline">
+    <li><a href="#">About</a></li>
+    <a href="/help">Help Center</a>
+    <li><a href="#">Terms of Service</a></li>
+  </ul>
+</footer>

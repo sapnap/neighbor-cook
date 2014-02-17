@@ -107,7 +107,8 @@ function ensureLoggedIn(req, res, next) {
 		next();
   } else {
     // Include error message to be displayed
-	  res.redirect('/?errorNotLoggedIn=true');
+    // res.redirect('/?errorNotLoggedIn=true');
+    res.json({errorNotLoggedIn: true});
   }
 }
 
@@ -139,6 +140,7 @@ app.get('/messages/:id', ensureLoggedIn, messages.composeNew);
 //app.post('/messages/send', messages.send);
 
 app.get('/bulletins/create', ensureLoggedIn, bulletin.create);
+app.get('/bulletins', ensureLoggedIn, bulletin.view);
 app.post('/bulletins',  ensureLoggedIn, bulletin.add);
 app.delete('/bulletins/:id', bulletin.delete);
 

@@ -18,14 +18,14 @@ function initializePage() {
   $('#' + pathStart + '-nav a').attr('href', '#');
 
   $('#sendMessageButton').click(sendEmail);
-  $('#searchBtn').click(performSearch);
-  $('#searchQuery').keypress(function (e) {
-	  // press enter key on search box
-	  if (e.which == 13) {
-	    $('#searchBtn').click();
-	    return false;
-	  }
-	});
+ //  $('#searchBtn').click(performSearch);
+ //  $('#searchQuery').keypress(function (e) {
+	//   // press enter key on search box
+	//   if (e.which == 13) {
+	//     $('#searchBtn').click();
+	//     return false;
+	//   }
+	// });
 }
 
 function sendEmail(e) {
