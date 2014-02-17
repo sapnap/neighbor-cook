@@ -10,7 +10,7 @@ exports.view = function(req, res) {
       if (!user) {
         // TODO: alert user doesn't exist
         console.log('User ' + req.params.id + ' does not exist');
-        res.redirect('/');
+        res.json('/');
       } else {
         console.log(JSON.stringify(user.items));
         var data = {
@@ -28,6 +28,6 @@ exports.view = function(req, res) {
     })
     .error(function(err) {
       // TODO alert user of error (given id probably wasn't numeric)
-      res.redirect('/');
+      res.json('/');
     });
 };
