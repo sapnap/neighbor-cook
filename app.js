@@ -13,7 +13,6 @@ var index = require('./routes/index');
 var profile = require('./routes/profile');
 var messages = require('./routes/messages');
 var inventory = require('./routes/inventory');
-var friends = require('./routes/friends');
 var bulletin = require('./routes/bulletin');
 var inventoryInit = require('./routes/inventoryInit');
 var help = require('./routes/help');
@@ -26,7 +25,7 @@ var db = require('./models');
 app.set('port', process.env.PORT || 5000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
-app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.engine('handlebars', handlebars());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -118,30 +117,21 @@ app.get('/sign_in', index.sign_in);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
 app.get('/profile/:id', ensureLoggedIn, profile.view);
-app.get('/friends', ensureLoggedIn, friends.view);
-app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
-app.post('/initialize/inventory', ensureLoggedIn, inventoryInit.addItems);
+app.get('/', index.view);
 app.get('/help', help.view);
 app.get('/help/getStart', getStart.view);
 
-// inventory management (RESTful)
+// inventory management
+app.put('/inventory', ensureLoggedIn, inventoryInit.addItems);
 app.get('/inventory', ensureLoggedIn, inventory.view);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
 app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
 app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
 
-// inventory mangement (dev testing)
-app.get('/inventory/add/:itemName', ensureLoggedIn, inventory.addItem);
-app.get('/inventory/edit/:itemID', ensureLoggedIn, inventory.editItem);
-app.get('/inventory/delete/:itemID', ensureLoggedIn, inventory.deleteItem);
-
 // messaging
-app.get('/messages', ensureLoggedIn, messages.viewInbox);
 app.get('/messages/:id', ensureLoggedIn, messages.composeNew);
-//app.get('/messages/compose', messages.composeNew);
-//app.post('/messages/send', messages.send);
 
-app.get('/bulletins/create', ensureLoggedIn, bulletin.create);
+// bulletins
 app.get('/bulletins', ensureLoggedIn, bulletin.view);
 app.post('/bulletins',  ensureLoggedIn, bulletin.add);
 app.delete('/bulletins/:id', bulletin.delete);
@@ -153,7 +143,7 @@ app.get('/auth/facebook/callback',
   function(req, res) {
     // Successful authentication
     if (req.user.options.isNewRecord) {
-      res.redirect('/initialize/inventory');
+      res.redirect('/#/inventory/initialize');
     } else {
       res.redirect('/');
     }

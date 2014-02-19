@@ -1,0 +1,32 @@
+<h1>Create a Bulletin</h1>
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-xs-2" for="inputItem">Item</label>
+        <input type="text" class="form-control"
+               id="inputItem" ng-model="itemName"
+               required="true" placeholder="Enter item" />
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2" for="inputMessage">Message</label>
+        <textarea class="form-control" rows="3"
+                  id="inputMessage" ng-model="message"
+                  placeholder="Enter a message"></textarea>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2" for="inputType">Type</label>
+        <select class="form-control" id="inputType" ng-model="type">
+            <option value="request">Request</option>
+            <option value="offer">Offer</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2" for="inputExpiryDate">Expiration</label>
+        <input type="date" class="form-control"
+               id="inputExpiryDate" ng-model="expirationDate">
+        <input type="time" class="form-control"
+               id="inputExpiryTime" ng-model="expirationTime">
+        <!-- TODO analog clock that users can manipulate -->
+    </div>
+    <button ng-click="postBulletin()" class="btn btn-default">Add Bulletin</button>
+</form>

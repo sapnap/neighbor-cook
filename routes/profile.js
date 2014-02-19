@@ -23,7 +23,7 @@ exports.view = function(req, res) {
           received: 4,
           inventory: user.items
         };
-        res.render('profile', data);
+        res.json(data);
       }
     })
     .error(function(err) {

@@ -1,4 +1,5 @@
-var HomeController = function($scope, $http, $filter) {
+var HomeCtrl = function($scope, $http) {
+  $scope.errorNotLoggedIn = false;
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
@@ -6,7 +7,6 @@ var HomeController = function($scope, $http, $filter) {
   $scope.doneQuery = '';
   $scope.query = '';
 
-  $scope.errorNotLoggedIn = false;
   $http.get('/bulletins').success(function(data) {
     $scope.errorNotLoggedIn = data.errorNotLoggedIn;
     $scope.authored = data.authored;
@@ -20,6 +20,6 @@ var HomeController = function($scope, $http, $filter) {
       $scope.doneQuery = data.query;
     });
   };
-}
+};
 
-HomeController.$inject = ['$scope', '$http', '$filter'];
+HomeCtrl.$inject = ['$scope', '$http'];
