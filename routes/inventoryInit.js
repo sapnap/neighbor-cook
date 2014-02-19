@@ -2,7 +2,7 @@ var _ = require('lodash');
 var db = require('../models');
 
 exports.view = function(req, res) {
-  data = {
+  var data = {
     user: req.user,
     defaultItems: [
       {'item': 'Salt', 'id': 'salt'}, 
@@ -12,10 +12,10 @@ exports.view = function(req, res) {
       {'item': 'Pasta', 'id': 'pasta'},
       {'item': 'Pepper', 'id': 'pepper'},
       {'item': 'Flour', 'id': 'flour'},
-      {'item': 'Rice', 'id': 'rice'},
+      {'item': 'Rice', 'id': 'rice'}
     ]
   };
-	res.render('inventoryInit', data);
+	res.json(data);
 };
 
 exports.addItems = function(req, res) {
@@ -38,7 +38,7 @@ exports.addItems = function(req, res) {
     })
     .error(function(err) {
       console.log('user info was not updated');
-    });;
+    });
   var inventory = req.body.inventory;
   var inventoryToAdd = [];
 
@@ -61,5 +61,4 @@ exports.addItems = function(req, res) {
           });  
       }      
     });
-  
-}
+};

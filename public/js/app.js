@@ -1,8 +1,29 @@
-var app = angular.module('home', ['ngRoute']).
+var app = angular.module('ncook', ['ngRoute']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/', {templateUrl: '/partials/home.html', controller: 'HomeController'}).
-    otherwise({redirectTo: '/'});
+    when('/', {
+      templateUrl: '/partials/home.html',
+      controller: 'HomeCtrl'
+    }).
+    when('/profile/:id', {
+      templateUrl: '/partials/profile.html',
+      controller: 'ProfileCtrl'
+    }).
+    when('/inventory', {
+      templateUrl: 'partials/inventory.html',
+      controller: 'InventoryCtrl'
+    }).
+    when('/inventory/initialize', {
+      templateUrl: 'partials/inventory-initialize.html',
+      controller: 'InitInventoryCtrl'
+    }).
+    when('/bulletins/create', {
+      templateUrl: 'partials/bulletin-create.html',
+      controller: 'CreateBulletinCtrl'
+    }).
+    otherwise({
+      redirectTo: '/'
+    });
 }]);
 
 app.directive('ngEnter', function () {
@@ -17,11 +38,4 @@ app.directive('ngEnter', function () {
     });
   };
 });
-
-var profileApp = angular.module('profile', ['ngRoute']).
-	config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-    when('/profile/:id', {templateUrl: '/partials/profile.html', controller: 'ProfileController'}).
-    otherwise({redirectTo: '/'});
-}]);
 

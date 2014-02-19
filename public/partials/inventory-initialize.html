@@ -1,0 +1,35 @@
+<div class="media">
+    <img class="pull-left media-object img-rounded" src="{{user.img_path}}" alt="Profile Picture">
+    <div class="media-body">
+        <h2 class="media-heading">Welcome to <strong>NeighborCook</strong>{{user.first_name}}!</h2>
+    </div>
+</div>
+
+<form>
+    <!-- TODO: Badly need to do client side error-checking here -->
+    <h3> Please enter the below information to complete your profile: </h3>
+    <div class="form-group">
+        <label class="col-xs-2" for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="user[email]" placeholder="{{user.first_name}}@stanford.edu">
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2" for="inputLocation">Location</label>
+        <input type="text" class="form-control" id="inputLocation" name="user[location]" value="Stanford, CA">
+    </div>
+
+    <h3> We've started setting up your inventory. Do you have these items? </h3>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{#each defaultItems}}
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" checked="checked" id="{{id}}" name="inventory[{{id}}]"> {{item}}
+                </label>
+            </div>
+            {{/each}}
+            <hr>
+            <button type="submit" class="btn btn-default">Done</button>
+        </div>
+    </div>
+</form>

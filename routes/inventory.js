@@ -11,11 +11,11 @@ exports.view = function(req, res) {
       { raw: true },
       { userID: req.user.id })
     .success(function(items) {
-      res.render('inventory', { inventory: items, editable: true })
+      res.json({ inventory: items })
     });
 };
 
-//getting info from adding to inventory request
+// getting info from adding to inventory request
 exports.addItem = function(req, res) {
   var itemName, quantity, unit;
   if (req.method === 'GET') {
@@ -30,7 +30,7 @@ exports.addItem = function(req, res) {
 
   if (quantity === '') quantity = null;
 
-//finding item in database
+  // finding item in database
   db.Item
     .find({ where: { name: itemName }})
     .success(function(item) {
@@ -83,7 +83,7 @@ exports.deleteItem = function(req, res) {
         req.user
           .removeItem(item)
           .success(function() {
-            res.redirect('/inventory');
+            res.json({ itemID: item.id });
           });
       }
     });
@@ -109,16 +109,18 @@ var addInventoryItem = function(req, res, item, quantity, unit, replace) {
         // * add new quantity to existing item (unit conversions needed)
         console.log('User already has ' + item.name);
         res.redirect('/inventory');
-      //actually adding item to inventory
       } else if (!inventoryItem || replace) {
-        //for initialization call this 10 times for baseline
         req.user
           .addItem(item, {
             quantity: quantity,
             unit: unit
           })
           .success(function() {
-            res.redirect('/inventory');
+            res.json({
+              item: item,
+              quantity: quantity,
+              unit: unit
+            });
           });
       }
     });
