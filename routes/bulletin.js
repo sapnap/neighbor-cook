@@ -76,7 +76,7 @@ var addBulletin = function(req, res, item) {
       bulletin.setItem(item);
       bulletin.setUser(req.user);
       // scheduleExpiration(bulletin, req.body.expiration);
-      res.redirect('/');
+      res.json({ success: true });
     });
 };
 
