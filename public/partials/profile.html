@@ -7,8 +7,7 @@
                     {{name}}
                     <span ng-show="editable" class="glyphicon glyphicon-pencil font-small"></span>
                     <!-- TODO: this button should allow users to edit the page (profile.js) -->
-                    <a ng-hide="editable" class="button messageButton font-small" href="/messages/{{id}}?offer=0">Message</a>
-                    <!-- TODO: this button should allow user to send message-->
+                    <a ng-hide="editable" class="button messageButton font-small" href="#/messages/compose/{{id}}?offer=0">Message</a>
                 </h4>
                 Location: <strong>{{location}}</strong><br />
                 Rating: <strong>+{{donated}} / -{{received}}</strong>
@@ -18,7 +17,9 @@
     <div class="panel-body">
         <h5>
             Available Foods in Inventory:
-            <a ng-show="editable" href="#inventory">&nbsp;<span class="glyphicon glyphicon-pencil font-small"></span></a>
+            <a ng-show="editable" href="#/inventory">
+                &nbsp;<span class="glyphicon glyphicon-pencil font-small"></span>
+            </a>
         </h5>
         <div class="list-group">
             <div ng-repeat="item in inventory">
