@@ -108,15 +108,17 @@ function ensureLoggedIn(req, res, next) {
   } else {
     // Include error message to be displayed
     // res.redirect('/?errorNotLoggedIn=true');
-    res.json({errorNotLoggedIn: true});
+    // res.json({errorNotLoggedIn: true});
+    res.redirect('/sign_in');
   }
 }
 
 // pages
-app.get('/', index.view);
-app.get('/search', index.search);
-app.get('/profile/:id', profile.view);
-app.get('/friends', friends.view);
+app.get('/sign_in', index.sign_in);
+app.get('/', ensureLoggedIn, index.view);
+app.get('/search', ensureLoggedIn, index.search);
+app.get('/profile/:id', ensureLoggedIn, profile.view);
+app.get('/friends', ensureLoggedIn, friends.view);
 app.get('/initialize/inventory', ensureLoggedIn, inventoryInit.view);
 app.post('/initialize/inventory', ensureLoggedIn, inventoryInit.addItems);
 app.get('/help', help.view);
@@ -147,7 +149,7 @@ app.delete('/bulletins/:id', bulletin.delete);
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/' }),
+  passport.authenticate('facebook', { failureRedirect: '/sign_in' }),
   function(req, res) {
     // Successful authentication
     if (req.user.options.isNewRecord) {
@@ -159,7 +161,7 @@ app.get('/auth/facebook/callback',
   });
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/sign_in');
 });
 
 db.sequelize
