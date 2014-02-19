@@ -9,6 +9,10 @@ exports.view = function(req, res){
   res.render('index');
 };
 
+exports.sign_in = function(req, res) {
+  res.render('sign_in', { layout: false });
+};
+
 // AJAX call to this endpoint
 exports.search = function(req, res) {
 	var query = req.query.query;
