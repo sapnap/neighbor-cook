@@ -31,3 +31,22 @@ exports.view = function(req, res) {
       res.json('/');
     });
 };
+
+exports.contact = function(req, res) {
+  db.User
+    .find({
+      where: { id: req.params.id },
+      attributes: [ 'id', 'first_name', 'last_name', 'email' ]
+    })
+    .success(function(user) {
+      if (!user) {
+        res.redirect('/');
+      } else {
+        console.log(user);
+        var data = {
+          'recipient': user
+        };
+        res.json(data);
+      }
+    });
+};
