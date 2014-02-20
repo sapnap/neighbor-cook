@@ -16,7 +16,6 @@ exports.splash = function(req, res) {
 // AJAX call to this endpoint
 exports.search = function(req, res) {
 	var query = req.query.query;
-	// TODO: normalize user input according to how query stored in db
 	db.Item
   .find({ where: { name: query }})
   .success(function(item) {
@@ -43,3 +42,18 @@ exports.search = function(req, res) {
     }
   });		
 };
+
+exports.searchTypeahead = function(req, res) {
+  db.Item
+  .findAll({ 
+    where: ["LOWER(name) LIKE '%" + req.query.query.toLowerCase() + "%'"],
+    attributes: ['name']
+  })
+  .success(function(items) {
+    res.json(items);
+  });
+};
+
+
+
+

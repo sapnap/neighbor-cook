@@ -1,13 +1,9 @@
-.container {
-    padding-top: 60px;
-}
-
 body {
     background: url('/images/fabric_plaid.png') repeat;
 }
 
 .content {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
