@@ -31,13 +31,14 @@ exports.addItem = function(req, res) {
   if (quantity === '') quantity = null;
 
   // finding item in database
+  // TODO allow case insensitive search
   db.Item
     .find({ where: { name: itemName }})
     .success(function(item) {
       if (!item) {
-        // TODO: alert item doesn't exist
-        console.log('Item ' + itemName + ' does not exist');
-        res.redirect('/inventory');
+        // TODO allow them to email us so we can add to the DB
+        var errorMsg = '"' + itemName + '" does not exist in the database.';
+        res.send(400, { error: errorMsg });
       } else {
         addInventoryItem(req, res, item, quantity, unit, false);
       }
@@ -62,9 +63,8 @@ exports.editItem = function(req, res) {
     .find(itemID)
     .success(function(item) {
       if (!item) {
-        // TODO: alert item doesn't exist
-        console.log('Item with id ' + itemID + ' does not exist');
-        res.redirect('/inventory');
+        var errorMsg = 'Item with id ' + itemID + ' does not exist in the database.';
+        res.send(400, { error: errorMsg });
       } else {
         addInventoryItem(req, res, item, quantity, unit, true);
       }
@@ -76,9 +76,9 @@ exports.deleteItem = function(req, res) {
     .find(req.params.itemID)
     .success(function(item) {
       if (!item) {
-        // TODO: alert item doesn't exist
-        console.log('Item with id ' + req.params.itemID + ' does not exist');
-        res.redirect('/inventory');
+        var errorMsg = 'Item with id ' + req.params.itemID +
+                       ' does not exist in the database.';
+        res.send(400, { error: errorMsg });
       } else {
         req.user
           .removeItem(item)
@@ -104,11 +104,8 @@ var addInventoryItem = function(req, res, item, quantity, unit, replace) {
     .find({ where: { UserId: req.user.id, ItemId: item.id }})
     .success(function(inventoryItem) {
       if (inventoryItem && !replace) {
-        // TODO
-        // * alert user already has item
-        // * add new quantity to existing item (unit conversions needed)
-        console.log('User already has ' + item.name);
-        res.redirect('/inventory');
+        var errorMsg =  'You already have "' + item.name + '" in your inventory.';
+        res.send(400, { error: errorMsg });
       } else if (!inventoryItem || replace) {
         req.user
           .addItem(item, {

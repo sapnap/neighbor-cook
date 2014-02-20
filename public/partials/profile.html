@@ -1,13 +1,18 @@
-<div ng-controller="ProfileCtrl" class="panel panel-default profileContainer">
+<div ng-controller="ProfileCtrl" class="panel panel-default inventory-container">
     <div class="panel-heading">
         <div class="media">
             <img class="pull-left media-object img-rounded" ng-src="{{image}}" alt="Profile Picture" />
             <div class="media-body">
                 <h4 class="media-heading">
-                    {{name}}
-                    <span ng-show="editable" class="glyphicon glyphicon-pencil font-small"></span>
-                    <!-- TODO: this button should allow users to edit the page (profile.js) -->
-                    <a ng-hide="editable" class="button messageButton font-small" href="#/messages/compose/{{id}}?offer=0">Message</a>
+                {{name}}
+                <a ng-show="editable" class="btn btn-default btn-xs pull-right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <!-- TODO: this button should allow users to edit the page (profile.js) -->
+                <a ng-hide="editable" class="btn btn-primary btn-xs pull-right"
+                   href="#/messages/compose/{{id}}?offer=0">
+                    Message
+                </a>
                 </h4>
                 Location: <strong>{{location}}</strong><br />
                 Rating: <strong>+{{donated}} / -{{received}}</strong>
@@ -17,17 +22,15 @@
     <div class="panel-body">
         <h5>
             Available Foods in Inventory:
-            <a ng-show="editable" href="#/inventory">
-                &nbsp;<span class="glyphicon glyphicon-pencil font-small"></span>
+            <a class="btn btn-default btn-xs pull-right" ng-show="editable" href="#/inventory">
+                <span class="glyphicon glyphicon-pencil"></span>
             </a>
         </h5>
-        <div class="list-group">
-            <div ng-repeat="item in inventory">
-                <p class="list-group-item">{{item.name}}</p>
-            </div>
-            <div ng-hide="inventory" class="list-group-item">
-                <p class="list-group-item-heading">Empty inventory :(</p>
-            </div>
+        <ul ng-show="inventory" class="list-group">
+            <li ng-repeat="item in inventory" class="list-group-item">{{item.name}}</li>
+        </ul>
+        <div ng-hide="inventory" class="panel panel-default">
+            <p class="panel-body">Empty inventory :(</p>
         </div>
     </div>
 </div>
