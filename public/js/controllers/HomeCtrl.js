@@ -14,10 +14,20 @@ var HomeCtrl = function($scope, $http) {
     $scope.requests = data.requests;
   });
 
+  // TODO: change url to provide a bookmark-able url with search
   $scope.search = function() {
     $http.get('/search?query=' + $scope.query).success(function(data) {
       $scope.results = data.results;
       $scope.doneQuery = data.query;
+    });
+  };
+
+  $scope.getIngredients = function(query) {
+    console.log('searching with', query);
+    // Need to return a promise object for the typeahead
+    return $http.get('/searchTypeahead?query=' + $scope.query).then(function(result) {
+      console.log(result.data);
+      return result.data;
     });
   };
 };

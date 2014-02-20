@@ -51,8 +51,7 @@
   <div class="row">
     <div class="col-xs-12">
     <form ng-submit="search()" class="input-group">
-      <input type="text" class="form-control" name="query" size="20" maxlength="100"
-             placeholder="Ingredient Search" ng-model="query">
+      <input type="text" class="form-control" ng-model="query" ng-options="ingredient.name as ingredient.name for ingredient in getIngredients($viewValue)" placeholder="Ingredient Search" bs-typeahead>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-default">Search</button>
       </span>
@@ -60,7 +59,7 @@
     </div>
   </div>
 
-  <div id="searchTemplate" ng-show="results">
+  <div id="searchTemplate" ng-show="doneQuery">
 	  <div class="list-group">
 	  <p>Your search for <strong>{{doneQuery}}</strong> returned {{results.length}} results:</p>
 
