@@ -43,10 +43,6 @@ exports.add = function(req, res) {
     });
 };
 
-exports.create = function(req, res) {
-  res.render('bulletin/create');
-};
-
 exports.delete = function(req, res) {
   db.Bulletin
     .find(req.params.id)

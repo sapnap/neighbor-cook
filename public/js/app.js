@@ -1,13 +1,23 @@
-var app = angular.module('ncook', ['ngRoute']).
+var app = angular.module('ncook', ['ngRoute', 'mgcrea.ngStrap']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
       templateUrl: '/partials/home.html',
       controller: 'HomeCtrl'
     }).
-    when('/profile/:id', {
+    when('/help', {
+      templateUrl: '/partials/help.html'
+    }).
+    when('/help/getStarted', {
+      templateUrl: '/partials/help-getStarted.html'
+    }).
+    when('/profile/:userID', {
       templateUrl: '/partials/profile.html',
       controller: 'ProfileCtrl'
+    }).
+    when('/messages/compose/:recipientID', {
+      templateUrl: '/partials/messages-compose.html',
+      controller: 'ComposeMessageCtrl'
     }).
     when('/inventory', {
       templateUrl: 'partials/inventory.html',
@@ -18,24 +28,10 @@ var app = angular.module('ncook', ['ngRoute']).
       controller: 'InitInventoryCtrl'
     }).
     when('/bulletins/create', {
-      templateUrl: 'partials/bulletin-create.html',
+      templateUrl: 'partials/bulletins-create.html',
       controller: 'CreateBulletinCtrl'
     }).
     otherwise({
       redirectTo: '/'
     });
-}]);
-
-app.directive('ngEnter', function () {
-  return function (scope, element, attrs) {
-    element.bind("keydown keypress", function (event) {
-      if(event.which === 13) {
-        scope.$apply(function (){
-          scope.$eval(attrs.ngEnter);
-        });
-        event.preventDefault();
-      }
-    });
-  };
-});
-
+  }]);

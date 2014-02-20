@@ -2,6 +2,15 @@
     padding-top: 60px;
 }
 
+body {
+    background: url('/images/fabric_plaid.png') repeat;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
 @media (min-width: 320px) {
     .nav-justified > li {
         display: table-cell;
@@ -12,62 +21,12 @@
     }
 }
 
-body {
-    background: url('/images/fabric_plaid.png') repeat;
-    /*background-image: url('/images/green_cup.png'); background-repeat:repeat;*/
-    /*background-color: #AFEEEE;*/
-}
-
-.inputtext {
-    margin: 0;
-    padding: 10px 20px;
-    font-size: 18px;
-    border:1px solid black;
-    border-radius: 5px 5px;
-}
-
-.button {
-    margin:0;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    text-align: center;
-    color: white;
-    border: solid 1px #1E90FF;
-    background: #778899;
-    border-radius: 5px 5px;
-}
-
-.button:hover {
-    background: #1E90FF;
-}
-
-.clear {
-    clear: both;
-}
-
-.profileContainer {
+.inventory-container {
     margin-top: 10px;
 }
 
-.font-small {
-    font-size: 12px;
-}
-
-.messageButton {
-    padding: 3px;
-}
-
-.conversation {
-    margin: 0;
-}
-
-td.offer {
-    background-color: #B2FFB9;
-}
-
-td.request {
-    background-color: #FFA9AA;
+.inventory-list {
+    margin-top: 10px;
 }
 
 .help-links ul {

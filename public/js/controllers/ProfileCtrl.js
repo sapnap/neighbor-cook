@@ -9,7 +9,7 @@ var ProfileCtrl = function($scope, $http, $routeParams) {
   $scope.received = 0;
   $scope.inventory = [];
 
-  $http.get('/profile/' + $routeParams.id).success(function(data) {
+  $http.get('/profile/' + $routeParams.userID).success(function(data) {
     $scope.errorNotLoggedIn = data.errorNotLoggedIn;
     $scope.editable = data.editable;
     $scope.id = data.id;

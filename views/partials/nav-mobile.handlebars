@@ -1,22 +1,26 @@
-<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" bs-navbar>
+    <div class="container-fluid">
     <ul class="nav nav-pills nav-justified">
-        <li id="index-nav"><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>        
-        {{#if user}}
-        <li id="profile-nav"><a href="#profile/{{user.id}}"><span class="glyphicon glyphicon-user"></span></a></li>
-        <li id="history-nav"><a href="#history"><span class="glyphicon glyphicon-time"></span></a></li>
+        <li data-match-route="/" id="index-nav">
+          <a href="#/"><span class="glyphicon glyphicon-home"></span></a>
+        </li>
+        <li data-match-route="/profile/.*" id="profile-nav">
+          <a href="#/profile/{{user.id}}"><span class="glyphicon glyphicon-user"></span></a>
+        </li>
+        <li data-match-route="/history" id="history-nav">
+          <a href="#/history"><span class="glyphicon glyphicon-time"></span></a>
+        </li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 More <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="#bulletins/create">Create Bulletin</a></li>
-                <li><a href="#inventory">Edit Inventory</a></li>
+                <li><a href="#/bulletins/create">Create Bulletin</a></li>
+                <li><a href="#/inventory">Edit Inventory</a></li>
                 <li class="divider"></li>
                 <li><a href="/logout" id="sign_out">Logout</a></li>
             </ul>
         </li>
-        {{else}}
-            <li><a href="/auth/facebook">Login</a></li>
-        {{/if}}    
     </ul>
+    </div>
 </nav>

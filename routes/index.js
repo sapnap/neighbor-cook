@@ -9,8 +9,8 @@ exports.view = function(req, res){
   res.render('index');
 };
 
-exports.sign_in = function(req, res) {
-  res.render('sign_in', { layout: false });
+exports.splash = function(req, res) {
+  res.render('splash');
 };
 
 // AJAX call to this endpoint

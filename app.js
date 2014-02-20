@@ -11,12 +11,9 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 // routes - linking to controllers (what info to retrieve)
 var index = require('./routes/index');
 var profile = require('./routes/profile');
-var messages = require('./routes/messages');
 var inventory = require('./routes/inventory');
 var bulletin = require('./routes/bulletin');
 var inventoryInit = require('./routes/inventoryInit');
-var help = require('./routes/help');
-var getStart = require('./routes/getStart');
 
 var app = express();
 var db = require('./models');
@@ -105,53 +102,47 @@ function ensureLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		next();
   } else {
-    // Include error message to be displayed
-    // res.redirect('/?errorNotLoggedIn=true');
-    // res.json({errorNotLoggedIn: true});
-    res.redirect('/sign_in');
+    res.redirect('/splash');
   }
 }
 
 // pages
-app.get('/sign_in', index.sign_in);
+app.get('/splash', index.splash);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
-app.get('/profile/me', ensureLoggedIn, profile.me);
+
+// profile
 app.get('/profile/:id', ensureLoggedIn, profile.view);
-app.get('/', index.view);
-app.get('/help', help.view);
-app.get('/help/getStart', getStart.view);
+app.get('/profile/me', ensureLoggedIn, profile.me);
+app.get('/profile/contact/:id', ensureLoggedIn, profile.contact);
 
 // inventory management
+app.get('/inventory', ensureLoggedIn, inventory.view);
 app.put('/inventory', ensureLoggedIn, inventoryInit.addItems);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
 app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
 app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
 
-// messaging
-app.get('/messages/:id', ensureLoggedIn, messages.composeNew);
-
 // bulletins
 app.get('/bulletins', ensureLoggedIn, bulletin.view);
 app.post('/bulletins',  ensureLoggedIn, bulletin.add);
-app.delete('/bulletins/:id', bulletin.delete);
+app.delete('/bulletins/:id', ensureLoggedIn, bulletin.delete);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/sign_in' }),
+  passport.authenticate('facebook', { failureRedirect: '/splash' }),
   function(req, res) {
     // Successful authentication
     if (req.user.options.isNewRecord) {
       res.redirect('/#/inventory/initialize');
     } else {
-      res.redirect('/');
+      res.redirect('/#/');
     }
-    
   });
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/sign_in');
+  res.redirect('/splash');
 });
 
 db.sequelize

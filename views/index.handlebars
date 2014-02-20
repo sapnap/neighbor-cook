@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO minify css -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 
@@ -21,27 +21,34 @@
 
 <body>
 <div id="fb-root"></div>
+{{> nav-mobile }}
 
-<div class="container">
-    {{> nav-mobile }}
+<div class="container content">
     <div ng-view></div>
-    <footer class="navbar">
-        <ul class="list-inline">
-            <li><a href="#">About</a></li>
-            <li><a href="/help">Help Center</a></li>
-            <li><a href="#">Terms of Service</a></li>
-        </ul>
-    </footer>
 </div>
+
+<footer class="navbar">
+    <div class="container">
+    <ul class="list-inline">
+        <li><a href="#">About</a></li>
+        <li><a href="#/help">Help Center</a></li>
+        <li><a href="#">Terms of Service</a></li>
+    </ul>
+    </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/lodash.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-animate.min.js"></script>
+<script src="//rawgithub.com/mgcrea/angular-strap/master/dist/angular-strap.min.js"></script>
+<script src="//rawgithub.com/mgcrea/angular-strap/master/dist/angular-strap.tpl.min.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/controllers/HomeCtrl.js"></script>
 <script src="/js/controllers/ProfileCtrl.js"></script>
+<script src="/js/controllers/ComposeMessageCtrl.js"></script>
 <script src="/js/controllers/InventoryCtrl.js"></script>
 <script src="/js/controllers/InitInventoryCtrl.js"></script>
 <script src="/js/controllers/CreateBulletinCtrl.js"></script>
