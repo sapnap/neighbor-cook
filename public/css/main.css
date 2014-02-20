@@ -1,5 +1,5 @@
 .container {
-    padding-top: 50px;
+    padding-top: 60px;
 }
 
 @media (min-width: 320px) {
@@ -72,4 +72,11 @@ td.request {
 
 .help-links ul {
     list-style-type: circle; 
+}
+
+.right-inner-addon span {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
 }

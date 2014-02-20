@@ -1,23 +1,6 @@
 var _ = require('lodash');
 var db = require('../models');
 
-exports.view = function(req, res) {
-  var data = {
-    user: req.user,
-    defaultItems: [
-      {'item': 'Salt', 'id': 'salt'}, 
-      {'item': 'Milk', 'id': 'milk'},
-      {'item': 'Eggs', 'id': 'eggs'},
-      {'item': 'Butter', 'id': 'butter'},
-      {'item': 'Pasta', 'id': 'pasta'},
-      {'item': 'Pepper', 'id': 'pepper'},
-      {'item': 'Flour', 'id': 'flour'},
-      {'item': 'Rice', 'id': 'rice'}
-    ]
-  };
-	res.json(data);
-};
-
 exports.addItems = function(req, res) {
   var userInfo = req.body.user;
   console.log("user info", userInfo); 
@@ -27,7 +10,6 @@ exports.addItems = function(req, res) {
       if (!user) {
         console.log('unable to find user with id ' + req.user.id);
       } else {
-        console.log(user);
         user.updateAttributes({
           email: userInfo.email,
           location: userInfo.location
@@ -39,15 +21,17 @@ exports.addItems = function(req, res) {
     .error(function(err) {
       console.log('user info was not updated');
     });
+
   var inventory = req.body.inventory;
+  console.log("inventory", inventory);
   var inventoryToAdd = [];
 
   _.each(inventory, function(val, key) {
-    if (val === 'on') inventoryToAdd.push(key);
+    if (val) inventoryToAdd.push(key);
   });
 
   db.Item
-    .findAll({ where: { name: inventoryToAdd }})
+    .findAll({ where: { id: inventoryToAdd }})
     .success(function(items) {
       if (!items) {
         console.log('Items do not exist');
@@ -57,7 +41,7 @@ exports.addItems = function(req, res) {
             quantity: 1,
             unit: 'unit'
           }).success(function() {
-            res.redirect('/profile/' + req.user.id);
+            res.send();
           });  
       }      
     });

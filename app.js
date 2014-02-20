@@ -116,6 +116,7 @@ function ensureLoggedIn(req, res, next) {
 app.get('/sign_in', index.sign_in);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
+app.get('/profile/me', ensureLoggedIn, profile.me);
 app.get('/profile/:id', ensureLoggedIn, profile.view);
 app.get('/', index.view);
 app.get('/help', help.view);
@@ -123,7 +124,6 @@ app.get('/help/getStart', getStart.view);
 
 // inventory management
 app.put('/inventory', ensureLoggedIn, inventoryInit.addItems);
-app.get('/inventory', ensureLoggedIn, inventory.view);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
 app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
 app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
