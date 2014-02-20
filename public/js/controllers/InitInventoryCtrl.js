@@ -1,8 +1,10 @@
 var InitInventoryCtrl = function($scope, $http, $location) {
+  $scope.hasAutoLocation = false;
   $scope.user = [];
   $scope.userField = {
     'email': '',
-    'location': 'Stanford, CA'
+    'location': '94305',
+    'gps': ''
   };
   $scope.defaultItems = [
   	{'item': 'Salt', 'id': 208}, 
@@ -36,6 +38,9 @@ var InitInventoryCtrl = function($scope, $http, $location) {
   	console.log('clicked the button');
     console.log($scope.selectedItems);
     console.log($scope.userField);
+    if ($scope.hasAutoLocation) {
+      $scope.userField.gps = $scope.userField.location;
+    }
     payload = {
       'user': $scope.userField,
       'inventory': $scope.selectedItems
@@ -49,6 +54,40 @@ var InitInventoryCtrl = function($scope, $http, $location) {
     });
   };
   
+  $scope.getLocation = function() {
+    if (navigator.geolocation) {
+      console.log('we have geolocation!');
+      navigator.geolocation.getCurrentPosition(showPosition, handleError);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  var showPosition = function(position) {
+    // TODO: do reverse lookup of lat/long to zipcode so this is human understandable
+    // WHY DOES this need TWO button clicks??
+    // Communicate to user better here
+    $scope.userField.location = position.coords.latitude + "," + position.coords.longitude;
+    $scope.hasAutoLocation = true;
+    console.log($scope.userField.location);
+  };
+
+  var handleError = function(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        console.log("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.log("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        console.log("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        console.log("An unknown error occurred.");
+        break;
+      }
+  };
 };
 
 InitInventoryCtrl.$inject = ['$scope', '$http', '$location'];
