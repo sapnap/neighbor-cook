@@ -113,6 +113,7 @@ app.get('/search', ensureLoggedIn, index.search);
 
 // profile
 app.get('/profile/:id', ensureLoggedIn, profile.view);
+app.get('/profile/me', ensureLoggedIn, profile.me);
 app.get('/profile/contact/:id', ensureLoggedIn, profile.contact);
 
 // inventory management

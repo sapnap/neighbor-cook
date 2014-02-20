@@ -32,6 +32,19 @@ exports.view = function(req, res) {
     });
 };
 
+// Get data of currently signed in user
+exports.me = function(req, res) {
+  db.User
+    .find({ where: { id: req.user.id } })
+    .success(function(user) {
+      res.json(user);
+    })
+    .error(function(err) {
+      // should never get in here
+      res.json('/');
+    });
+};
+
 exports.contact = function(req, res) {
   db.User
     .find({
