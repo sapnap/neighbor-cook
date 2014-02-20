@@ -1,5 +1,5 @@
 var InventoryCtrl = function($scope, $http) {
-  $scope.errorNotLoggedIn = false;
+  $scope.error = '';
   $scope.inventory = [];
   $scope.itemName = '';
 
@@ -9,10 +9,15 @@ var InventoryCtrl = function($scope, $http) {
 
   $scope.addItem = function() {
     var data = { itemName: $scope.itemName };
-    $http.post('/inventory', data).success(function(data) {
-      // TODO animation
-      $scope.inventory.unshift(data.item);
-    });
+    $http.post('/inventory', data).
+      success(function(data) {
+        // TODO animation
+        $scope.inventory.unshift(data.item);
+      }).
+      error(function(data) {
+        $scope.error = data.error;
+        $scope.itemName = '';
+      });
   };
 
   $scope.deleteItem = function(id) {
@@ -22,6 +27,10 @@ var InventoryCtrl = function($scope, $http) {
         return item.id == data.itemID;
       })
     });
+  };
+
+  $scope.resetError = function() {
+    $scope.error = '';
   };
 };
 
