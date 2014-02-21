@@ -8,11 +8,8 @@ exports.view = function(req, res) {
     })
     .success(function(user) {
       if (!user) {
-        // TODO: alert user doesn't exist
-        console.log('User ' + req.params.id + ' does not exist');
-        res.json('/');
+        error(res, 'User ' + req.params.id + ' does not exist.');
       } else {
-        console.log(JSON.stringify(user.items));
         var data = {
           id: user.id,
           editable: req.isAuthenticated() && user.id == req.user.id,
@@ -27,8 +24,7 @@ exports.view = function(req, res) {
       }
     })
     .error(function(err) {
-      // TODO alert user of error (given id probably wasn't numeric)
-      res.json('/');
+      error(res, err.toString());
     });
 };
 
@@ -40,8 +36,7 @@ exports.me = function(req, res) {
       res.json(user);
     })
     .error(function(err) {
-      // should never get in here
-      res.json('/');
+      error(res, 'User ' + req.user.id + ' does not exist.');
     });
 };
 
@@ -53,7 +48,7 @@ exports.contact = function(req, res) {
     })
     .success(function(user) {
       if (!user) {
-        res.redirect('/');
+        error(res, 'User ' + req.params.id + ' does not exist.');
       } else {
         console.log(user);
         var data = {
@@ -62,4 +57,8 @@ exports.contact = function(req, res) {
         res.json(data);
       }
     });
+};
+
+var error = function(res, message) {
+  res.send(400, { error: message });
 };

@@ -1,11 +1,11 @@
 var db = require('../models');
-var schedule = require('node-schedule');
 var _ = require('lodash');
 
 exports.view = function(req, res) {
   var errorNotLoggedIn = false;
   if (req.query.errorNotLoggedIn) errorNotLoggedIn = true;  
   // TODO expiration times stored in UTC, convert to user time zone
+
   db.Bulletin
     .findAll({
       where: { status: 'open' },
@@ -31,12 +31,13 @@ exports.view = function(req, res) {
 
 exports.add = function(req, res) {
   db.Item
-    .find({ where: { name: req.body.itemName }})
+    .find({
+      where: { name: req.body.itemName }
+    })
     .success(function(item) {
       if (!item) {
-        // TODO: alert item doesn't exist
-        console.log('Item ' + req.body.itemName + ' does not exist');
-        res.redirect('/inventory');
+        var errorMsg = 'Item "' + req.body.itemName + '" does not exist.';
+        res.send(400, { error: errorMsg });
       } else {
         addBulletin(req, res, item);
       }
@@ -51,46 +52,40 @@ exports.delete = function(req, res) {
       bulletin
         .save()
         .success(function() {
-          res.redirect('/');
+          res.send();
         });
     });
 };
 
 var addBulletin = function(req, res, item) {
-  // TODO make sure expiration is after current time
+  if (new Date() >= new Date(req.body.expiration)) {
+    var errorMsg = 'Bulletins cannot expire before the current time.';
+    res.send(400, { error: errorMsg });
+    return;
+  }
 
   db.Bulletin
-    .create({
-      status: 'open',
-      quantity: req.body.quantity,
-      unit: req.body.unit,
-      expiration: req.body.expiration.date + ' ' + req.body.expiration.time,
-      message: req.body.message,
-      type: req.body.type
+    .findOrCreate({
+      UserId: req.user.id,
+      ItemId: item.id,
+      type: req.body.type,
+      status: 'open'
     })
-    .success(function(bulletin){
-      bulletin.setItem(item);
-      bulletin.setUser(req.user);
-      // scheduleExpiration(bulletin, req.body.expiration);
-      res.json({ success: true });
+    .success(function(bulletin, created){
+      if (!created) {
+        var errorMsg = 'You already have an open bulletin with ' +
+                       ((req.body.type === 'offer') ? 'an offer' : 'a request') +
+                       ' for ' + item.name + '.';
+        res.send(400, { error: errorMsg });
+        return;
+      }
+      bulletin.updateAttributes({
+        quantity: req.body.quantity,
+        unit: req.body.unit,
+        expiration: req.body.expiration,
+        message: req.body.message
+      }).success(function() {
+        res.send();
+      });
     });
-};
-
-// TODO test this more
-var scheduleExpiration = function(bulletin, expiration) {
-  var ymd = _.transform(expiration.date.split('-'), function(result, str) {
-    result.push(parseInt(str));
-  });
-  var hm = _.transform(expiration.time.split(':'), function(result, str) {
-    result.push(parseInt(str));
-  });
-
-  // months need to be zero-indexed
-  var date = new Date(ymd[0], ymd[1]-1, ymd[2], hm[0], hm[1], 0);
-  console.log(date);
-
-  schedule.scheduleJob(date, function() {
-    bulletin.status = 'expired';
-    bulletin.save();
-  });
 };
