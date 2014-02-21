@@ -10,4 +10,15 @@ angular.module('ncook.services', ['ng'])
         return $http.get('/search/typeahead?query=' + query).then(success);
       }
     }
+  }])
+  .factory('TransferSearchService', [function() {
+    var query = '';
+    return {
+      getQuery: function() {
+        return query;
+      },
+      setQuery: function(q) {
+        query = q;
+      }
+    }
   }]);

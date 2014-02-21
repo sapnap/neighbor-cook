@@ -1,4 +1,4 @@
-var HomeCtrl = function($scope, $http, TypeaheadService) {
+var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSearchService) {
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
@@ -12,12 +12,15 @@ var HomeCtrl = function($scope, $http, TypeaheadService) {
     $scope.requests = data.requests;
   });
 
+  // TODO doesn't work for some reason
+  $scope.$on('$viewContentLoaded', function() {
+    $scope.query = TransferSearchService.getQuery();
+  });
+
   // TODO: change url to provide a bookmark-able url with search
-  $scope.search = function() {
-    $http.get('/search?query=' + $scope.query).success(function(data) {
-      $scope.results = data.results;
-      $scope.doneQuery = data.query;
-    });
+  $scope.transferSearch = function() {
+    TransferSearchService.setQuery($scope.query);
+    $location.path('/search');
   };
 
   $scope.typeahead = TypeaheadService.items;
@@ -31,4 +34,4 @@ var HomeCtrl = function($scope, $http, TypeaheadService) {
   };
 };
 
-HomeCtrl.$inject = ['$scope', '$http' , 'TypeaheadService'];
+HomeCtrl.$inject = ['$scope', '$http', '$location', 'TypeaheadService', 'TransferSearchService'];
