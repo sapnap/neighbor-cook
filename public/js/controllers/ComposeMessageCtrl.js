@@ -1,5 +1,5 @@
-var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $window) {
-  $scope.user = []
+var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $window, UserService) {
+  $scope.user = UserService.getCurrentUser();
   $scope.offer = $location.search().offer === '1';
   $scope.item = $location.search().item;
   $scope.recipient = { name: '', email: '' };
@@ -14,11 +14,6 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
       name: data.recipient.first_name + ' ' + data.recipient.last_name,
       email: data.recipient.email
     };
-  });
-
-  // TODO: should put this in AuthService factory to avoid this repeated code in every controller
-  $http.get('/profile/me').success(function(data) {
-    $scope.user = data;
   });
 
   $scope.sendEmail = function() {
@@ -51,4 +46,6 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
   };
 };
 
-ComposeMessageCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', '$window'];
+ComposeMessageCtrl.$inject = [
+  '$scope', '$http', '$routeParams', '$location', '$window', 'UserService'
+];

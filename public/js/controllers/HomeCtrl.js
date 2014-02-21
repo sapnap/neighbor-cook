@@ -1,10 +1,8 @@
 var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSearchService) {
+  $scope.query = '';
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
-  $scope.results = [];
-  $scope.doneQuery = '';
-  $scope.query = '';
 
   $http.get('/bulletins').success(function(data) {
     $scope.authored = data.authored;

@@ -21,4 +21,18 @@ angular.module('ncook.services', ['ng'])
         query = q;
       }
     }
+  }])
+  .factory('UserService', ['$http', function($http) {
+    var currentUser = {};
+
+    // TODO handle failure
+    $http.get('/profile/me').success(function(data) {
+      currentUser = data;
+    });
+
+    return {
+      getCurrentUser: function() {
+        return currentUser;
+      }
+    }
   }]);

@@ -27,10 +27,13 @@ exports.search = function(req, res) {
   	} else {
       db.InventoryItem
 		    .findAll({ where: { ItemId: item.id } }) 
+
 		    // pre-fetching Users with include does not work here
 		    .success(function(inventoryItems) {
 		    	var userIds = _.pluck(inventoryItems, 'UserId');
-		    	db.User
+          _.remove(userIds, function(id) { return id === req.user.id });
+
+          db.User
 		    		.findAll({ where: { id: userIds } })
 		    		.success(function(users) {
 					    res.json({

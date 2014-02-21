@@ -13,52 +13,79 @@
   </div>
 </div>
 
+<h3>Bulletins</h3>
 <div ng-show="requests">
-	<h4>People around you need:</h4>
-	<table class="table table-hover">
-	  <tr class="col-xs-12" ng-repeat="req in requests">
-	    <td class="col-xs-5">{{ req.item.name }}</td>
-        <td class="col-xs-3">{{ req.expiration | fromNow }}</td>
-	    <td class="col-xs-3"><a href="#/profile/{{req.user.id}}">{{ req.user.first_name }}</a></td>
-	    <td class="col-xs-1">
-            <a href="#/messages/compose/{{req.user.id}}?item={{req.item.name}}&offer=1" class="btn btn-default btn-sm">
-                <i class="fa fa-envelope-o fa-fw"></i> Email
-            </a>
-        </td>
-	  </tr>
-	</table>
+	<h5>People around you need:</h5>
+    <div class="panel-group" id="accordion-requests">
+        <div class="panel panel-primary" ng-repeat="req in requests">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-requests"
+                 data-target="#bulletin-detail-{{req.id}}">
+                {{ req.item.name }} by {{ req.expiration | calendar | unsentenceCase }}
+            </div>
+            <div id="bulletin-detail-{{req.id}}" class="collapse">
+                <div class="panel-body">
+                    <span ng-show="req.message">{{ req.message }}</span>
+                    <span ng-hide="req.message"><em>No message</em></span>
+                    <p>
+                        -<a href="#/profile/{{ req.user.id }}">{{ req.user.first_name }} {{ req.user.last_name }}</a>
+                    </p>
+                    <a href="#/messages/compose/{{ req.user.id }}?item={{ req.item.name }}&offer=1"
+                       class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-envelope-o fa-fw"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div ng-show="offers">
-	<h4>People around you are offering:</h4>
-	<table class="table table-hover">
-	  <tr class="col-xs-12" ng-repeat="offer in offers">
-	    <td class="col-xs-5">{{ offer.item.name }}</td>
-        <td class="col-xs-3">{{ offer.expiration | fromNow }}</td>
-	    <td class="col-xs-3"><a href="#/profile/{{offer.user.id}}">{{ offer.user.first_name }}</a></td>
-	    <td class="col-xs-1">
-            <a href="#/messages/compose/{{offer.user.id}}?item={{offer.item.name}}&offer=0" class="btn btn-default btn-sm">
-                <i class="fa fa-envelope-o"></i> Email
-            </a>
-        </td>
-	  </tr>
-	</table>
+	<h5>People around you are offering:</h5>
+    <div class="panel-group" id="accordion-offers">
+        <div class="panel panel-primary" ng-repeat="offer in offers">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-offers"
+                 data-target="#bulletin-detail-{{offer.id}}">
+                {{ offer.item.name }} until {{ offer.expiration | calendar | unsentenceCase }}
+            </div>
+            <div id="bulletin-detail-{{offer.id}}" class="collapse">
+                <div class="panel-body">
+                    <span ng-show="offer.message">{{ offer.message }}</span>
+                    <span ng-hide="offer.message"><em>No message</em></span>
+                    <p>
+                        -<a href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
+                    </p>
+                    <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=1"
+                       class="btn btn-default btn-sm pull-right">
+                        <i class="fa fa-envelope-o fa-fw"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div ng-show="authored">
-	<h4>Your open bulletins:</h4>
-	<table class="table table-hover">
-	    <tr class="col-xs-12" ng-repeat="myBulletin in authored">
-          <td class="col-xs-5">{{ myBulletin.item.name }}</td>
-          <td class="col-xs-3">{{ myBulletin.expiration | fromNow }}</td>
-	      <td class="col-xs-3">{{ myBulletin.type | sentenceCase }}</td>
-          <td class="col-xs-1">
-              <a class="btn btn-danger btn-sm" ng-click="deleteBulletin(myBulletin.id)">
-                  <i class="fa fa-trash-o"></i>  Delete
-              </a>
-          </td>
-	    </tr>
-	</table>
+	<h5>Your open bulletins:</h5>
+    <div class="panel-group" id="accordion-authored">
+        <div class="panel panel-primary" ng-repeat="bulletin in authored">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-authored"
+                 data-target="#bulletin-detail-{{bulletin.id}}">
+                {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
+                <span ng-if="bulletin.type === 'request'"> by</span>
+                <span ng-if="bulletin.type === 'offer'"> until</span>
+                {{ bulletin.expiration | calendar | unsentenceCase }}
+            </div>
+            <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
+                <div class="panel-body">
+                    <span ng-show="bulletin.message">{{ bulletin.message }}</span>
+                    <span ng-hide="bulletin.message"><em>No message</em></span>
+                    <a class="btn btn-danger btn-sm pull-right" ng-click="deleteBulletin(myBulletin.id)">
+                        <i class="fa fa-trash-o"></i>  Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </div>
