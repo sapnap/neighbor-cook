@@ -1,4 +1,4 @@
-var InventoryCtrl = function($scope, $http) {
+var InventoryCtrl = function($scope, $http, TypeaheadService) {
   $scope.error = '';
   $scope.inventory = [];
   $scope.itemName = '';
@@ -11,7 +11,7 @@ var InventoryCtrl = function($scope, $http) {
     var data = { itemName: $scope.itemName };
     $http.post('/inventory', data).
       success(function(data) {
-        // TODO animation
+        // TODO animation: http://mgcrea.github.io/angular-motion/
         $scope.inventory.unshift(data.item);
       }).
       error(function(data) {
@@ -32,6 +32,8 @@ var InventoryCtrl = function($scope, $http) {
   $scope.resetError = function() {
     $scope.error = '';
   };
+
+  $scope.typeahead = TypeaheadService.items;
 };
 
-InventoryCtrl.$inject = ['$scope', '$http'];
+InventoryCtrl.$inject = ['$scope', '$http', 'TypeaheadService'];

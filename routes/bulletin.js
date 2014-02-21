@@ -4,7 +4,7 @@ var _ = require('lodash');
 exports.view = function(req, res) {
   var errorNotLoggedIn = false;
   if (req.query.errorNotLoggedIn) errorNotLoggedIn = true;  
-  // TODO expiration times stored in UTC, convert to user time zone
+  // TODO convert expiration to user time zone
 
   db.Bulletin
     .findAll({

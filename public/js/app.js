@@ -2,10 +2,11 @@ var dependencies = [
   'ngRoute',
   'mgcrea.ngStrap',
   'ncook.filters',
-  'ncook.directives'
+  'ncook.directives',
+  'ncook.services'
 ];
 
-var app = angular.module('ncook', dependencies).
+angular.module('ncook', dependencies).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
@@ -47,9 +48,3 @@ var app = angular.module('ncook', dependencies).
       redirectTo: '/'
     });
   }]);
-
-app.filter('fromNow', function() {
-  return function(date) {
-    return moment(date).fromNow();
-  }
-});
