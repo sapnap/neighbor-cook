@@ -1,5 +1,4 @@
 var HomeCtrl = function($scope, $http, TypeaheadService) {
-  $scope.errorNotLoggedIn = false;
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
@@ -8,7 +7,6 @@ var HomeCtrl = function($scope, $http, TypeaheadService) {
   $scope.query = '';
 
   $http.get('/bulletins').success(function(data) {
-    $scope.errorNotLoggedIn = data.errorNotLoggedIn;
     $scope.authored = data.authored;
     $scope.offers = data.offers;
     $scope.requests = data.requests;
@@ -23,6 +21,14 @@ var HomeCtrl = function($scope, $http, TypeaheadService) {
   };
 
   $scope.typeahead = TypeaheadService.items;
+
+  $scope.deleteBulletin = function(bulletinID) {
+    $http.delete('/bulletins/' + bulletinID).success(function() {
+      _.remove($scope.authored, function(bulletin) {
+        return bulletin.id === bulletinID;
+      })
+    });
+  };
 };
 
 HomeCtrl.$inject = ['$scope', '$http' , 'TypeaheadService'];
