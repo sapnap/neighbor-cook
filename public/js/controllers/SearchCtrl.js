@@ -20,4 +20,6 @@ var SearchCtrl = function($scope, $http, $location, TypeaheadService, TransferSe
   $scope.typeahead = TypeaheadService.items;
 };
 
-SearchCtrl.$inject = ['$scope', '$http', '$location', 'TypeaheadService', 'TransferSearchService'];
+SearchCtrl.$inject = [
+  '$scope', '$http', '$location', 'TypeaheadService', 'TransferSearchService'
+];
