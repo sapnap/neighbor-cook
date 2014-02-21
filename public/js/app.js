@@ -1,4 +1,11 @@
-var app = angular.module('ncook', ['ngRoute', 'mgcrea.ngStrap']).
+var dependencies = [
+  'ngRoute',
+  'mgcrea.ngStrap',
+  'ncook.filters',
+  'ncook.directives'
+];
+
+var app = angular.module('ncook', dependencies).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
