@@ -17,6 +17,10 @@ body {
     }
 }
 
+.init-welcome {
+    padding: 15px 0;
+}
+
 .inventory-container {
     margin-top: 10px;
 }
@@ -27,13 +31,6 @@ body {
 
 .help-links ul {
     list-style-type: circle; 
-}
-
-.right-inner-addon span {
-    position: absolute;
-    right: 0;
-    padding: 10px 12px;
-    pointer-events: none;
 }
 
 .datepicker.dropdown-menu {

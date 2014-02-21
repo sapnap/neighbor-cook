@@ -2,19 +2,20 @@ var InitInventoryCtrl = function($scope, $http, $location) {
   $scope.user = [];
   $scope.gpsStatus = 'Provide GPS';
   $scope.gpsDisable = false;
+  $scope.home = false;
   $scope.userField = {
-    'email': '',
-    'location': '94305',
-    'gps': ''
+    email: '',
+    location: '94305',
+    gps: ''
   };
   $scope.defaultItems = [
-  	{'item': 'Salt', 'id': 208}, 
-    {'item': 'Milk', 'id': 109},
-    {'item': 'Eggs', 'id': 155},
-    {'item': 'Butter', 'id': 110},
-    {'item': 'Pepper', 'id': 209},
-    {'item': 'Flour', 'id': 127},
-    {'item': 'Brown rice', 'id': 137}
+  	{ item: 'Salt', id: 208 },
+    { item: 'Milk', id: 109 },
+    { item: 'Eggs', id: 155 },
+    { item: 'Butter', id: 110 },
+    { item: 'Pepper', id: 209 },
+    { item: 'Flour', id: 127 },
+    { item: 'Brown rice', id: 137 }
   ];
   $scope.selectedItems = {
     208: true,
@@ -23,32 +24,25 @@ var InitInventoryCtrl = function($scope, $http, $location) {
     110: true,
     209: true,
     127: true,
-    137: true,
+    137: true
   };
 
   $http.get('/profile/me').success(function(data) {
   	$scope.user = data;
-  	console.log(data);
   });
 
   $scope.initUser = function() {
     if (!$scope.initForm.$valid) {
-      console.log('cannot submit! hopefully you can see that from the error messages');
       return;
     }
-  	console.log('clicked the button');
-    console.log($scope.selectedItems);
-    console.log($scope.userField);
     if ($scope.hasAutoLocation) {
       $scope.userField.gps = $scope.userField.location;
     }
-    payload = {
+    var payload = {
       'user': $scope.userField,
       'inventory': $scope.selectedItems
-    }
-  	$http.put('/inventory', payload).success(function(data) {
-	  	console.log("submitting with payload data", payload);
-      console.log('/profile/' + $scope.user.id);
+    };
+  	$http.put('/inventory', payload).success(function() {
       $location.path('/profile/' + $scope.user.id);
 	  }).error(function(err) {
       console.log(err);

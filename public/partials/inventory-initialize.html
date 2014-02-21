@@ -1,30 +1,42 @@
-<div class="media">
+<div ng-controller="InitInventoryCtrl">
+
+<div class="media init-welcome">
   <img class="pull-left media-object img-rounded" ng-src="{{user.img_path}}" alt="Profile Picture">
   <div class="media-body">
-    <h2 class="media-heading">Welcome to <strong>NeighborCook</strong>, {{user.first_name}}!</h2>
+    <h4 class="media-heading"><span>Welcome to <strong>NeighborCook</strong>,</span> {{user.first_name}}!</h4>
   </div>
 </div>
 
 <form name="initForm" novalidate>
-  <h3> Please enter the below information to complete your profile: </h3>
+  <p class="lead"> <strong>Let's complete your user profile:</strong> <br/>
+    <small>This information will not be public, and will only be used to help you find ingredients you need.</small>
+  </p>
   <div class="form-group" ng-class="{ 'has-error' : initForm.email.$invalid && !initForm.email.$pristine }">
-    <label class="control-label">Email</label>
-    <input type="email" class="form-control" ng-model="userField.email" placeholder="{{user.first_name}}@stanford.edu" name="email" required>
-    <p ng-show="initForm.email.$invalid && !initForm.email.$pristine" class="help-block">Enter a valid email.</p>
-    <!-- TODO: get the bootstrap icons to align properly -->
-    <!-- <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span> -->
+    <label class="control-label" for="email">Email</label>
+    <input type="email" class="form-control" ng-model="userField.email"
+           placeholder="{{ user.first_name | lowercase }}@stanford.edu"
+           name="email" id="email" required>
+    <p ng-show="initForm.email.$invalid && !initForm.email.$pristine" class="help-block">
+      <i class="fa fa-warning"></i> Enter a valid email.
+    </p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="home"> I am currently at home.
+    </label>
+  </div>
+  <div class="form-group" ng-show="home">
+    <input type="button" class="btn btn-primary" value="{{gpsStatus}}" ng-click="getLocation()" ng-disabled="gpsDisable">
   </div>
   <div class="form-group" ng-class="{ 'has-error' : initForm.location.$invalid && !initForm.location.$pristine }">
-    <label class="control-label">At home?</label>
-    <button class="btn btn-default" ng-click="getLocation()" ng-disabled="gpsDisable">{{gpsStatus}}</button>
-
-    <br>
-    <label class="control-label">Location (Zipcode)</label>
+    <label class="control-label">Home Location (Zipcode)</label>
     <input type="text" class="form-control" ng-model="userField.location" name="location" required>
-    <p ng-show="initForm.location.$invalid && !initForm.location.$pristine" class="help-block">Your location is required.</p>
+    <p ng-show="initForm.location.$invalid && !initForm.location.$pristine" class="help-block">
+      <i class="fa fa-warning"></i> Your location is required.
+    </p>
   </div>
-  <h3> We've started setting up your inventory. Do you have these items? </h3>
 
+  <p class="lead"><small> Now to start setting up your inventory. Do you have these items to share? </small></p>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="checkbox" ng-repeat="item in defaultItems">
@@ -32,8 +44,9 @@
           <input type="checkbox" checked="checked" name="group" ng-model="selectedItems[item.id]"> {{item.item}}
         </label>
       </div>
-      <hr>
-      <button type="submit" class="btn btn-default" ng-disabled="initForm.$invalid" ng-click="initUser()">Complete Profile</button>
     </div>
   </div>
+  <button type="submit" class="btn btn-default" ng-disabled="initForm.$invalid" ng-click="initUser()">Complete Profile</button>
 </form>
+
+</div>

@@ -5,7 +5,7 @@
     <div>{{error}}</div>
 </div>
 
-<h1>Create a Bulletin</h1>
+<h2>Create Bulletin</h2>
 
 <form class="form" role="form" name="bulletin" ng-submit="postBulletin()" novalidate>
     <div class="form-group"
@@ -17,7 +17,7 @@
                placeholder="Enter item" required bs-typeahead>
 
         <p ng-show="bulletin.itemName.$invalid && !bulletin.itemName.$pristine" class="help-block">
-            Enter something you need or want to offer.
+            <i class="fa fa-warning"></i> Enter something you need or want to offer.
         </p>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : bulletin.message.$error.maxlength }">
@@ -27,7 +27,7 @@
                   placeholder="Enter a message (optional)"></textarea>
 
         <p ng-show="bulletin.message.$error.maxlength" class="help-block">
-            Messages can only be 255 characters in length.
+            <i class="fa fa-warning"></i> Messages can only be 255 characters in length.
         </p>
     </div>
     <div class="form-group">
@@ -49,17 +49,17 @@
                placeholder="Time" bs-timepicker required future-date>
 
         <p ng-show="bulletin.eDate.$error.date && bulletin.eTime.$error.date" class="help-block">
-            Enter a valid expiration date and time.
+            <i class="fa fa-warning"></i> Enter a valid expiration date and time.
         </p>
         <p ng-show="bulletin.eDate.$error.date && !bulletin.eTime.$error.date" class="help-block">
-            Enter a valid expiration date.
+            <i class="fa fa-warning"></i> Enter a valid expiration date.
         </p>
         <p ng-show="!bulletin.eDate.$error.date && bulletin.eTime.$error.date" class="help-block">
-            Enter a valid expiration time.
+            <i class="fa fa-warning"></i> Enter a valid expiration time.
         </p>
         <p ng-show="bulletin.eDate.$error.futureDate || bulletin.eTime.$error.futureDate"
            class="help-block">
-            Expiration must occur at a future date and time.
+            <i class="fa fa-warning"></i> Expiration must occur at a future date and time.
         </p>
     </div>
     <button type="submit" class="btn btn-default" ng-disabled="bulletin.$invalid">

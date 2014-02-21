@@ -2,8 +2,6 @@ var db = require('../models');
 var _ = require('lodash');
 
 exports.view = function(req, res) {
-  var errorNotLoggedIn = false;
-  if (req.query.errorNotLoggedIn) errorNotLoggedIn = true;  
   // TODO convert expiration to user time zone
 
   db.Bulletin
@@ -12,6 +10,9 @@ exports.view = function(req, res) {
       include: [ db.Item, db.User ]
     })
     .success(function(bulletins) {
+      bulletins = _.sortBy(bulletins, function(bulletin) {
+        return bulletin.expiration;
+      });
       var authored = _.remove(bulletins, function(bulletin) {
         return req.isAuthenticated() && bulletin.user.id === req.user.id;
       });
@@ -22,8 +23,7 @@ exports.view = function(req, res) {
       var data = {
         offers: bulletins,
         requests: requests,
-        authored: authored,
-        errorNotLoggedIn: errorNotLoggedIn
+        authored: authored
       };
       res.json(data);
     });
