@@ -33,6 +33,11 @@ body {
     list-style-type: circle; 
 }
 
+#search-summary {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
 .datepicker.dropdown-menu {
     width: 250px;
     height: 270px;
