@@ -1,4 +1,4 @@
-var HomeCtrl = function($scope, $http) {
+var HomeCtrl = function($scope, $http, TypeaheadService) {
   $scope.errorNotLoggedIn = false;
   $scope.authored = [];
   $scope.offers = [];
@@ -22,14 +22,7 @@ var HomeCtrl = function($scope, $http) {
     });
   };
 
-  $scope.getIngredients = function(query) {
-    console.log('searching with', query);
-    // Need to return a promise object for the typeahead
-    return $http.get('/searchTypeahead?query=' + $scope.query).then(function(result) {
-      console.log(result.data);
-      return result.data;
-    });
-  };
+  $scope.typeahead = TypeaheadService.items;
 };
 
-HomeCtrl.$inject = ['$scope', '$http'];
+HomeCtrl.$inject = ['$scope', '$http' , 'TypeaheadService'];

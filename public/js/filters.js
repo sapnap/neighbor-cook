@@ -7,4 +7,9 @@ angular.module('ncook.filters', []).
         return input[0].toUpperCase() + input.substring(1);
       }
     }
+  }).
+  filter('fromNow', function() {
+    return function(date) {
+      return moment(date).fromNow();
+    }
   });

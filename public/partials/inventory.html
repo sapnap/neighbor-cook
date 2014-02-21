@@ -12,7 +12,8 @@
             <label class="sr-only" for="inputItem">Item</label>
             <input type="text" class="form-control"
                    id="inputItem" name="itemName" ng-model="itemName"
-                   required="true" placeholder="Enter item">
+                   ng-options="item.name as item.name for item in typeahead($viewValue)"
+                   placeholder="Enter item" required bs-typeahead>
             <span class="input-group-btn">
                 <button type="submit" class="btn btn-default">Add Item</button>
             </span>

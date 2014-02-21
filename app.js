@@ -111,7 +111,7 @@ function ensureLoggedIn(req, res, next) {
 app.get('/splash', index.splash);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
-app.get('/searchTypeahead', ensureLoggedIn, index.searchTypeahead);
+app.get('/search/typeahead', ensureLoggedIn, index.searchTypeahead);
 
 // profile
 app.get('/profile/me', ensureLoggedIn, profile.me);

@@ -1,11 +1,11 @@
-var CreateBulletinCtrl = function($scope, $http, $location) {
+var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
   $scope.error = '';
 
   $scope.itemName = '';
   $scope.quantity = null;
   $scope.unit = null;
   $scope.expiration =
-    moment().endOf('hour').add(1,'s').add(1,'d').format();
+    moment().endOf('hour').add({ seconds: 1, days: 1}).format();
   $scope.message = '';
   $scope.type = 'request';
 
@@ -30,6 +30,8 @@ var CreateBulletinCtrl = function($scope, $http, $location) {
   $scope.resetError = function() {
     $scope.error = '';
   };
+
+  $scope.typeahead = TypeaheadService.items;
 };
 
-CreateBulletinCtrl.$inject = ['$scope', '$http', '$location'];
+CreateBulletinCtrl.$inject = ['$scope', '$http', '$location', 'TypeaheadService'];
