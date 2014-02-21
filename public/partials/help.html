@@ -1,90 +1,13 @@
 <h1>Help Center</h1>
 
 <div class="container-fluid">
-	<div class="row">
-  		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help1">
-				<div class="panel-heading">Getting started</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>Creating my profile</li>
-						<li>Setting up my inventory</li>
-						<li>Setting up my bulletin</li>
-					</ul>
-                    <a href='#/help'>See more</a>
-				</div>
+	<div class="row span-12 panel panel-primary" ng-repeat="info in infoList">
+		<div class="panel-heading">{{info.category}}</div>
+		<div class="panel-body">
+			<div ng-repeat="infoItem in info.questions">
+				<p><a ng-click="toggleInfo(infoItem.id)">{{infoItem.question}}</a></p>
+				<p ng-show="showAnswer[infoItem.id]" ng-bind-html="infoItem.answer"></p>
 			</div>
-  		</div>
-  		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help2">
-				<div class="panel-heading">My Profile</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>Forgot my password</li>
-						<li>Editing my information</li>
-						<li>What's my "rating"?</li>
-					</ul>
-                    <a href='#/help'>See more</a>
-				</div>
-			</div>	
-  		</div>
-    </div>
-    <div class="row">
-  		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help3">
-				<div class="panel-heading">My Inventory</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>Checking my inventory</li>
-						<li>Additing to my inventory</li>
-						<li>Removing from my inventory</li>
-					</ul>
-                    <a href='#/help'>See more</a>
-				</div>
-			</div>	
-  		</div>
-		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help4">
-				<div class="panel-heading">Community</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>Adding friends</li>
-						<li>Checking my messages</li>
-						<li>Sending messages</li>
-					</ul>
-                    <a href='#/help/getStarted'>See more</a>
-				</div>
-			</div>	
-  		</div>
-    </div>
-    <div class="row">
-  		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help5">
-				<div class="panel-heading">Bulletin</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>How does it work?</li>
-						<li>Sending a request</li>
-						<li>Posting on the bulletin</li>
-					</ul>
-                    <a href='#/help'>See more</a>
-				</div>
-			</div>	
-  		</div>
-  		<div class="col-xs-6">
-  			<div class="panel panel-primary" id="help6">
-				<div class="panel-heading">Search</div>
-				<div class="panel-body">
-					<ul class="help-links">
-						<li>Searching for items</li>
-						<li>Search by category</li>
-						<li>I can't find an item</li>
-					</ul>
-                    <a href='#/help'>See more</a>
-				</div>
-			</div>	
-  		</div>
+		</div>
 	</div>
 </div>
-
-<input type="button" value="Go Back" onclick="history.back()" />
