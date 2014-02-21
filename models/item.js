@@ -11,6 +11,7 @@ module.exports = function(sequelize, DataTypes) {
           through: models.InventoryItem
         });
         Item.hasMany(models.Bulletin);
+        Item.hasMany(models.History);
       }
     }
   });

@@ -5,7 +5,7 @@ var dependencies = [
   'ncook.directives'
 ];
 
-angular.module('ncook', dependencies).
+var app = angular.module('ncook', dependencies).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
@@ -26,6 +26,10 @@ angular.module('ncook', dependencies).
       templateUrl: '/partials/messages-compose.html',
       controller: 'ComposeMessageCtrl'
     }).
+    when('/messages', {
+      templateUrl: '/partials/messages.html',
+      controller: 'MessageCtrl'
+    }).
     when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'InventoryCtrl'
@@ -42,3 +46,9 @@ angular.module('ncook', dependencies).
       redirectTo: '/'
     });
   }]);
+
+app.filter('fromNow', function() {
+  return function(date) {
+    return moment(date).fromNow();
+  }
+});
