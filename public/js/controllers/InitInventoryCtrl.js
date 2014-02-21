@@ -1,6 +1,7 @@
 var InitInventoryCtrl = function($scope, $http, $location) {
-  $scope.hasAutoLocation = false;
   $scope.user = [];
+  $scope.gpsStatus = 'Provide GPS';
+  $scope.gpsDisable = false;
   $scope.userField = {
     'email': '',
     'location': '94305',
@@ -56,7 +57,7 @@ var InitInventoryCtrl = function($scope, $http, $location) {
   
   $scope.getLocation = function() {
     if (navigator.geolocation) {
-      console.log('we have geolocation!');
+      $scope.gpsStatus = "Fetching GPS...";
       navigator.geolocation.getCurrentPosition(showPosition, handleError);
     } else {
       console.log("Geolocation is not supported by this browser.");
@@ -65,11 +66,11 @@ var InitInventoryCtrl = function($scope, $http, $location) {
 
   var showPosition = function(position) {
     // TODO: do reverse lookup of lat/long to zipcode so this is human understandable
-    // WHY DOES this need TWO button clicks??
-    // Communicate to user better here
-    $scope.userField.location = position.coords.latitude + "," + position.coords.longitude;
-    $scope.hasAutoLocation = true;
-    console.log($scope.userField.location);
+    $scope.userField.gps = position.coords.latitude + "," + position.coords.longitude;
+    console.log($scope.userField.gps);
+    $scope.gpsStatus = "Found GPS, thanks!";
+    $scope.gpsDisable = true;
+    $scope.$apply();
   };
 
   var handleError = function(error) {

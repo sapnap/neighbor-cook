@@ -52,7 +52,6 @@ var HelpCtrl = function($scope, $sce) {
 
   $scope.toggleInfo = function(id) {
     $scope.showAnswer[id] = !$scope.showAnswer[id];
-    console.log('we are toggleInfo', id);
   };
 };
 

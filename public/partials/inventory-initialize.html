@@ -16,7 +16,9 @@
   </div>
   <div class="form-group" ng-class="{ 'has-error' : initForm.location.$invalid && !initForm.location.$pristine }">
     <label class="control-label">At home?</label>
-    <button class="btn btn-default" ng-click="getLocation()">Autofill my location</button><br>
+    <button class="btn btn-default" ng-click="getLocation()" ng-disabled="gpsDisable">{{gpsStatus}}</button>
+
+    <br>
     <label class="control-label">Location (Zipcode)</label>
     <input type="text" class="form-control" ng-model="userField.location" name="location" required>
     <p ng-show="initForm.location.$invalid && !initForm.location.$pristine" class="help-block">Your location is required.</p>
