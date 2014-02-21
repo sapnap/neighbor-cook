@@ -1,0 +1,24 @@
+<h1>Your communication</h1>
+
+<div ng-show="requests.length">
+	<!-- TODO: add filtering/sorting by time here -->
+	<h4>Recent requests:</h4>
+	<table class="table table-hover">
+	  <tr class="row" ng-repeat="req in requests | orderBy: 'history.createdAt':true">
+	    <td><a href="#/profile/{{req.user.id}}">{{req.user.first_name}}</a></td>
+	    <td>{{req.history.item.name}}</td>
+	    <td>{{req.history.createdAt | fromNow}}</td>
+	  </tr>
+	</table>
+</div>
+
+<div ng-show="offers.length">
+	<h4>Recent offers:</h4>
+	<table class="table table-hover">
+	  <tr class="row" ng-repeat="offer in offers | orderBy: 'history.createdAt':true">
+	    <td><a href="#/profile/{{offer.user.id}}">{{offer.user.first_name}}</a></td>
+	    <td>{{offer.history.item.name}}</td>
+	    <td>{{offer.history.createdAt | fromNow}}</td>
+	  </tr>
+	</table>
+</div>
