@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var profile = require('./routes/profile');
 var inventory = require('./routes/inventory');
 var bulletin = require('./routes/bulletin');
+var messages = require('./routes/messages');
 var inventoryInit = require('./routes/inventoryInit');
 
 var app = express();
@@ -128,6 +129,10 @@ app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
 app.get('/bulletins', ensureLoggedIn, bulletin.view);
 app.post('/bulletins',  ensureLoggedIn, bulletin.add);
 app.delete('/bulletins/:id', ensureLoggedIn, bulletin.delete);
+
+// messages
+app.get('/messages',  ensureLoggedIn, messages.view);
+app.post('/messages',  ensureLoggedIn, messages.add);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));

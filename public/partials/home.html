@@ -14,9 +14,7 @@
 	    <td>{{req.item.name}}</td>
 	    <td>{{req.message}}</td>
 	    <td><a href="#/profile/{{req.user.id}}">{{req.user.first_name}}</a></td>
-	    <td><a href="#/messages/compose/{{req.user.id}}?item={{req.item.name}}&offer=1">
-          Message {{req.user.first_name}}
-        </a></td>
+	    <td><a href="#/messages/compose/{{req.user.id}}?item={{req.item.name}}&offer=1">Compose Email</a></td>
 	  </tr>
 	</table>
 </div>
@@ -28,9 +26,7 @@
 	    <td>{{offer.item.name}}</td>
 	    <td>{{offer.message}}</td>
 	    <td><a href="#/profile/{{offer.user.id}}">{{offer.user.first_name}}</a></td>
-	    <td><a href="#/messages/compose/{{offer.user.id}}?item={{offer.item.name}}&offer=0">
-          Message {{offer.user.first_name}}
-        </a></td>
+	    <td><a href="#/messages/compose/{{offer.user.id}}?item={{offer.item.name}}&offer=0">Compose Email</a></td>
 	  </tr>
 	</table>
 </div>

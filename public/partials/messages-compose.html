@@ -4,14 +4,14 @@
 <p>Sending email to: <span id="messageEmail">{{recipient.email}}</span></p>
 <form role="form" ng-submit="sendEmail()">
   <div class="form-group">
-    <label class="col-xs-2" for="messageSubject">Subject</label>
+    <label class="control-label" for="messageSubject">Subject</label>
     <input type="text" class="form-control" id="messageSubject" ng-model="subject"/>
   </div>
   <div class="form-group">
-    <label class="col-xs-2" for="messageBody">Body</label>
+    <label class="control-label" for="messageBody">Body</label>
     <textarea class="form-control" id="messageBody" ng-model="body"
-            placeholder="Quantity, type, and pick up time">
+            placeholder="Specify quantity, pick up time, and location">
   </textarea>
   </div>
-  <button class="btn btn-default" type="submit">Open email client</button>
+  <button class="btn btn-default" type="submit" ng-click="addHistory()">Open email client</button>
 </form>

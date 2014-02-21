@@ -19,6 +19,10 @@ var app = angular.module('ncook', ['ngRoute', 'mgcrea.ngStrap']).
       templateUrl: '/partials/messages-compose.html',
       controller: 'ComposeMessageCtrl'
     }).
+    when('/messages', {
+      templateUrl: '/partials/messages.html',
+      controller: 'MessageCtrl'
+    }).
     when('/inventory', {
       templateUrl: 'partials/inventory.html',
       controller: 'InventoryCtrl'
@@ -35,3 +39,9 @@ var app = angular.module('ncook', ['ngRoute', 'mgcrea.ngStrap']).
       redirectTo: '/'
     });
   }]);
+
+app.filter('fromNow', function() {
+  return function(date) {
+    return moment(date).fromNow();
+  }
+});
