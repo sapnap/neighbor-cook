@@ -2,8 +2,6 @@ var db = require('../models');
 var _ = require('lodash');
 
 exports.view = function(req, res) {
-  // TODO convert expiration to user time zone
-
   db.Bulletin
     .findAll({
       where: { status: 'open' },
@@ -48,7 +46,12 @@ exports.delete = function(req, res) {
   db.Bulletin
     .find(req.params.id)
     .success(function(bulletin) {
-      bulletin.status = "deleted";
+      if (!bulletin) {
+        var errorMsg = 'Bulletin with ID ' + req.params.id + ' does not exist.';
+        res.send(400, { error: errorMsg });
+        return;
+      }
+      bulletin.status = 'deleted';
       bulletin
         .save()
         .success(function() {

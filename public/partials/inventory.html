@@ -23,11 +23,11 @@
 
         <div class="panel-group inventory-list" id="accordion">
             <div class="panel panel-default inventory-item" ng-repeat="item in inventory">
-                <div data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}">
+                <a data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}">
                     <div class="panel-heading">
                         <h5 class="panel-title">{{item.name}}</h5>
                     </div>
-                </div>
+                </a>
                 <div id="item{{item.id}}" class="collapse">
                     <div class="panel-body">
                         <a class="btn btn-danger btn-sm pull-right" ng-click="deleteItem(item.id)">
