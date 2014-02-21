@@ -1,17 +1,33 @@
+<div ng-controller="CreateBulletinCtrl">
+
+<div ng-show="error" class="alert alert-warning">
+    <a class="close" ng-click="resetError()">×</a>
+    <div>{{error}}</div>
+</div>
+
 <h1>Create a Bulletin</h1>
 
-<form class="form" role="form" ng-submit="postBulletin()">
-    <div class="form-group">
+<form class="form" role="form" name="bulletin" ng-submit="postBulletin()" novalidate>
+    <div class="form-group"
+         ng-class="{ 'has-error' : bulletin.itemName.$invalid && !bulletin.itemName.$pristine }">
         <label class="control-label" for="inputItem">Item</label>
         <input type="text" class="form-control"
-               id="inputItem" ng-model="itemName"
-               required="true" placeholder="Enter item" />
+               id="inputItem" ng-model="itemName" name="itemName"
+               placeholder="Enter item" required>
+
+        <p ng-show="bulletin.itemName.$invalid && !bulletin.itemName.$pristine" class="help-block">
+            Enter something you need or want to offer.
+        </p>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error' : bulletin.message.$error.maxlength }">
         <label class="control-label" for="inputMessage">Message</label>
-        <textarea class="form-control" rows="3"
-                  id="inputMessage" ng-model="message"
-                  placeholder="Enter a message"></textarea>
+        <textarea class="form-control" rows="3" ng-maxlength="255"
+                  id="inputMessage" ng-model="message" name="message"
+                  placeholder="Enter a message (optional)"></textarea>
+
+        <p ng-show="bulletin.message.$error.maxlength" class="help-block">
+            Messages can only be 255 characters in length.
+        </p>
     </div>
     <div class="form-group">
         <label class="control-label" for="inputType">Type</label>
@@ -20,10 +36,34 @@
             <option value="offer">Offer</option>
         </select>
     </div>
-    <div class="form-group">
-        <label class="control-label">Expiration</label>
-        <input type="date" class="form-control" ng-model="expirationDate" />
-        <input type="time" class="form-control" ng-model="expirationTime" />
+    <!-- TODO future date validation still not 100% working -->
+    <div class="form-group"
+         ng-class="{ 'has-error' : bulletin.eDate.$invalid || bulletin.eTime.$invalid }">
+        <label class="control-label">{{ type | sentenceCase }} Expiration</label>
+        <input type="text" size="10" class="form-control" ng-model="expiration" name="eDate"
+               data-date-format="M/dd/yyyy" data-min-date="today"
+               data-autoclose="1" placeholder="Date" bs-datepicker required future-date>
+        <input type="text" size="8" class="form-control" ng-model="expiration" name="eTime"
+               data-autoclose="1" data-length="3" data-minute-step="60"
+               placeholder="Time" bs-timepicker required future-date>
+
+        <p ng-show="bulletin.eDate.$error.date && bulletin.eTime.$error.date" class="help-block">
+            Enter a valid expiration date and time.
+        </p>
+        <p ng-show="bulletin.eDate.$error.date && !bulletin.eTime.$error.date" class="help-block">
+            Enter a valid expiration date.
+        </p>
+        <p ng-show="!bulletin.eDate.$error.date && bulletin.eTime.$error.date" class="help-block">
+            Enter a valid expiration time.
+        </p>
+        <p ng-show="bulletin.eDate.$error.futureDate || bulletin.eTime.$error.futureDate"
+           class="help-block">
+            Expiration must occur at a future date and time.
+        </p>
     </div>
-    <button type="submit" class="btn btn-default">Add Bulletin</button>
+    <button type="submit" class="btn btn-default" ng-disabled="bulletin.$invalid">
+        Add Bulletin
+    </button>
 </form>
+
+</div>

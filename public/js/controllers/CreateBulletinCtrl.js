@@ -1,9 +1,11 @@
 var CreateBulletinCtrl = function($scope, $http, $location) {
+  $scope.error = '';
+
   $scope.itemName = '';
   $scope.quantity = null;
   $scope.unit = null;
-  $scope.expirationDate = '';
-  $scope.expirationTime = '';
+  $scope.expiration =
+    moment().endOf('hour').add(1,'s').add(1,'d').format();
   $scope.message = '';
   $scope.type = 'request';
 
@@ -12,18 +14,21 @@ var CreateBulletinCtrl = function($scope, $http, $location) {
       itemName: $scope.itemName,
       quantity: $scope.quantity,
       unit: $scope.unit,
-      expiration: {
-        date: $scope.expirationDate,
-        time: $scope.expirationTime
-      },
+      expiration: $scope.expiration,
       message: $scope.message,
       type: $scope.type
     };
-    $http.post('/bulletins', data).success(function(data) {
-      if (data.success) {
+    $http.post('/bulletins', data).
+      success(function() {
         $location.path('/');
-      }
-    });
+      }).
+      error(function(data) {
+        $scope.error = data.error;
+      });
+  };
+
+  $scope.resetError = function() {
+    $scope.error = '';
   };
 };
 

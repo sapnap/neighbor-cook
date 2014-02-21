@@ -1,4 +1,11 @@
-<div ng-controller="ProfileCtrl" class="panel panel-default inventory-container">
+<div ng-controller="ProfileCtrl">
+
+<div ng-show="error" class="alert alert-warning">
+    <a class="close" ng-click="resetError()">×</a>
+    <div>{{error}}</div>
+</div>
+
+<div class="panel panel-default inventory-container">
     <div class="panel-heading">
         <div class="media">
             <img class="pull-left media-object img-rounded" ng-src="{{image}}" alt="Profile Picture" />
@@ -33,4 +40,6 @@
             <p class="panel-body">Empty inventory :(</p>
         </div>
     </div>
+</div>
+
 </div>
