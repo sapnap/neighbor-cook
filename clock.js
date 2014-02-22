@@ -9,7 +9,7 @@ var updateBulletins = function() {
   db.Bulletin
     .update(
       { status: 'expired' },
-      [ "expiration <= ?", moment().format() ]
+      [ "status = 'open' AND expiration <= ?", moment().format() ] 
     )
     .success(function(affectedRows) {
       console.log('Done! Updated ' + affectedRows + ' bulletins.');
