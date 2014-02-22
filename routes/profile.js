@@ -33,10 +33,11 @@ exports.me = function(req, res) {
   db.User
     .find({ where: { id: req.user.id } })
     .success(function(user) {
-      res.json(user);
-    })
-    .error(function(err) {
-      error(res, 'User ' + req.user.id + ' does not exist.');
+      if (!user) {
+        error(res, 'User ' + req.user.id + ' does not exist.');
+      } else {
+        res.json(user);
+      }
     });
 };
 
@@ -57,6 +58,15 @@ exports.contact = function(req, res) {
         res.json(data);
       }
     });
+};
+
+exports.updateCurrentUser = function(req, res) {
+  req.user.updateAttributes({
+    email: req.body.email,
+    location: req.body.location
+  }).success(function() {
+    res.send();
+  });
 };
 
 var error = function(res, message) {

@@ -14,7 +14,6 @@ var profile = require('./routes/profile');
 var inventory = require('./routes/inventory');
 var bulletin = require('./routes/bulletin');
 var messages = require('./routes/messages');
-var inventoryInit = require('./routes/inventoryInit');
 
 var app = express();
 var db = require('./models');
@@ -111,16 +110,17 @@ function ensureLoggedIn(req, res, next) {
 app.get('/splash', index.splash);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
-app.get('/search/typeahead', ensureLoggedIn, index.searchTypeahead);
+app.get('/search/typeahead', index.searchTypeahead);
 
 // profile
 app.get('/profile/me', ensureLoggedIn, profile.me);
+app.put('/profile/me', ensureLoggedIn, profile.updateCurrentUser);
 app.get('/profile/:id', ensureLoggedIn, profile.view);
 app.get('/profile/contact/:id', ensureLoggedIn, profile.contact);
 
 // inventory management
 app.get('/inventory', ensureLoggedIn, inventory.view);
-app.put('/inventory', ensureLoggedIn, inventoryInit.addItems);
+app.put('/inventory', ensureLoggedIn, inventory.setup);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
 app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);
 app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
@@ -128,13 +128,13 @@ app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
 // bulletins
 app.get('/bulletins', ensureLoggedIn, bulletin.view);
 app.get('/bulletins/:bulletinID', ensureLoggedIn, bulletin.get);
-app.post('/bulletins',  ensureLoggedIn, bulletin.add);
+app.post('/bulletins', ensureLoggedIn, bulletin.add);
 app.put('/bulletins/:bulletinID', ensureLoggedIn, bulletin.edit);
 app.delete('/bulletins/:bulletinID', ensureLoggedIn, bulletin.delete);
 
 // messages
-app.get('/messages',  ensureLoggedIn, messages.view);
-app.post('/messages',  ensureLoggedIn, messages.add);
+app.get('/messages', ensureLoggedIn, messages.view);
+app.post('/messages', ensureLoggedIn, messages.add);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook'));
