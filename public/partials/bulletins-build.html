@@ -1,13 +1,12 @@
-<div ng-controller="CreateBulletinCtrl">
-
 <div ng-show="error" class="alert alert-warning">
     <a class="close" ng-click="resetError()">×</a>
     <div>{{error}}</div>
 </div>
 
-<h2>Create Bulletin</h2>
+<h2 ng-hide="edit">Create Bulletin</h2>
+<h2 ng-show="edit">Edit Bulletin</h2>
 
-<form class="form" role="form" name="bulletin" ng-submit="postBulletin()" novalidate>
+<form class="form" role="form" name="bulletin" ng-submit="buildBulletin()" novalidate>
     <div class="form-group"
          ng-class="{ 'has-error' : bulletin.itemName.$invalid && !bulletin.itemName.$pristine }">
         <label class="control-label" for="inputItem">Item</label>
@@ -62,9 +61,10 @@
             <i class="fa fa-warning"></i> Expiration must occur at a future date and time.
         </p>
     </div>
-    <button type="submit" class="btn btn-default" ng-disabled="bulletin.$invalid">
-        Add Bulletin
+    <button ng-hide="edit" type="submit" class="btn btn-success" ng-disabled="bulletin.$invalid">
+        <i class="fa fa-plus"></i> Add Bulletin
+    </button>
+    <button ng-show="edit" type="submit" class="btn btn-success" ng-disabled="bulletin.$invalid">
+        <i class="fa fa-edit"></i> Edit Bulletin
     </button>
 </form>
-
-</div>

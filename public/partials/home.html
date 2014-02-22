@@ -1,5 +1,3 @@
-<div ng-controller="HomeCtrl">
-
 <div class="row">
   <div class="col-xs-12">
     <form ng-submit="transferSearch()" class="input-group">
@@ -21,7 +19,7 @@
             <div class="panel-heading">
                 <a class="panel-title" data-toggle="collapse" data-parent="#accordion-requests"
                      data-target="#bulletin-detail-{{req.id}}">
-                    {{ req.item.name }} by {{ req.expiration | calendar | unsentenceCase }}
+                    {{ req.item.name }} by {{ req.expiration | calendar }}
                 </a>
             </div>
             <div id="bulletin-detail-{{req.id}}" class="collapse">
@@ -48,7 +46,7 @@
             <div class="panel-heading">
                 <a class="panel-title" data-toggle="collapse" data-parent="#accordion-offers"
                      data-target="#bulletin-detail-{{offer.id}}">
-                    {{ offer.item.name }} until {{ offer.expiration | calendar | unsentenceCase }}
+                    {{ offer.item.name }} until {{ offer.expiration | calendar }}
                 </a>
             </div>
             <div id="bulletin-detail-{{offer.id}}" class="collapse">
@@ -78,20 +76,23 @@
                     {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
                     <span ng-if="bulletin.type === 'request'"> by</span>
                     <span ng-if="bulletin.type === 'offer'"> until</span>
-                    {{ bulletin.expiration | calendar | unsentenceCase }}
+                    {{ bulletin.expiration | calendar }}
                 </a>
             </div>
             <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
                 <div class="panel-body">
                     <span ng-show="bulletin.message">{{ bulletin.message }}</span>
                     <span ng-hide="bulletin.message"><em>No message</em></span>
-                    <a class="btn btn-danger btn-sm pull-right" ng-click="deleteBulletin(bulletin.id)">
-                        <i class="fa fa-trash-o"></i>  Delete
-                    </a>
+                    <div class="btn-toolbar">
+                        <a class="btn btn-danger btn-sm pull-right" ng-click="deleteBulletin(bulletin.id)">
+                            <i class="fa fa-trash-o"></i>  Delete
+                        </a>
+                        <a class="btn btn-success btn-sm pull-right" ng-click="editBulletin(bulletin.id)">
+                            <i class="fa fa-edit"></i>  Edit
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 </div>

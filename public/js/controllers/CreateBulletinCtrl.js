@@ -9,7 +9,7 @@ var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
   $scope.message = '';
   $scope.type = 'request';
 
-  $scope.postBulletin = function() {
+  $scope.buildBulletin = function() {
     var data = {
       itemName: $scope.itemName,
       quantity: $scope.quantity,
