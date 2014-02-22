@@ -27,6 +27,10 @@ angular.module('ncook', dependencies).
       templateUrl: '/partials/search.html',
       controller: 'SearchCtrl'
     }).
+    when('/profile/edit', {
+      templateUrl: 'partials/profile-edit.html',
+      controller: 'EditProfileCtrl'
+    }).
     when('/profile/:userID', {
       templateUrl: '/partials/profile.html',
       controller: 'ProfileCtrl'

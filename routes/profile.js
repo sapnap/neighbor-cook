@@ -33,10 +33,11 @@ exports.me = function(req, res) {
   db.User
     .find({ where: { id: req.user.id } })
     .success(function(user) {
-      res.json(user);
-    })
-    .error(function() {
-      error(res, 'User ' + req.user.id + ' does not exist.');
+      if (!user) {
+        error(res, 'User ' + req.user.id + ' does not exist.');
+      } else {
+        res.json(user);
+      }
     });
 };
 

@@ -23,16 +23,10 @@ angular.module('ncook.services', ['ng'])
     }
   }])
   .factory('UserService', ['$http', function($http) {
-    var currentUser = {};
-
-    // TODO handle failure
-    $http.get('/profile/me').success(function(data) {
-      currentUser = data;
-    });
-
     return {
+      // usage: getCurrentUser().success(successCallback).error(errorCallback)
       getCurrentUser: function() {
-        return currentUser;
+        return $http.get('/profile/me');
       }
     }
   }]);

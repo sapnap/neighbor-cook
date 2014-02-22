@@ -1,0 +1,36 @@
+<div class="media init-welcome">
+    <img class="pull-left media-object img-rounded" ng-src="{{user.img_path}}" alt="Profile Picture">
+    <div class="media-body">
+        <h4 class="media-heading">{{ user.first_name }} {{ user.last_name }}</h4>
+    </div>
+</div>
+
+<form name="profile" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : profile.email.$invalid && !profile.email.$pristine }">
+        <label class="control-label" for="email">Email</label>
+        <input type="email" class="form-control" ng-model="userField.email"
+               placeholder="{{ user.first_name | lowercase }}@stanford.edu"
+               name="email" id="email" required>
+        <p ng-show="profile.email.$invalid && !profile.email.$pristine" class="help-block">
+            <i class="fa fa-warning"></i> Enter a valid email.
+        </p>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="home"> I am currently at home.
+        </label>
+    </div>
+    <div class="form-group" ng-show="home">
+        <input type="button" class="btn btn-primary" value="{{gpsStatus}}" ng-click="getLocation()" ng-disabled="gpsDisable">
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : profile.location.$invalid && !profile.location.$pristine }">
+        <label class="control-label">Home Location (Zipcode)</label>
+        <input type="text" class="form-control" ng-model="userField.location" name="location" required>
+        <p ng-show="profile.location.$invalid && !profile.location.$pristine" class="help-block">
+            <i class="fa fa-warning"></i> Your location is required.
+        </p>
+    </div>
+    <button type="submit" class="btn btn-success" ng-disabled="profile.$invalid" ng-click="edit()">
+        <i class="fa fa-edit"></i> Edit Profile
+    </button>
+</form>
