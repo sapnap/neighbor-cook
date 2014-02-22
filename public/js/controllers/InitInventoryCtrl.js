@@ -1,5 +1,5 @@
-var InitInventoryCtrl = function($scope, $http, $location) {
-  $scope.user = [];
+var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
+  $scope.user = {};
   $scope.gpsStatus = 'Provide GPS';
   $scope.gpsDisable = false;
   $scope.home = false;
@@ -27,25 +27,24 @@ var InitInventoryCtrl = function($scope, $http, $location) {
     137: true
   };
 
+  // TODO using the service doesn't work
   $http.get('/profile/me').success(function(data) {
   	$scope.user = data;
   });
 
   $scope.initUser = function() {
-    if (!$scope.initForm.$valid) {
-      return;
-    }
-    if ($scope.hasAutoLocation) {
-      $scope.userField.gps = $scope.userField.location;
-    }
-    var payload = {
-      'user': $scope.userField,
-      'inventory': $scope.selectedItems
-    };
-  	$http.put('/inventory', payload).success(function() {
+    if ($scope.initForm.$invalid) return;
+
+    var itemIDs = [];
+    _.each($scope.selectedItems, function(val, key) {
+      if (val) itemIDs.push(key);
+    });
+
+    $q.all({
+      user: $http.put('/profile/me', $scope.userField),
+      inventory: $http.put('/inventory', { inventory: itemIDs })
+    }).then(function() {
       $location.path('/profile/' + $scope.user.id);
-	  }).error(function(err) {
-      console.log(err);
     });
   };
   
@@ -85,4 +84,4 @@ var InitInventoryCtrl = function($scope, $http, $location) {
   };
 };
 
-InitInventoryCtrl.$inject = ['$scope', '$http', '$location'];
+InitInventoryCtrl.$inject = ['$scope', '$http', '$q', '$location', 'UserService'];

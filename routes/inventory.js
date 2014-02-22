@@ -15,6 +15,28 @@ exports.view = function(req, res) {
     });
 };
 
+
+exports.setup = function(req, res) {
+  var itemIDs = req.body.inventory;
+
+  db.Item
+    .findAll({ where: { id: itemIDs }})
+    .success(function(items) {
+      if (!items) {
+        var errorMsg = 'The items you want to add do not exist.';
+        res.send(400, { error: errorMsg });
+      } else {
+        req.user
+          .setItems(items, {
+            quantity: 1,
+            unit: 'unit'
+          }).success(function() {
+            res.send();
+          });
+      }
+    });
+};
+
 // getting info from adding to inventory request
 exports.addItem = function(req, res) {
   var itemName, quantity, unit;
