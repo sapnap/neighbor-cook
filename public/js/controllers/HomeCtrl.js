@@ -1,5 +1,5 @@
 var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSearchService) {
-  $scope.query = '';
+  $scope.query = TransferSearchService.getQuery();
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
@@ -10,15 +10,12 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
     $scope.requests = data.requests;
   });
 
-  // TODO doesn't work for some reason
-  $scope.$on('$viewContentLoaded', function() {
-    $scope.query = TransferSearchService.getQuery();
-  });
-
   // TODO: change url to provide a bookmark-able url with search
   $scope.transferSearch = function() {
-    TransferSearchService.setQuery($scope.query);
-    $location.path('/search');
+    if ($scope.query.length > 0) {
+      TransferSearchService.setQuery($scope.query);
+      $location.path('/search');
+    }
   };
 
   $scope.typeahead = TypeaheadService.items;
@@ -29,6 +26,10 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
         return bulletin.id === bulletinID;
       })
     });
+  };
+
+  $scope.editBulletin = function(bulletinID) {
+    $location.path('/bulletins/' + bulletinID + '/edit');
   };
 };
 

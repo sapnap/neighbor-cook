@@ -48,8 +48,12 @@ angular.module('ncook', dependencies).
       controller: 'InitInventoryCtrl'
     }).
     when('/bulletins/create', {
-      templateUrl: 'partials/bulletins-create.html',
+      templateUrl: 'partials/bulletins-build.html',
       controller: 'CreateBulletinCtrl'
+    }).
+    when('/bulletins/:bulletinID/edit', {
+      templateUrl: 'partials/bulletins-build.html',
+      controller: 'EditBulletinCtrl'
     }).
     otherwise({
       redirectTo: '/'

@@ -1,12 +1,12 @@
 var SearchCtrl = function($scope, $http, $location, TypeaheadService, TransferSearchService) {
-  $scope.query = '';
+  $scope.query = TransferSearchService.getQuery();
   $scope.results = [];
   $scope.doneQuery = '';
-  $scope.query = '';
 
   $scope.$on('$viewContentLoaded', function() {
-    $scope.query = TransferSearchService.getQuery();
-    $scope.search();
+    if ($scope.query.length > 0) {
+      $scope.search();
+    }
   });
 
   $scope.search = function() {
