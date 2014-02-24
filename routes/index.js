@@ -47,9 +47,21 @@ exports.search = function(req, res) {
 };
 
 exports.searchTypeahead = function(req, res) {
+
+  // http://www.harryonline.net/scripts/sprintf-javascript/385
+  function sprintf(format) {
+    for( var i=1; i < arguments.length; i++ ) {
+      format = format.replace( /%s/, arguments[i] );
+    }
+    return format;
+  }
+
+  var where = "name ILIKE '%s%' OR name ILIKE '% %s%' OR name ILIKE '%(%s%'";
+  var query = req.query.query;
+
   db.Item
   .findAll({ 
-    where: ["name ILIKE '" + req.query.query + "%' OR name ILIKE '% " + req.query.query + "%'"],
+    where: [ sprintf(where, query, query, query) ],
     attributes: ['name']
   })
   .success(function(items) {

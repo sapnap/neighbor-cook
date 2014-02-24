@@ -1,7 +1,7 @@
 var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
   $scope.error = '';
 
-  $scope.itemName = '';
+  $scope.itemName = ($location.search().item) ? $location.search().item : '';
   $scope.quantity = null;
   $scope.unit = null;
   $scope.expiration =

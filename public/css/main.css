@@ -21,6 +21,14 @@ body {
     padding: 15px 0;
 }
 
+#create-bulletin {
+    margin-top: 15px;
+}
+
+#edit-inventory {
+    margin-top: 5px;
+}
+
 .inventory-container {
     margin-top: 10px;
 }
