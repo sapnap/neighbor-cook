@@ -29,6 +29,7 @@
         <div class="list-group-item-text media">
           <img ng-src="{{result.img_path}}" class="img-rounded media-object pull-left"/>
           <p>Location: <strong>{{result.location}}</strong></p>
+          <p ng-if="result.distance != undefined">Distance: <strong>{{result.distance}}</strong> miles</p>
           <p>
             <a href="#/messages/compose/{{result.id}}?item={{doneQuery}}&offer=0"
                class="btn btn-default btn-sm pull-right">

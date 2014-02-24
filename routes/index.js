@@ -1,5 +1,6 @@
 var db = require('../models');
 var _ = require('lodash');
+var haversine = require('haversine');
 
 /*
  * GET home page.
@@ -20,30 +21,61 @@ exports.search = function(req, res) {
   .find({ where: { name: query }})
   .success(function(item) {
   	if (!item) {
+      // TODO error item does not exist
   		res.json({
 	      'query': query,
 				'results': []
 	    });
   	} else {
-      db.InventoryItem
-		    .findAll({ where: { ItemId: item.id } }) 
-
-		    // pre-fetching Users with include does not work here
-		    .success(function(inventoryItems) {
-		    	var userIds = _.pluck(inventoryItems, 'UserId');
-          _.remove(userIds, function(id) { return id === req.user.id });
-
-          db.User
-		    		.findAll({ where: { id: userIds } })
-		    		.success(function(users) {
-					    res.json({
-					      'query': query,
-								'results': users
-					    });
-		    		});
-		    });
+      getItemOwners(item);
     }
-  });		
+  });
+
+  var getItemOwners = function(item) {
+    db.InventoryItem
+      .findAll({ where: { ItemId: item.id } })
+      .success(function(inventoryItems) {
+        var userIds = _.pluck(inventoryItems, 'UserId');
+        _.remove(userIds, function(id) { return id === req.user.id });
+
+        db.User
+          .findAll({ where: { id: userIds } })
+          .success(function(users) {
+            if (req.user.gps) {
+              var locationlessUsers = _.remove(users, function(user) {
+                return user.gps == null || user.gps === '';
+              });
+              var sortedUsers = _.sortBy(users, distance).reverse();
+              users = sortedUsers.concat(locationlessUsers);
+              console.log(users);
+            }
+            res.json({
+              query: query,
+              results: users
+            });
+          });
+      });
+  };
+
+  var start = {};
+  if (req.user.gps) {
+    var coordinates = req.user.gps.split(',');
+    start.latitude = parseFloat(coordinates[0]);
+    start.longitude = parseFloat(coordinates[1]);
+  }
+
+  var distance = function(user) {
+    // TODO store gps as lat. and long. (numbers instead of string)
+    var coordinates = user.gps.split(',');
+    var end = {
+      latitude: parseFloat(coordinates[0]),
+      longitude: parseFloat(coordinates[1])
+    };
+
+    // hacky way of returning distance to the frontend
+    user.values.distance = haversine(start, end);
+    return user.values.distance;
+  };
 };
 
 exports.searchTypeahead = function(req, res) {
