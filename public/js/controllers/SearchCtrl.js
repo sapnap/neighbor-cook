@@ -9,6 +9,11 @@ var SearchCtrl = function($scope, $http, $location, TypeaheadService, TransferSe
     }
   });
 
+  $scope.$on('$typeahead.select', function(evt) {
+    evt.stopPropagation();
+    $scope.search();
+  });
+
   $scope.search = function() {
     TransferSearchService.setQuery($scope.query);
     $http.get('/search?query=' + $scope.query).success(function(data) {

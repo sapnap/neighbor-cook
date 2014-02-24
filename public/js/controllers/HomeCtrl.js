@@ -10,6 +10,11 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
     $scope.requests = data.requests;
   });
 
+  $scope.$on('$typeahead.select', function(evt) {
+    evt.stopPropagation();
+    $scope.transferSearch();
+  });
+
   // TODO: change url to provide a bookmark-able url with search
   $scope.transferSearch = function() {
     if ($scope.query.length > 0) {
