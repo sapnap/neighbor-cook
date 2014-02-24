@@ -11,7 +11,16 @@
   </div>
 </div>
 
-<h3>Bulletins</h3>
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Bulletins</h3>
+  </div>
+  <div class="col-xs-6">
+    <a class="btn btn-success pull-right" href="#/bulletins/create" id="create-bulletin">
+      <i class="fa fa-thumb-tack"></i> Post Bulletin
+    </a>
+  </div>
+</div>
 <div ng-show="requests">
 	<h5>People around you need:</h5>
     <div class="panel-group" id="accordion-requests">
@@ -69,7 +78,7 @@
 <div ng-show="authored">
 	<h5>Your open bulletins:</h5>
     <div class="panel-group" id="accordion-authored">
-        <div class="panel panel-primary" ng-repeat="bulletin in authored">
+        <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
             <div class="panel-heading">
                 <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
                      data-target="#bulletin-detail-{{bulletin.id}}">

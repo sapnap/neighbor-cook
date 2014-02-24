@@ -13,7 +13,7 @@
 
 <div ng-show="doneQuery">
   <p id="search-summary">
-    Search results: <strong>{{ results.length }}</strong>
+    <strong>{{ results.length }}</strong>
     <span ng-if="results.length == 1">person has</span>
     <span ng-if="results.length != 1">people have</span>
     {{ doneQuery }}.
@@ -37,6 +37,19 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="doneQuery">
+  <div class="row">
+    <p class="col-xs-8">
+      Post a request for {{doneQuery}}?
+    </p>
+    <div class="col-xs-4">
+      <a class="btn btn-success pull-right" href="#/bulletins/create?item={{doneQuery}}">
+        <i class="fa fa-thumb-tack"></i> Post
+      </a>
     </div>
   </div>
 </div>

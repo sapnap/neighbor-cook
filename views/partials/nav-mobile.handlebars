@@ -8,23 +8,13 @@
           <a href="#/search"><i class="fa fa-search"></i></a>
         </li>
         <li data-match-route="/profile/.*" id="profile-nav">
-          <a href="#/profile/{{user.id}}"><i class="fa fa-users"></i></a>
+          <a href="#/profile/{{user.id}}"><i class="fa fa-user"></i></a>
         </li>
         <li data-match-route="/messages" id="history-nav">
           <a href="#/messages"><i class="fa fa-clock-o"></i></a>
         </li>
-        <li class="dropdown" id="more-button">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bars" id="more-view-icon"></i>
-                {{! TODO switch between icons on dropdown open/close }}
-                <i class="fa fa-times hidden" id="more-close-icon"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                <li><a href="#/bulletins/create"><i class="fa fa-thumb-tack fa-fw"></i> Create Bulletin</a></li>
-                <li><a href="#/inventory"><i class="fa fa-edit fa-fw"></i> Edit Inventory</a></li>
-                <li class="divider"></li>
-                <li><a href="/logout" id="sign_out"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-            </ul>
+        <li>
+          <a href="/logout" id="sign_out">Logout</a>
         </li>
     </ul>
     </div>
