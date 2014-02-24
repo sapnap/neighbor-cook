@@ -63,7 +63,8 @@ exports.contact = function(req, res) {
 exports.updateCurrentUser = function(req, res) {
   req.user.updateAttributes({
     email: req.body.email,
-    location: req.body.location
+    location: req.body.location,
+    gps: req.body.gps
   }).success(function() {
     res.send();
   });
