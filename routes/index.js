@@ -49,7 +49,7 @@ exports.search = function(req, res) {
 exports.searchTypeahead = function(req, res) {
   db.Item
   .findAll({ 
-    where: ["LOWER(name) LIKE '%" + req.query.query.toLowerCase() + "%'"],
+    where: ["name ILIKE '" + req.query.query + "%' OR name ILIKE '% " + req.query.query + "%'"],
     attributes: ['name']
   })
   .success(function(items) {
