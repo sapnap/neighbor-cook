@@ -43,10 +43,6 @@ angular.module('ncook', dependencies).
       templateUrl: '/partials/messages.html',
       controller: 'MessageCtrl'
     }).
-    when('/inventory', {
-      templateUrl: 'partials/inventory.html',
-      controller: 'InventoryCtrl'
-    }).
     when('/inventory/initialize', {
       templateUrl: 'partials/inventory-initialize.html',
       controller: 'InitInventoryCtrl'
