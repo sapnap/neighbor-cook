@@ -29,10 +29,9 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
     });
     // Get bulletins
     $http.get('/bulletins/me').success(function(data) {
-      console.log(data);
       $scope.bulletins = data;
-    });
-    console.log("bulletins", $scope.bulletins);
+      console.log("bulletins", $scope.bulletins);
+    });    
   });
 
   $scope.deleteBulletin = function(bulletinID) {
