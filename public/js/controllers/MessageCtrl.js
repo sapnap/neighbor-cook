@@ -2,6 +2,7 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
   $scope.user = [];
   $scope.requests = [];
   $scope.offers = [];
+  $scope.bulletins = [];
 
   $http.get('/profile/me').success(function(data) {
     $scope.user = data;
@@ -26,7 +27,24 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
 		  });
 		  console.log("offers", $scope.offers);
     });
+    // Get bulletins
+    $http.get('/bulletins/me').success(function(data) {
+      $scope.bulletins = data;
+      console.log("bulletins", $scope.bulletins);
+    });    
   });
+
+  $scope.deleteBulletin = function(bulletinID) {
+    $http.delete('/bulletins/' + bulletinID).success(function() {
+      _.remove($scope.bulletins, function(bulletin) {
+        return bulletin.id === bulletinID;
+      })
+    });
+  };
+
+  $scope.editBulletin = function(bulletinID) {
+    $location.path('/bulletins/' + bulletinID + '/edit');
+  };
 };
 
 MessageCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', '$window'];

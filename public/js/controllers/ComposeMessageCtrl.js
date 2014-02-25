@@ -1,5 +1,4 @@
 var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $window, UserService) {
-  $scope.user = UserService.getCurrentUser();
   $scope.offer = $location.search().offer === '1';
   $scope.item = $location.search().item;
   $scope.recipient = { name: '', email: '' };
@@ -8,6 +7,11 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
     ($scope.offer ? 'Offer' : 'Request') +
     ($scope.item ? ': ' + $scope.item : '');
   $scope.body = '';
+
+  UserService.
+    getCurrentUser().
+    success(function(user) { $scope.user = user; }).
+    error(function() { $scope.user = {}; });
 
   $http.get('/profile/contact/' + $routeParams.recipientID).success(function(data) {
     $scope.recipient = {
