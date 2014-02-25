@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
-    <form ng-submit="search()" class="input-group">
+    <form ng-submit="search()" class="input-group right-inner-addon">
+      <p ng-click="clearQuery()" ng-show="query.length > 0">×</p>
       <input type="text" class="form-control" ng-model="query"
              ng-options="item.name as item.name for item in typeahead($viewValue)"
              placeholder="Ingredient Search" bs-typeahead>

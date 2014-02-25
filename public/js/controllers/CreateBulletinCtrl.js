@@ -24,6 +24,7 @@ var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
       }).
       error(function(data) {
         $scope.error = data.error;
+        window.scrollTo(0, 0);
       });
   };
 
