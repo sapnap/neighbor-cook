@@ -1,4 +1,4 @@
-var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService, UserService) {
+var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService) {
   $scope.error = '';
   $scope.editable = false;
   $scope.inventory = [];
@@ -47,4 +47,4 @@ var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService, UserSe
   $scope.typeahead = TypeaheadService.items;
 };
 
-ProfileCtrl.$inject = ['$scope', '$http', '$routeParams', 'TypeaheadService', 'UserService'];
+ProfileCtrl.$inject = ['$scope', '$http', '$routeParams', 'TypeaheadService'];
