@@ -21,7 +21,6 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
                    "?subject=" + $scope.subject +
                    "&body=" + $scope.body;
     return emailURL;
-    // $window.open(emailURL);
   };
 
   $scope.addHistory = function() {
@@ -39,10 +38,9 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
         item: $scope.item
       };
     }
-    console.log('add message history', data);
+    
     $http.post('/messages', data).success(function(data) {
       console.log("success!!", data);
-      // $window.location = '/';
     });
   };
 };

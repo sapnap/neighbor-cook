@@ -28,6 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         this.gender = profile.gender;
         // TODO: save image instead of linking to facebook
         this.img_path = 'http://graph.facebook.com/' + profile.id + '/picture?height=64&width=64';
+        this.email = profile.emails[0].value;
       }
     }
   });

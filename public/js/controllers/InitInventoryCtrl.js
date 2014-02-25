@@ -24,7 +24,10 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
 
   UserService.
     getCurrentUser().
-    success(function(user) { $scope.user = user; }).
+    success(function(user) { 
+      $scope.user = user; 
+      $scope.userField.email = user.email;
+    }).
     error(function() { $scope.user = {}; });
   $scope.userField = {
     email: '',
