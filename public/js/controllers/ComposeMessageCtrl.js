@@ -20,7 +20,7 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
     var emailURL = "mailto:" + $scope.recipient.email +
                    "?subject=" + $scope.subject +
                    "&body=" + $scope.body;
-    $window.open(emailURL);
+    return emailURL;
   };
 
   $scope.addHistory = function() {
@@ -38,10 +38,9 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
         item: $scope.item
       };
     }
-    console.log('add message history', data);
+    
     $http.post('/messages', data).success(function(data) {
       console.log("success!!", data);
-      // $window.location = '/';
     });
   };
 };

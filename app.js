@@ -137,7 +137,7 @@ app.get('/messages', ensureLoggedIn, messages.view);
 app.post('/messages', ensureLoggedIn, messages.add);
 
 // login and logout
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/splash' }),
   function(req, res) {
