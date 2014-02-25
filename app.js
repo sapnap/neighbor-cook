@@ -119,7 +119,6 @@ app.get('/profile/:id', ensureLoggedIn, profile.view);
 app.get('/profile/contact/:id', ensureLoggedIn, profile.contact);
 
 // inventory management
-app.get('/inventory', ensureLoggedIn, inventory.view);
 app.put('/inventory', ensureLoggedIn, inventory.setup);
 app.post('/inventory', ensureLoggedIn, inventory.addItem);
 app.put('/inventory/:itemID', ensureLoggedIn, inventory.editItem);

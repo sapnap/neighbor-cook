@@ -1,25 +1,16 @@
-var ProfileCtrl = function($scope, $http, $routeParams) {
+var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService, UserService) {
   $scope.error = '';
   $scope.editable = false;
-  $scope.id = 0;
-  $scope.name = '';
-  $scope.image = 'http://lorempixel.com/64/64/people';
-  $scope.location = '';
-  $scope.donated = 0;
-  $scope.received = 0;
   $scope.inventory = [];
+  $scope.profile = {};
+  $scope.itemName = '';
 
   $http.get('/profile/' + $routeParams.userID).
     success(function(data) {
-      $scope.errorNotLoggedIn = data.errorNotLoggedIn;
       $scope.editable = data.editable;
-      $scope.id = data.id;
-      $scope.name = data.name;
-      $scope.image = data.image;
-      $scope.location = data.location;
-      $scope.donated = data.donated;
-      $scope.received = data.received;
-      $scope.inventory = data.inventory;
+      $scope.profile = data.user;
+      $scope.profile.name = data.name;
+      $scope.inventory = data.user.items;
     }).
     error(function(data) {
       // should never get here
@@ -29,6 +20,30 @@ var ProfileCtrl = function($scope, $http, $routeParams) {
   $scope.resetError = function() {
     $scope.error = '';
   };
+
+  $scope.addItem = function() {
+    var data = { itemName: $scope.itemName };
+    $http.post('/inventory', data).
+      success(function(data) {
+        // TODO animation: http://mgcrea.github.io/angular-motion/
+        $scope.inventory.unshift(data.item);
+      }).
+      error(function(data) {
+        $scope.error = data.error;
+        $scope.itemName = '';
+      });
+  };
+
+  $scope.deleteItem = function(id) {
+    $http.delete('/inventory/' + id).success(function(data) {
+      // TODO animation
+      _.remove($scope.inventory, function(item) {
+        return item.id == data.itemID;
+      })
+    });
+  };
+
+  $scope.typeahead = TypeaheadService.items;
 };
 
-ProfileCtrl.$inject = ['$scope', '$http', '$routeParams'];
+ProfileCtrl.$inject = ['$scope', '$http', '$routeParams', 'TypeaheadService', 'UserService'];

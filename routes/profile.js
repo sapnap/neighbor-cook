@@ -11,14 +11,9 @@ exports.view = function(req, res) {
         error(res, 'User ' + req.params.id + ' does not exist.');
       } else {
         var data = {
-          id: user.id,
           editable: req.isAuthenticated() && user.id == req.user.id,
           name: user.getFullname(),
-          image: user.img_path,
-          location: user.location,
-          donated: 19,
-          received: 4,
-          inventory: user.items
+          user: user
         };
         res.json(data);
       }
