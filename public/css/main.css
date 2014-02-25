@@ -75,3 +75,18 @@ body {
 .timepicker.dropdown-menu tbody button {
     padding: 6px
 }
+
+.right-inner-addon {
+    position: relative;
+}
+
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+
+.right-inner-addon p {
+    position: absolute;
+    right: 70px;
+    padding: 10px 12px;
+    z-index: 10;
+}

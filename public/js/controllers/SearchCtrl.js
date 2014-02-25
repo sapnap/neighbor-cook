@@ -14,6 +14,11 @@ var SearchCtrl = function($scope, $http, $location, TypeaheadService, TransferSe
     $scope.search();
   });
 
+  $scope.clearQuery = function() {
+    $scope.query = '';
+    TransferSearchService.setQuery('');
+  };
+
   $scope.search = function() {
     TransferSearchService.setQuery($scope.query);
     $http.get('/search?query=' + $scope.query).success(function(data) {

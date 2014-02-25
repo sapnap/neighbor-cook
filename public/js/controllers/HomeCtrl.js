@@ -15,6 +15,11 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
     $scope.transferSearch();
   });
 
+  $scope.clearQuery = function() {
+    $scope.query = '';
+    TransferSearchService.setQuery('');
+  };
+
   // TODO: change url to provide a bookmark-able url with search
   $scope.transferSearch = function() {
     if ($scope.query.length > 0) {
