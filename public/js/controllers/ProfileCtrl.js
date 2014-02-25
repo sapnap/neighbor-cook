@@ -31,6 +31,7 @@ var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService, UserSe
       error(function(data) {
         $scope.error = data.error;
         $scope.itemName = '';
+        window.scrollTo(0, 0);
       });
   };
 
