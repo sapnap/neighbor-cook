@@ -2,7 +2,7 @@
 <h3 ng-hide="offer">You are requesting {{item}} from {{recipient.name}}:</h3>
 
 <p>Sending email to: <span id="messageEmail">{{recipient.email}}</span></p>
-<form role="form" ng-submit="sendEmail()">
+<form role="form">
   <div class="form-group">
     <label class="control-label" for="messageSubject">Subject</label>
     <input type="text" class="form-control" id="messageSubject" ng-model="subject"/>
@@ -13,5 +13,5 @@
             placeholder="Specify quantity, pick up time, and location">
   </textarea>
   </div>
-  <button class="btn btn-default" type="submit" ng-click="addHistory()">Open email client</button>
+  <a class="btn btn-default" ng-click="addHistory()" href='{{sendEmail()}}' target='_blank'>Open email client</a>
 </form>

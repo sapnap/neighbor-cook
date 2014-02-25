@@ -20,7 +20,8 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
     var emailURL = "mailto:" + $scope.recipient.email +
                    "?subject=" + $scope.subject +
                    "&body=" + $scope.body;
-    $window.open(emailURL);
+    return emailURL;
+    // $window.open(emailURL);
   };
 
   $scope.addHistory = function() {
