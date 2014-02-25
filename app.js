@@ -126,6 +126,7 @@ app.delete('/inventory/:itemID', ensureLoggedIn, inventory.deleteItem);
 
 // bulletins
 app.get('/bulletins', ensureLoggedIn, bulletin.view);
+app.get('/bulletins/me', ensureLoggedIn, bulletin.getUserBulletins);
 app.get('/bulletins/:bulletinID', ensureLoggedIn, bulletin.get);
 app.post('/bulletins', ensureLoggedIn, bulletin.add);
 app.put('/bulletins/:bulletinID', ensureLoggedIn, bulletin.edit);

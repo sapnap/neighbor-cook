@@ -22,3 +22,37 @@
 	  </tr>
 	</table>
 </div>
+
+<div ng-show="bulletins.length">
+	<h4>Your bulletins:</h4>
+	<div class="panel-group" id="accordion-authored">
+    <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletins | orderBy: 'updatedAt':true">
+      <div class="panel-heading">
+        <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
+        data-target="#bulletin-detail-{{bulletin.id}}">
+        {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
+        <span ng-if="bulletin.type === 'request'"> by</span>
+        <span ng-if="bulletin.type === 'offer'"> until</span>
+        {{ bulletin.expiration | calendar }}
+      </a>
+    </div>
+    <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
+      <div class="panel-body">
+        <span ng-show="bulletin.message">{{ bulletin.message }}</span>
+        <span ng-hide="bulletin.message"><em>No message</em></span>
+        <div class="btn-toolbar">
+          <a class="btn btn-danger btn-sm pull-right" ng-click="deleteBulletin(bulletin.id)">
+            <i class="fa fa-trash-o"></i>  Delete
+          </a>
+          <a class="btn btn-success btn-sm pull-right" ng-click="editBulletin(bulletin.id)">
+            <i class="fa fa-edit"></i>  Edit
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <a class="btn btn-success pull-right" href="#/bulletins/create" id="create-bulletin">
+    <i class="fa fa-thumb-tack"></i> Post Bulletin
+  </a>
+</div>

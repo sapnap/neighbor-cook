@@ -27,6 +27,17 @@ exports.view = function(req, res) {
     });
 };
 
+exports.getUserBulletins = function(req, res) {
+  db.Bulletin
+    .findAll({
+      where: { UserId: req.user.id },
+      include: [ db.Item ]
+    })
+    .success(function(bulletins) {
+      res.json(bulletins);
+    });
+};
+
 exports.get = function(req, res) {
   db.Bulletin
     .find({
