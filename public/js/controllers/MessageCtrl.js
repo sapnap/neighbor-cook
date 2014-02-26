@@ -2,7 +2,9 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
   $scope.user = [];
   $scope.requests = [];
   $scope.offers = [];
-  $scope.bulletins = [];
+  // Currently (02/26/2014), a bulletin is never marked as resolved. If this is added, we should support that here
+  $scope.bulletinsOpen = [];
+  $scope.bulletinsExpired = [];
 
   $http.get('/profile/me').success(function(data) {
     $scope.user = data;
@@ -28,9 +30,13 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
 		  console.log("offers", $scope.offers);
     });
     // Get bulletins
-    $http.get('/bulletins/me').success(function(data) {
-      $scope.bulletins = data;
-      console.log("bulletins", $scope.bulletins);
+    $http.get('/bulletins/me').success(function(bulletins) {
+      $scope.bulletinsOpen = _.remove(bulletins, function(bulletin) {
+        return bulletin.status === 'open'
+      });
+      $scope.bulletinsExpired = _.remove(bulletins, function(bulletin) {
+        return bulletin.status === 'expired'
+      });
     });    
   });
 

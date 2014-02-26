@@ -34,7 +34,10 @@ exports.getUserBulletins = function(req, res) {
       include: [ db.Item ]
     })
     .success(function(bulletins) {
-      res.json(bulletins);
+      var alive_bulletins = _.remove(bulletins, function(bulletin) {
+        return bulletin.status !== 'deleted'
+      });
+      res.json(alive_bulletins);
     });
 };
 
