@@ -1,4 +1,4 @@
-var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService) {
+var ProfileCtrl = function($scope, $http, $routeParams, $window, TypeaheadService) {
   $scope.error = '';
   $scope.editable = false;
   $scope.inventory = [];
@@ -31,7 +31,7 @@ var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService) {
       error(function(data) {
         $scope.error = data.error;
         $scope.itemName = '';
-        window.scrollTo(0, 0);
+        $window.scrollTo(0, 0);
       });
   };
 
@@ -47,4 +47,4 @@ var ProfileCtrl = function($scope, $http, $routeParams, TypeaheadService) {
   $scope.typeahead = TypeaheadService.items;
 };
 
-ProfileCtrl.$inject = ['$scope', '$http', '$routeParams', 'TypeaheadService'];
+ProfileCtrl.$inject = ['$scope', '$http', '$routeParams', '$window', 'TypeaheadService'];

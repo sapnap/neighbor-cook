@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-xs-12">
     <form ng-submit="transferSearch()" class="input-group right-inner-addon">
-      <p ng-click="clearQuery()" ng-show="query.length > 0">×</p>
+      <p ng-click="clearQuery()" ng-show="query.length > 0">
+        <i class="fa fa-eraser"></i>
+      </p>
       <input type="text" class="form-control" ng-model="query"
       ng-options="item.name as item.name for item in typeahead($viewValue)"
       placeholder="Ingredient Search" bs-typeahead>
@@ -76,6 +78,7 @@
 </div>
 </div>
 
+<!-- TODO: can put this into directive by "Isolating the Scope of a Directive" -->
 <div ng-show="authored">
 	<h5>Your open bulletins:</h5>
   <div class="panel-group" id="accordion-authored">

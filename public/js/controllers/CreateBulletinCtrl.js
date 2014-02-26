@@ -1,4 +1,4 @@
-var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
+var CreateBulletinCtrl = function($scope, $http, $location, $window, TypeaheadService) {
   $scope.error = '';
 
   $scope.itemName = ($location.search().item) ? $location.search().item : '';
@@ -24,7 +24,7 @@ var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
       }).
       error(function(data) {
         $scope.error = data.error;
-        window.scrollTo(0, 0);
+        $window.scrollTo(0, 0);
       });
   };
 
@@ -35,4 +35,4 @@ var CreateBulletinCtrl = function($scope, $http, $location, TypeaheadService) {
   $scope.typeahead = TypeaheadService.items;
 };
 
-CreateBulletinCtrl.$inject = ['$scope', '$http', '$location', 'TypeaheadService'];
+CreateBulletinCtrl.$inject = ['$scope', '$http', '$location', '$window', 'TypeaheadService'];
