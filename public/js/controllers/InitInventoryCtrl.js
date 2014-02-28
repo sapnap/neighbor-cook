@@ -42,7 +42,7 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
     _.each($scope.selectedItems, function(val, key) {
       if (val) itemIDs.push(key);
     });
-
+    // TODO: use $scope.home to decide whether to include $scope.userField.gps in the PUT request
     $q.all({
       user: $http.put('/profile/me', $scope.userField),
       inventory: $http.put('/inventory', { inventory: itemIDs })

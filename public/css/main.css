@@ -98,3 +98,11 @@ body {
     padding: 7px 12px;
     z-index: 10;
 }
+
+.login {
+    padding: 5px 0;
+}
+
+.bullets {
+    padding: 10px 0;
+}
