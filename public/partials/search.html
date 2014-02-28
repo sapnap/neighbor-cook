@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <form ng-submit="search()" class="input-group right-inner-addon">
       <p ng-click="clearQuery()" ng-show="query.length > 0">
-        <i class="fa fa-eraser"></i>
+        <i class="fa fa-times-circle"></i>
       </p>
       <input type="text" class="form-control" ng-model="query"
              ng-options="item.name as item.name for item in typeahead($viewValue)"

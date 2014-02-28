@@ -5,12 +5,10 @@ exports.view = function(req, res) {
   db.Bulletin
     .findAll({
       where: { status: 'open' },
-      include: [ db.Item, db.User ]
+      include: [ db.Item, db.User ],
+      order: 'expiration ASC'
     })
     .success(function(bulletins) {
-      bulletins = _.sortBy(bulletins, function(bulletin) {
-        return bulletin.expiration;
-      });
       var authored = _.remove(bulletins, function(bulletin) {
         return req.isAuthenticated() && bulletin.user.id === req.user.id;
       });
