@@ -3,7 +3,7 @@ body {
 }
 
 .content {
-    padding-top: 60px;
+    padding-top: 65px;
     padding-bottom: 20px;
 }
 
@@ -17,8 +17,16 @@ body {
     }
 }
 
+.nav-img {
+    width: 24px;
+}
+
 .init-welcome {
     padding: 15px 0;
+}
+
+.bulletin-header {
+    color: inherit;
 }
 
 #create-bulletin {
@@ -87,6 +95,6 @@ body {
 .right-inner-addon p {
     position: absolute;
     right: 70px;
-    padding: 10px 12px;
+    padding: 7px 12px;
     z-index: 10;
 }

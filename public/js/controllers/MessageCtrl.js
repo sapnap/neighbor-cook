@@ -17,7 +17,6 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
 		    	'history': data.histories[index]
 		   	});
 		  });
-		  console.log("requests", $scope.requests);
     });
     // Get offers
     $http.get(baseUrl + "&offer=1").success(function(data) {    	
@@ -27,7 +26,6 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
 		    	'history': data.histories[index]
 		   	});
 		  });
-		  console.log("offers", $scope.offers);
     });
     // Get bulletins
     $http.get('/bulletins/me').success(function(bulletins) {
