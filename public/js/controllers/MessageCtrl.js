@@ -11,21 +11,33 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
     var baseUrl = '/messages?user_id=' + $scope.user.id;
     // Get requests
     $http.get(baseUrl + "&offer=0").success(function(data) { 
-    	_.each(data.users, function(elem, index) {
+      // HACK: Map user_id to user object. This is needed since we get back two separate lists: history objects and user objects. The user object is possibly shorter if multiple histories from the same user.
+      var user_map = {};
+      _.each(data.users, function(elem, index) {
+        user_map[elem.id] = elem;  
+      }); 
+      console.log('requests user map', user_map);
+    	_.each(data.histories, function(elem, index) {
 		    $scope.requests.push({ 
-		    	'user': elem,
-		    	'history': data.histories[index]
+		    	'user': user_map[elem.offerer_id],
+		    	'history': elem
 		   	});
 		  });
+      console.log('requests', $scope.requests);
     });
     // Get offers
     $http.get(baseUrl + "&offer=1").success(function(data) {    	
-    	_.each(data.users, function(elem, index) {
+    	var user_map = {};
+      _.each(data.users, function(elem, index) {
+        user_map[elem.id] = elem;  
+      });
+      _.each(data.histories, function(elem, index) {
 		    $scope.offers.push({ 
-		    	'user': elem,
-		    	'history': data.histories[index]
+		    	'user': user_map[elem.requester_id],
+		    	'history': elem
 		   	});
 		  });
+      console.log('offers', $scope.offers);
     });
     // Get bulletins
     $http.get('/bulletins/me').success(function(bulletins) {

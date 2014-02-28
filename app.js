@@ -28,7 +28,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('Neighbor Cook secret key'));
+app.use(express.cookieParser('Epulo secret key'));
 app.use(express.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());

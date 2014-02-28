@@ -4,7 +4,7 @@
 	<!-- TODO: add filtering/sorting by time here -->
 	<h4>Recent requests:</h4>
 	<table class="table table-hover">
-	  <tr class="row" ng-repeat="req in requests | orderBy: 'history.createdAt':true">
+	  <tr class="row" ng-repeat="req in requests | orderBy: 'history.createdAt':true | limitTo:10">
 	    <td><a href="#/profile/{{req.user.id}}">{{req.user.first_name}}</a></td>
 	    <td>{{req.history.item.name}}</td>
 	    <td>{{req.history.createdAt | fromNow}}</td>
@@ -15,7 +15,7 @@
 <div ng-show="offers.length">
 	<h4>Recent offers:</h4>
 	<table class="table table-hover">
-	  <tr class="row" ng-repeat="offer in offers | orderBy: 'history.createdAt':true">
+	  <tr class="row" ng-repeat="offer in offers | orderBy: 'history.createdAt':true | limitTo:10">
 	    <td><a href="#/profile/{{offer.user.id}}">{{offer.user.first_name}}</a></td>
 	    <td>{{offer.history.item.name}}</td>
 	    <td>{{offer.history.createdAt | fromNow}}</td>
@@ -57,7 +57,7 @@
   <div class="panel-group" id="accordion">
     <div ng-show="bulletinsExpired.length">
       <h4>Expired bulletins</h4>
-      <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsExpired | orderBy: 'expiration'">
+      <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsExpired | orderBy: 'expiration' | limitTo:10">
         <div class="panel-heading">
           <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
           {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
