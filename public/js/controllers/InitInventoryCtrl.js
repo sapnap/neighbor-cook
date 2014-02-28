@@ -4,22 +4,22 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
   $scope.home = false;
 
   $scope.defaultItems = [
-  	{ item: 'Salt', id: 208 },
-    { item: 'Milk', id: 109 },
-    { item: 'Eggs', id: 155 },
-    { item: 'Butter', id: 110 },
-    { item: 'Pepper', id: 209 },
-    { item: 'Flour', id: 127 },
-    { item: 'Brown rice', id: 137 }
+  	{ item: 'Salt', id: 443 },
+    { item: 'Milk (Any)', id: 247 },
+    { item: 'Egg (Whole)', id: 338 },
+    { item: 'Butter (Unsalted)', id: 186 },
+    { item: 'Pepper (Black)', id: 444 },
+    { item: 'Flour (All-Purpose)', id: 255 },
+    { item: 'Rice (Brown)', id: 266 }
   ];
   $scope.selectedItems = {
-    208: true,
-    109: true,
-    155: true,
-    110: true,
-    209: true,
-    127: true,
-    137: true
+    443: true,
+    247: true,
+    338: true,
+    186: true,
+    444: true,
+    255: true,
+    266: true
   };
 
   UserService.
