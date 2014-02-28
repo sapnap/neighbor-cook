@@ -1,5 +1,6 @@
 var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSearchService) {
   $scope.query = TransferSearchService.getQuery();
+  $scope.notice = $location.search().notice;
   $scope.authored = [];
   $scope.offers = [];
   $scope.requests = [];
@@ -40,6 +41,10 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
 
   $scope.editBulletin = function(bulletinID) {
     $location.path('/bulletins/' + bulletinID + '/edit');
+  };
+
+  $scope.resetNotice = function() {
+    $scope.notice = '';
   };
 };
 
