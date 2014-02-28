@@ -2,11 +2,11 @@
   <div class="col-xs-12">
     <form ng-submit="transferSearch()" class="input-group right-inner-addon">
       <p ng-click="clearQuery()" ng-show="query.length > 0">
-        <i class="fa fa-eraser"></i>
+        <i class="fa fa-times-circle"></i>
       </p>
       <input type="text" class="form-control" ng-model="query"
-      ng-options="item.name as item.name for item in typeahead($viewValue)"
-      placeholder="Ingredient Search" bs-typeahead>
+             ng-options="item.name as item.name for item in typeahead($viewValue)"
+             placeholder="Ingredient Search" bs-typeahead>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-default">Search</button>
       </span>
@@ -30,9 +30,9 @@
     <div class="panel panel-primary" ng-repeat="req in requests">
       <div class="panel-heading">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-requests"
-        data-target="#bulletin-detail-{{req.id}}">
+           data-target="#bulletin-detail-{{req.id}}">
         {{ req.item.name }} by {{ req.expiration | calendar }}
-      </a>
+        </a>
     </div>
     <div id="bulletin-detail-{{req.id}}" class="collapse">
       <div class="panel-body">
@@ -57,9 +57,9 @@
     <div class="panel panel-primary" ng-repeat="offer in offers">
       <div class="panel-heading">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-offers"
-        data-target="#bulletin-detail-{{offer.id}}">
+           data-target="#bulletin-detail-{{offer.id}}">
         {{ offer.item.name }} until {{ offer.expiration | calendar }}
-      </a>
+        </a>
     </div>
     <div id="bulletin-detail-{{offer.id}}" class="collapse">
       <div class="panel-body">
@@ -68,7 +68,7 @@
         <p>
           - <a href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
         </p>
-        <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=1"
+        <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=0"
         class="btn btn-default btn-sm pull-right">
         <i class="fa fa-envelope-o fa-fw"></i> Email
       </a>
@@ -85,12 +85,12 @@
     <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
       <div class="panel-heading">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
-        data-target="#bulletin-detail-{{bulletin.id}}">
+           data-target="#bulletin-detail-{{bulletin.id}}">
         {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
         <span ng-if="bulletin.type === 'request'"> by</span>
         <span ng-if="bulletin.type === 'offer'"> until</span>
         {{ bulletin.expiration | calendar }}
-      </a>
+        </a>
     </div>
     <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
       <div class="panel-body">

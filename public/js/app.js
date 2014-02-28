@@ -13,6 +13,10 @@ angular.module('ncook', dependencies).
       templateUrl: '/partials/home.html',
       controller: 'HomeCtrl'
     }).
+    when('/alternate', {
+      templateUrl: '/partials/home-alternate.html',
+      controller: 'HomeCtrl'
+    }).
     when('/help', {
       templateUrl: '/partials/help.html',
       controller: 'HelpCtrl'

@@ -21,6 +21,10 @@ body {
     padding: 15px 0;
 }
 
+.bulletin-header {
+    color: inherit;
+}
+
 #create-bulletin {
     margin-top: 15px;
 }
@@ -87,6 +91,6 @@ body {
 .right-inner-addon p {
     position: absolute;
     right: 70px;
-    padding: 10px 12px;
+    padding: 7px 12px;
     z-index: 10;
 }
