@@ -3,7 +3,7 @@ body {
 }
 
 .content {
-    padding-top: 60px;
+    padding-top: 65px;
     padding-bottom: 20px;
 }
 
@@ -15,6 +15,10 @@ body {
     .nav-justified > li > a {
         margin: 5px 2.5px;
     }
+}
+
+.nav-img {
+    width: 24px;
 }
 
 .init-welcome {
