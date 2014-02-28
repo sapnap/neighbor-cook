@@ -20,12 +20,12 @@
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" ng-model="home"> I am currently at home.
+      <input type="checkbox" ng-model="home" data-ng-init="getLocation()"> I am currently at home.
     </label>
   </div>
-  <div class="form-group" ng-show="home">
+  <!-- <div class="form-group" ng-show="home">
     <input type="button" class="btn btn-primary" value="{{gpsStatus}}" ng-click="getLocation()" ng-disabled="gpsDisable">
-  </div>
+  </div> -->
   <div class="form-group" ng-class="{ 'has-error' : initForm.location.$invalid && !initForm.location.$pristine }">
     <label class="control-label">Home Location (Zipcode)</label>
     <input type="text" class="form-control" ng-model="userField.location" name="location" required>
