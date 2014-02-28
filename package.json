@@ -22,7 +22,8 @@
     "pg": "2.x",
     "lodash": "2.4.x",
     "moment": "2.5.x",
-    "haversine": "0.0.4"
+    "haversine": "0.0.4",
+    "nodemailer": "0.6.x"
   },
   "engines": {
     "node": "0.10.x"

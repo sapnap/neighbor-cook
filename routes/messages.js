@@ -1,13 +1,12 @@
 var db = require('../models');
 var _ = require('lodash');
+var nodemailer = require('nodemailer');
 
 exports.view = function(req, res) {
 	var user_id = req.query.user_id;
 	var offer = req.query.offer;
 	console.log('user_id', user_id, "offer", offer);
   
-
-
   if (offer == '1') {
   	db.History
 	    .findAll({ 
@@ -69,4 +68,35 @@ exports.add = function(req, res) {
 		      res.send();
 		    });
 	  });	
+};
+
+exports.email = function(req, res) {
+	console.log('gonna send an email');
+	console.log(req.body);
+	var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
+    },
+	});
+	var mailOptions = {
+    from: "Epulo <epulo.us@gmail.com>",
+    to: req.body.recipient_email,
+		bcc: "epulo.us@gmail.com",
+    subject: req.body.subject,
+    generateTextFromHTML: true,
+    html: "<h1>You have a new message on Epulo!</h1>" + 
+    			"<p>Please do not reply to this email. Respond to:" + req.body.sender_email + " at your earliest convenience.</p><hr>"+ 
+    			"<p>" + req.body.body + "</p>"
+  }
+  smtpTransport.sendMail(mailOptions, function(error, response){
+    if (error) {
+    	console.log(error);
+    } else {
+    	console.log("Message sent: " + response.message);
+    }
+    smtpTransport.close(); // shut down the connection pool, no more messages
+  });
+	res.send();
 };
