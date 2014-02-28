@@ -38,17 +38,18 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
     
     $http.post('/messages', data).success(function(data) {
       console.log("logged history", data);
-      var email_data = {
-        sender_email: $scope.user.email,
-        recipient_email: $scope.recipient.email,
-        is_offer: $scope.offer,
-        item: $scope.item,
-        subject: $scope.subject,
-        body: $scope.body
-      };
-      $http.post('/email', email_data).success(function(data) {
-        $location.search('notice', 'Your email has been sent!').path("/");
-      });
+    });
+    
+    var email_data = {
+      sender_email: $scope.user.email,
+      recipient_email: $scope.recipient.email,
+      is_offer: $scope.offer,
+      item: $scope.item,
+      subject: $scope.subject,
+      body: $scope.body
+    };
+    $http.post('/email', email_data).success(function(data) {
+      $location.search('notice', 'Your email has been sent!').path("/");
     });
   };
 };
