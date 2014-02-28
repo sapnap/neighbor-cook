@@ -3,7 +3,7 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
   $scope.item = $location.search().item;
   $scope.recipient = { name: '', email: '' };
   $scope.subject =
-    '[NeighborCook] ' +
+    '[Epulo] ' +
     ($scope.offer ? 'Offer' : 'Request') +
     ($scope.item ? ': ' + $scope.item : '');
   $scope.body = '';
@@ -19,13 +19,6 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
       email: data.recipient.email
     };
   });
-
-  $scope.sendEmail = function() {
-    var emailURL = "mailto:" + $scope.recipient.email +
-                   "?subject=" + $scope.subject +
-                   "&body=" + $scope.body;
-    return emailURL;
-  };
 
   $scope.addHistory = function() {
     var data = {};
@@ -45,6 +38,18 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
     
     $http.post('/messages', data).success(function(data) {
       console.log("success!!", data);
+    });
+
+    var email_data = {
+      sender_email: $scope.user.email,
+      recipient_email: $scope.recipient.email,
+      is_offer: $scope.offer,
+      item: $scope.item,
+      subject: $scope.subject,
+      body: $scope.body
+    };
+    $http.post('/email', email_data).success(function(data) {
+      console.log('email sent!', data);
     });
   };
 };
