@@ -2,15 +2,15 @@ var HelpCtrl = function($scope, $sce) {
   $scope.infoList = [ 
     {'category' : 'General', 
      'questions': [ 
-      {'id': 1, 'question': 'About NeighborCook', 'answer': "Are you ever missing one crucial ingredient for a recipe? Neighbor-Cook connects you to other cooks in your community so you can exchange ingredients from your household kitchens.<br><br><strong>Here's how it works:</strong><ul><li>Within your profile, you keep a running inventory of foods you would be willing to share with neighbors.</li><li>You may either request items from your neighboring cooks or offer to share something from your kitchen.</li><li>Once you locate an item you would like or someone requests an item from you, Neighbor-Cook connects you through email to facilitate the exchange.</li></ul><strong>To get started:</strong><br>Create a profile on our homepage."},
-      {'id': 2, 'question': 'Creating your profile', 'answer': 'Don’t worry if you’re new to Neighbor-Cook. It’s easy to get get started!<br><br><strong>To join Neighbor-Cook:</strong><ol><li>Create a profile using Facebook login on our homepage.</li><li>After your first login, we will create a profile for you using your Facebook name, profile picture, and location.</li><ol>'},
-      {'id': 3, 'question': 'I just created my profile! Now what?', 'answer': 'Welcome to Neighbor-Cook! Now that you have your profile set up, you’re ready to request and offer food.  You can do so by creating a bulletin or searching on the homepage.'},
+      {'id': 1, 'question': 'About Epulo', 'answer': "Are you ever missing one crucial ingredient for a recipe? Epulo connects you to other cooks in your community so you can exchange ingredients from your household kitchens.<br><br><strong>Here's how it works:</strong><ul><li>Within your profile, you keep a running inventory of foods you would be willing to share with neighbors.</li><li>You may either request items from your neighboring cooks or offer to share something from your kitchen.</li><li>Once you locate an item you would like or someone requests an item from you, Epulo connects you through email to facilitate the exchange.</li></ul><strong>To get started:</strong><br>Create a profile on our homepage."},
+      {'id': 2, 'question': 'Creating your profile', 'answer': 'Don’t worry if you’re new to Epulo. It’s easy to get get started!<br><br><strong>To join Epulo:</strong><ol><li>Create a profile using Facebook login on our homepage.</li><li>After your first login, we will create a profile for you using your Facebook name, profile picture, and location.</li><ol>'},
+      {'id': 3, 'question': 'I just created my profile! Now what?', 'answer': 'Welcome to Epulo! Now that you have your profile set up, you’re ready to request and offer food.  You can do so by creating a bulletin or searching on the homepage.'},
       ]
     },
     {'category' : 'My Profile', 
      'questions': [ 
       {'id': 4, 'question': 'Editing my profile', 'answer': '<ol><li>Select the profile tab (insert icon) at the top of the page</li><li>Click the (pencil icon) to the right of your profile name</li></ol>'},
-      {'id': 5, 'question': 'Who can see my profile?', 'answer': 'Your profile and its contents will be visible to all other users of Neighbor-Cook.  This means that if you search for a specific user, you will be able to see their name, photo, zip code location, and their current inventory.  The information will allow you to find items in others’ inventories and inquire about them by sending a message.'},
+      {'id': 5, 'question': 'Who can see my profile?', 'answer': 'Your profile and its contents will be visible to all other users of Epulo.  This means that if you search for a specific user, you will be able to see their name, photo, zip code location, and their current inventory.  The information will allow you to find items in others’ inventories and inquire about them by sending a message.'},
       {'id': 6, 'question': 'How do I log out?', 'answer': 'Go to <strong>More > Logout</strong> in the top right corner of the page'},
       ]
     },
@@ -25,7 +25,7 @@ var HelpCtrl = function($scope, $sce) {
      'questions': [ 
       {'id': 10, 'question': 'What is my inventory?', 'answer': 'Your inventory keeps track of what foods you currently have available in your own kitchen, particularly ones which you would be willing to give to a neighboring cook.'},
       {'id': 11, 'question': 'Editing my inventory', 'answer': '<ol><li>If you’re on a page other than your profile, select the Profile tab (insert icon) at the top of the page.</li><li>Click the (pencil icon) to the right of “Available Foods in Inventory”</li></ol>'},
-      {'id': 12, 'question': 'Who can see my inventory?', 'answer': 'Since your Profile is visible to all Neighbor-Cook users, and your inventory is just a part of that Profile, your inventory will be available to all other users as well.'},
+      {'id': 12, 'question': 'Who can see my inventory?', 'answer': 'Since your Profile is visible to all Epulo users, and your inventory is just a part of that Profile, your inventory will be available to all other users as well.'},
       ]
     },
     {'category' : 'Search', 

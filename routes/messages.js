@@ -87,7 +87,7 @@ exports.email = function(req, res) {
     subject: req.body.subject,
     generateTextFromHTML: true,
     html: "<h1>You have a new message on Epulo!</h1>" + 
-    			"<p>Please do not reply to this email. Respond to:" + req.body.sender_email + " at your earliest convenience.</p><hr>"+ 
+    			"<p>Please do not reply to this email. Respond to: " + req.body.sender_email + " at your earliest convenience.</p><hr>"+ 
     			"<p>" + req.body.body + "</p>"
   }
   smtpTransport.sendMail(mailOptions, function(error, response){
