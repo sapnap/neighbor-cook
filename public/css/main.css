@@ -17,12 +17,6 @@ body {
     }
 }
 
-/*input[type=checkbox] {*/
-    /*-webkit-transform: scale(1.6,1.6);*/
-    /*-moz-transform: scale(1.6,1.6);*/
-    /*-o-transform: scale(1.6,1.6);*/
-/*}*/
-
 .bulletin-type > .btn > input[type="radio"] {
     display: none;
 }
