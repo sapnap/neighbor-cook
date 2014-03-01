@@ -11,7 +11,10 @@ exports.view = function(req, res){
 };
 
 exports.splash = function(req, res) {
-  res.render('splash');
+  data = {
+    app_id: process.env.FACEBOOK_APP_ID
+  };
+  res.render('splash', data);
 };
 
 // AJAX call to this endpoint
