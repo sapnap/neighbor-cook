@@ -4,6 +4,7 @@ exports.view = function(req, res) {
   db.User
     .find({
       where: { id: req.params.id },
+      attributes: [ 'first_name', 'last_name', 'img_path', 'location' ],
       include: [ db.Item ]
     })
     .success(function(user) {

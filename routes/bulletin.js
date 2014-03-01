@@ -5,7 +5,11 @@ exports.view = function(req, res) {
   db.Bulletin
     .findAll({
       where: { status: 'open' },
-      include: [ db.Item, db.User ],
+      include: [ db.Item,
+                {
+                  model: db.User,
+                  attributes: ['id', 'first_name', 'last_name', 'img_path']
+                } ],
       order: 'expiration ASC'
     })
     .success(function(bulletins) {
