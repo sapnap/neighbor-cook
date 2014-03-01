@@ -39,7 +39,10 @@ exports.search = function(req, res) {
         _.remove(userIds, function(id) { return id === req.user.id });
 
         db.User
-          .findAll({ where: { id: userIds } })
+          .findAll({
+            where: { id: userIds },
+            attributes: [ 'id', 'first_name', 'last_name', 'img_path', 'location', 'gps' ]
+          })
           .success(function(users) {
             if (req.user.gps) {
               var locationlessUsers = _.remove(users, function(user) {
@@ -47,8 +50,9 @@ exports.search = function(req, res) {
               });
               var sortedUsers = _.sortBy(users, distance).reverse();
               users = sortedUsers.concat(locationlessUsers);
-              console.log(users);
             }
+            _.forEach(users, function(user) { delete user.values.gps });
+
             res.json({
               query: query,
               results: users
