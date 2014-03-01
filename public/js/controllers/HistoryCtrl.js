@@ -1,4 +1,4 @@
-var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
+var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
   $scope.user = [];
   $scope.requests = [];
   $scope.offers = [];
@@ -63,4 +63,4 @@ var MessageCtrl = function($scope, $http, $routeParams, $location, $window) {
   };
 };
 
-MessageCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', '$window'];
+HistoryCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', '$window'];

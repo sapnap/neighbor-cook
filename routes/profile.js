@@ -47,7 +47,6 @@ exports.contact = function(req, res) {
       if (!user) {
         error(res, 'User ' + req.params.id + ' does not exist.');
       } else {
-        console.log(user);
         var data = {
           'recipient': user
         };
