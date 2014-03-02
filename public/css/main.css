@@ -1,10 +1,20 @@
 body {
-    background: url('/images/skulls.png') repeat;
+    background: url('/images/epulo_wallpaper.png') repeat;
+    font-family: 'Noto Serif', serif;
+    color: #363536;
+}
+
+body.splash {
+    background: none;
+    background-color: #E0E4CC;
 }
 
 .content {
-    padding-top: 65px;
+    margin-top: 75px; 
+    padding-top: 10px;
     padding-bottom: 20px;
+    background-color: #E0E4CC;
+    border-radius: 10px;
 }
 
 @media (min-width: 320px) {
@@ -99,10 +109,99 @@ body {
     z-index: 10;
 }
 
+footer {
+    background: #FA6900;
+    padding: 18px 0;
+    border-top: 1px solid #000;
+    margin-top: 10px;
+}
+
+footer a {
+    color: #E0E4CC;
+}
+
+footer a:hover {
+    color: #363536;
+}
+
+.wrapper > .container {
+    padding-top: 60px;
+}
+
+h1.header {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 45px;
+    color: #FA6900;
+    font-size: 60px;
+}
+
 .login {
-    padding: 5px 0;
+  padding: 5px 0;
 }
 
 .bullets {
-    padding: 10px 0;
+  padding: 10px 0;
+}
+
+.epulo_info {
+    padding: 15px;
+}
+
+.epulo_logo {
+    display: block; 
+    margin: auto;
+    width: 200px;
+}
+
+.panel-primary {
+    border-color: #FA6900;
+}
+
+.panel-heading-epulo {
+    background-color: #FA6900;  
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #E0E4CC;
+}
+
+.epulo_body {
+    background-color: #E0E4CC;
+    color: #FA6900;
+}
+
+.btn-success {
+    background-color: #69D2E7;
+    border: #363536;
+}
+
+.btn-success:hover {
+    background-color: #69D2E7;
+}
+
+.btn-default {
+    background-color: #F38630;
+    color: white;
+}
+.btn-default:hover {
+    background-color: #F38630;
+    color: white;
+}
+
+.info_label {
+    color: #FA6900;
+}
+
+a.link_color {
+    color: #69D2E7;
+}
+
+.below_margin {
+    margin-bottom: 20px;
+}
+
+nav.navbar {
+    background: #363536;   
 }

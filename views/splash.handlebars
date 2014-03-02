@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -21,7 +22,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="splash">
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,7 +33,8 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="container">
-  <h1>Welcome to Epulo!</h1>
+  <img src="/images/epulo_logo.png" alt="Epulo" class="epulo_logo"><img>
+  <h1 class="header">epulo</h1>
   <div class="login">
     <a href="/auth/facebook" class="btn btn-block btn-social btn-facebook">
       <i class="fa fa-facebook"></i> Sign in with Facebook
@@ -40,35 +42,35 @@
   </div>
   <div class="fb-facepile" data-app-id="{{app_id}}" data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="true"></div>
   <hr>
-
+<div class="epulo_info">
   <div class="panel panel-primary">
-    <div class="panel-heading">
+    <div class="panel-heading-epulo">
       <h3 class="panel-title">Request and Offer Ingredients</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body epulo_body">
       <p>Epulo connects you to other people cooking in your community so you can exchange ingredients from your household kitchens. It's easy and fun.
       </p>
     </div>
   </div>
   
   <div class="panel panel-primary">
-    <div class="panel-heading">
+    <div class="panel-heading-epulo">
       <h3 class="panel-title">Foster Community</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body epulo_body">
       <p>Epulo is <strong>hyper-local</strong>: you can walk to the people on the app. Exchanges involve no money and are driven by the helpfulness of the community.</p>
     </div>
   </div>
   
   <div class="panel panel-primary">
-    <div class="panel-heading">
+    <div class="panel-heading-epulo">
       <h3 class="panel-title">Reduce Waste</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body epulo_body">
       <p>No more throwing out ingredients that are perfectly usable. Create a bulletin so that others can use your items and combat squandered resources.</p>
     </div>
   </div>
-
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>

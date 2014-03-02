@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="panel-body">
-    <h5>Inventory:</h5>
+    <h4 class="below_margin">Inventory:</h4>
     <div ng-show="editable">
       <form class="input-group" role="form" ng-submit="addItem()">
         <label class="sr-only" for="inputItem">Item</label>
@@ -36,7 +36,7 @@
 
       <div class="panel-group inventory-list" id="accordion">
         <div class="panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
-          <a data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}">
+          <a data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}" class="link_color">
             <div class="panel-heading">
               <h5 class="panel-title">{{item.name}}</h5>
             </div>
@@ -53,10 +53,10 @@
     </div>
 
     <div ng-show="!editable">
-      <p ng-show="inventory" class="label label-info">Click an item to email {{profile.first_name}}.</p>
+      <p ng-show="inventory" class="info_label">Click an item to email {{profile.first_name}}.</p>
       <div class="panel-group inventory-list" id="accordion">
         <div class="panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
-          <a href="#/messages/compose/{{profile.id}}?item={{item.name}}&offer=0">
+          <a href="#/messages/compose/{{profile.id}}?item={{item.name}}&offer=0" class="link_color">
             <div class="panel-heading">
               <h5 class="panel-title">{{item.name}}</h5>
             </div>

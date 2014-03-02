@@ -7,24 +7,46 @@
 <div ng-show="requests.length">
 	<!-- TODO: add filtering/sorting by time here -->
 	<h4>Recent requests:</h4>
-	<table class="table table-hover">
-	  <tr class="row" ng-repeat="req in requests | orderBy: 'history.createdAt':true | limitTo:10">
-	    <td><a href="#/profile/{{req.user.id}}">{{req.user.first_name}}</a></td>
-	    <td>{{req.history.item.name}}</td>
-	    <td>{{req.history.createdAt | fromNow}}</td>
-	  </tr>
-	</table>
+  <div class="list-group">
+    <div ng-repeat="req in requests | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{req.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ req.user.first_name }} {{ req.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{req.history.item.name}}</p>
+          <p class="pull-right">{{req.history.createdAt | fromNow}}, from {{req.user.location}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div ng-show="offers.length">
 	<h4>Recent offers:</h4>
-	<table class="table table-hover">
-	  <tr class="row" ng-repeat="offer in offers | orderBy: 'history.createdAt':true | limitTo:10">
-	    <td><a href="#/profile/{{offer.user.id}}">{{offer.user.first_name}}</a></td>
-	    <td>{{offer.history.item.name}}</td>
-	    <td>{{offer.history.createdAt | fromNow}}</td>
-	  </tr>
-	</table>
+  <div class="list-group">
+    <div ng-repeat="offer in offers | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{offer.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ offer.user.first_name }} {{ offer.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{offer.history.item.name}}</p>
+          <p class="pull-right">{{offer.history.createdAt | fromNow}}, to {{offer.user.location}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div ng-show="bulletinsOpen.length || bulletinsExpired.length">
@@ -32,7 +54,7 @@
     <div ng-show="bulletinsOpen.length">
       <h4>Open bulletins</h4>
       <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsOpen | orderBy: 'expiration'">
-        <div class="panel-heading">
+        <div class="panel-heading-epulo">
           <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
           {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
           <span ng-if="bulletin.type === 'request'"> by</span>
@@ -41,7 +63,7 @@
           </a>
         </div>
         <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
-          <div class="panel-body">
+          <div class="panel-body epulo_body">
             <span ng-show="bulletin.message">{{ bulletin.message }}</span>
             <span ng-hide="bulletin.message"><em>No message</em></span>
             <div class="btn-toolbar">
@@ -61,8 +83,8 @@
   <div class="panel-group" id="accordion">
     <div ng-show="bulletinsExpired.length">
       <h4>Expired bulletins</h4>
-      <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsExpired | orderBy: 'expiration' | limitTo:10">
-        <div class="panel-heading">
+      <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsExpired | orderBy: 'expiration' | limitTo:5">
+        <div class="panel-heading-epulo">
           <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
           {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
           <span ng-if="bulletin.type === 'request'"> by</span>
@@ -71,7 +93,7 @@
           </a>
         </div>
         <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
-          <div class="panel-body">
+          <div class="panel-body epulo_body">
             <span ng-show="bulletin.message">{{ bulletin.message }}</span>
             <span ng-hide="bulletin.message"><em>No message</em></span>
           </div>
