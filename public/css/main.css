@@ -185,11 +185,12 @@ h1.header {
     background-color: #69D2E7;
 }
 
-.btn-default {
+.epulo_button {
     background-color: #F38630;
     color: white;
 }
-.btn-default:hover {
+
+.epulo_button:hover {
     background-color: #F38630;
     color: white;
 }
