@@ -209,3 +209,7 @@ a.link_color {
 nav.navbar {
     background: #363536;   
 }
+
+.no_bottom_margin {
+    margin-bottom: 0px;
+}

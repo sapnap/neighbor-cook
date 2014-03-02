@@ -33,7 +33,7 @@
 	<h5>People around you need:</h5>
   <div class="panel-group" id="accordion-requests">
     <div class="panel panel-primary" ng-repeat="req in requests">
-      <div class="panel-heading">
+      <div class="panel-heading-epulo">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-requests"
            data-target="#bulletin-detail-{{req.id}}">
         {{ req.item.name }} by {{ req.expiration | calendar }}
@@ -60,7 +60,7 @@
 	<h5>People around you are offering:</h5>
   <div class="panel-group" id="accordion-offers">
     <div class="panel panel-primary" ng-repeat="offer in offers">
-      <div class="panel-heading">
+      <div class="panel-heading-epulo">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-offers"
            data-target="#bulletin-detail-{{offer.id}}">
         {{ offer.item.name }} until {{ offer.expiration | calendar }}
