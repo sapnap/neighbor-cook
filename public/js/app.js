@@ -10,11 +10,13 @@ angular.module('ncook', dependencies).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
-      templateUrl: '/partials/home.html',
-      controller: 'HomeCtrl'
-    }).
-    when('/alternate', {
-      templateUrl: '/partials/home-alternate.html',
+      templateUrl: function() {
+        if(cxApi.chooseVariation() == 0) {
+          return '/partials/home.html';
+        } else {
+          return '/partials/home-alternate.html';
+        }
+      },
       controller: 'HomeCtrl'
     }).
     when('/help', {
@@ -43,9 +45,9 @@ angular.module('ncook', dependencies).
       templateUrl: '/partials/messages-compose.html',
       controller: 'ComposeMessageCtrl'
     }).
-    when('/messages', {
-      templateUrl: '/partials/messages.html',
-      controller: 'MessageCtrl'
+    when('/history', {
+      templateUrl: '/partials/history.html',
+      controller: 'HistoryCtrl'
     }).
     when('/inventory/initialize', {
       templateUrl: 'partials/inventory-initialize.html',

@@ -27,6 +27,10 @@ body.splash {
     }
 }
 
+.bulletin-type > .btn > input[type="radio"] {
+    display: none;
+}
+
 .nav-img {
     width: 24px;
 }

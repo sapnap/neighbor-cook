@@ -15,17 +15,14 @@
             <i class="fa fa-warning"></i> Enter a valid email.
         </p>
     </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" ng-model="home"> I am currently at home.
-        </label>
-    </div>
-    <div class="form-group" ng-show="home">
-        <input type="button" class="btn btn-primary" value="{{gpsStatus}}" ng-click="getLocation()" ng-disabled="gpsDisable">
+    <div class="form-group">
+        <button type="button" class="btn btn-default" ng-model="home" ng-click="setAutoLocation()" bs-checkbox>
+            <i class="fa fa-check" ng-show="home"></i> I am currently at home
+        </button>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : profile.location.$invalid && !profile.location.$pristine }">
-        <label class="control-label">Home Location (Zipcode)</label>
-        <input type="text" class="form-control" ng-model="userField.location" name="location" required>
+        <label class="control-label">Home Location</label>
+        <input type="text" class="form-control" ng-model="userField.location" name="location" placeholder="City, state" required>
         <p ng-show="profile.location.$invalid && !profile.location.$pristine" class="help-block">
             <i class="fa fa-warning"></i> Your location is required.
         </p>

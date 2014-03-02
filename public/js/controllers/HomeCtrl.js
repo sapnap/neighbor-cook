@@ -31,6 +31,12 @@ var HomeCtrl = function($scope, $http, $location, TypeaheadService, TransferSear
 
   $scope.typeahead = TypeaheadService.items;
 
+  $scope.recordEvent = function(event, id) {
+    // event is 'offer_response' or 'request_response'
+    ga('send', 'event', event, 'click');
+    ga('send', 'event', event + '_' + id, 'click');
+  };
+
   $scope.deleteBulletin = function(bulletinID) {
     $http.delete('/bulletins/' + bulletinID).success(function() {
       _.remove($scope.authored, function(bulletin) {

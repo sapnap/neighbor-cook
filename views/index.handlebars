@@ -1,6 +1,8 @@
 <!doctype html>
 <html ng-app="ncook">
 <head>
+    <script src="//www.google-analytics.com/cx/api.js?experiment=OAjHtfxlQkm1V9KxSc7rrg"></script>
+
     <title>Epulo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -60,12 +62,21 @@
 <script src="/js/controllers/SearchCtrl.js"></script>
 <script src="/js/controllers/ProfileCtrl.js"></script>
 <script src="/js/controllers/EditProfileCtrl.js"></script>
-<script src="/js/controllers/MessageCtrl.js"></script>
+<script src="/js/controllers/HistoryCtrl.js"></script>
 <script src="/js/controllers/ComposeMessageCtrl.js"></script>
 <script src="/js/controllers/CreateBulletinCtrl.js"></script>
 <script src="/js/controllers/EditBulletinCtrl.js"></script>
 <script src="/js/controllers/InitInventoryCtrl.js"></script>
 <script src="/js/controllers/HelpCtrl.js"></script>
 <script src="/js/main.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-48547554-1', 'epulo.us');
+    ga('send', 'pageview');
+</script>
 </body>
 </html>
