@@ -2,6 +2,8 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
   $scope.gpsStatus = 'Provide GPS';
   $scope.gpsDisable = false;
   $scope.home = false;
+  $scope.foundGPS = '';
+  $scope.foundLocation = '';
 
   $scope.defaultItems = [
   	{ item: 'Salt', id: 443 },
@@ -31,7 +33,7 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
     error(function() { $scope.user = {}; });
   $scope.userField = {
     email: '',
-    location: '94305',
+    location: '',
     gps: ''
   };
 
@@ -46,7 +48,6 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
     _.each($scope.selectedItems, function(val, key) {
       if (val) itemIDs.push(key);
     });
-    // TODO: use $scope.home to decide whether to include $scope.userField.gps in the PUT request
     $q.all({
       user: $http.put('/profile/me', $scope.userField),
       inventory: $http.put('/inventory', { inventory: itemIDs })
@@ -68,9 +69,12 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
   $scope.$on('$viewContentLoaded', getLocation);
 
   var showPosition = function(position) {
-    // TODO: do reverse lookup of lat/long to zipcode so this is human understandable
-    $scope.userField.gps = position.coords.latitude + "," + position.coords.longitude;
-    console.log($scope.userField.gps);
+    $scope.foundGPS = position.coords.latitude + "," + position.coords.longitude;
+    $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + $scope.foundGPS +
+        '&sensor=true&result_type=political&key=AIzaSyC68chSmCbBG81PT19hH65G8Ai1jtm-6yE').
+      success(function(data) {
+        $scope.foundLocation = data.results[0].formatted_address;
+      });
     $scope.gpsStatus = "Found GPS, thanks!";
     $scope.gpsDisable = true;
     $scope.$apply();
@@ -92,6 +96,17 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
         break;
       }
   };
+
+  $scope.setAutoLocation = function() {
+    // $scope.home doesn't change until after this function executes
+    if (!$scope.home) {
+      $scope.userField.gps = $scope.foundGPS;
+      $scope.userField.location = $scope.foundLocation;
+    } else {
+      $scope.userField.gps = '';
+      $scope.userField.location = '';
+    }
+  }
 };
 
 InitInventoryCtrl.$inject = ['$scope', '$http', '$q', '$location', 'UserService'];

@@ -19,13 +19,13 @@
     </p>
   </div>
   <div class="form-group">
-    <button type="button" class="btn btn-default" ng-model="home" bs-checkbox>
-      I am currently at home
+    <button type="button" class="btn btn-default" ng-model="home" ng-click="setAutoLocation()" bs-checkbox>
+        <i class="fa fa-check" ng-show="home"></i> I am currently at home
     </button>
   </div>
   <div class="form-group" ng-class="{ 'has-error' : initForm.location.$invalid && !initForm.location.$pristine }">
-    <label class="control-label">Home Location (Zipcode)</label>
-    <input type="text" class="form-control" ng-model="userField.location" name="location" required>
+    <label class="control-label">Home Location</label>
+    <input type="text" class="form-control" ng-model="userField.location" name="location" placeholder="City, state" required>
     <p ng-show="initForm.location.$invalid && !initForm.location.$pristine" class="help-block">
       <i class="fa fa-warning"></i> Your location is required.
     </p>
