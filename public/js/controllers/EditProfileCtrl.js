@@ -2,6 +2,8 @@ var EditProfileCtrl = function($scope, $http, $location, UserService) {
   $scope.gpsStatus = 'Provide GPS';
   $scope.gpsDisable = false;
   $scope.home = false;
+  $scope.foundGPS = '';
+  $scope.foundLocation = '';
 
   UserService.getCurrentUser().success(function(user) {
     $scope.user = user;
@@ -31,9 +33,12 @@ var EditProfileCtrl = function($scope, $http, $location, UserService) {
   $scope.$on('$viewContentLoaded', getLocation);
 
   var showPosition = function(position) {
-    // TODO: do reverse lookup of lat/long to zipcode so this is human understandable
-    $scope.userField.gps = position.coords.latitude + "," + position.coords.longitude;
-    console.log($scope.userField.gps);
+    $scope.foundGPS = position.coords.latitude + "," + position.coords.longitude;
+    $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + $scope.foundGPS +
+              '&sensor=true&result_type=political&key=AIzaSyC68chSmCbBG81PT19hH65G8Ai1jtm-6yE').
+      success(function(data) {
+        $scope.foundLocation = data.results[0].formatted_address;
+      });
     $scope.gpsStatus = "Found GPS, thanks!";
     $scope.gpsDisable = true;
     $scope.$apply();
@@ -55,6 +60,17 @@ var EditProfileCtrl = function($scope, $http, $location, UserService) {
         break;
     }
   };
+
+  $scope.setAutoLocation = function() {
+    // $scope.home doesn't change until after this function executes
+    if (!$scope.home) {
+      $scope.userField.gps = $scope.foundGPS;
+      $scope.userField.location = $scope.foundLocation;
+    } else {
+      $scope.userField.gps = $scope.user.gps;
+      $scope.userField.location = $scope.user.location;
+    }
+  }
 };
 
 EditProfileCtrl.$inject = ['$scope', '$http', '$location', 'UserService'];
