@@ -33,14 +33,14 @@
 	<h5>People around you need:</h5>
   <div class="panel-group" id="accordion-requests">
     <div class="panel panel-primary" ng-repeat="req in requests">
-      <div class="panel-heading">
+      <div class="panel-heading-epulo">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-requests"
            data-target="#bulletin-detail-{{req.id}}">
         {{ req.item.name }} by {{ req.expiration | calendar }}
         </a>
     </div>
     <div id="bulletin-detail-{{req.id}}" class="collapse">
-      <div class="panel-body">
+      <div class="panel-body epulo_body">
         <span ng-show="req.message">{{ req.message }}</span>
         <span ng-hide="req.message"><em>No message</em></span>
         <p>
@@ -60,14 +60,14 @@
 	<h5>People around you are offering:</h5>
   <div class="panel-group" id="accordion-offers">
     <div class="panel panel-primary" ng-repeat="offer in offers">
-      <div class="panel-heading">
+      <div class="panel-heading-epulo">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-offers"
            data-target="#bulletin-detail-{{offer.id}}">
         {{ offer.item.name }} until {{ offer.expiration | calendar }}
         </a>
     </div>
     <div id="bulletin-detail-{{offer.id}}" class="collapse">
-      <div class="panel-body">
+      <div class="panel-body epulo_body">
         <span ng-show="offer.message">{{ offer.message }}</span>
         <span ng-hide="offer.message"><em>No message</em></span>
         <p>
@@ -88,7 +88,7 @@
 	<h5>Your open bulletins:</h5>
   <div class="panel-group" id="accordion-authored">
     <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
-      <div class="panel-heading">
+      <div class="panel-heading-epulo">
         <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
            data-target="#bulletin-detail-{{bulletin.id}}">
         {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
@@ -98,7 +98,7 @@
         </a>
     </div>
     <div id="bulletin-detail-{{bulletin.id}}" class="collapse">
-      <div class="panel-body">
+      <div class="panel-body epulo_body">
         <span ng-show="bulletin.message">{{ bulletin.message }}</span>
         <span ng-hide="bulletin.message"><em>No message</em></span>
         <div class="btn-toolbar">

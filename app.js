@@ -72,7 +72,6 @@ passport.use(new FacebookStrategy(
   },
   function(accessToken, refreshToken, profile, done) {
     // TODO save accessToken somewhere so we can get more data from FB (e.g. friends)
-
     db.User
       .findOrCreate({ fb_id: profile.id })
       .success(function(user, created) {

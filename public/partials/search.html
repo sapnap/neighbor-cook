@@ -24,13 +24,15 @@
   <div class="list-group">
     <div ng-repeat="result in results">
       <div class="list-group-item">
-        <h5 class="list-group-item-heading">
-          <a href="#/profile/{{result.id}}">
-            {{ result.first_name }} {{ result.last_name }}
-          </a>
-        </h5>
         <div class="list-group-item-text media">
           <img ng-src="{{result.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{result.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ result.first_name }} {{ result.last_name }}
+            </h5>          
+            </div>
+          </a>
           <p>Location: <strong>{{result.location}}</strong></p>
           <p ng-if="result.distance != undefined">Distance: <strong>{{result.distance}}</strong> miles</p>
           <p>

@@ -44,7 +44,7 @@ exports.view = function(req, res) {
 	    	db.User
 	    		.findAll({
             where: { id: userIds },
-            attributes: ['id', 'first_name', 'last_name']
+            attributes: ['id', 'first_name', 'last_name', 'img_path', 'location']
           })
 	    		.success(function(users) {
 	    			res.json({ users: users, histories: histories });
