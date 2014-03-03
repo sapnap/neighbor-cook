@@ -36,10 +36,16 @@ exports.getUserBulletins = function(req, res) {
       include: [ db.Item ]
     })
     .success(function(bulletins) {
-      var alive_bulletins = _.remove(bulletins, function(bulletin) {
-        return bulletin.status !== 'deleted'
+      var bulletinsOpen = _.remove(bulletins, function(bulletin) {
+        return bulletin.status === 'open'
       });
-      res.json(alive_bulletins);
+      var bulletinsExpired = _.remove(bulletins, function(bulletin) {
+         return bulletin.status === 'expired';
+      });
+      res.json({
+        bulletinsOpen: bulletinsOpen,
+        bulletinsExpired: bulletinsExpired
+      });
     });
 };
 
