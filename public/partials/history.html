@@ -73,7 +73,7 @@
   </div>
 </div>
 <div ng-hide="offersInit.length">
-  <p class="emptyHistory">You have not made any offers.</p>
+  <p class="emptyHistory">You have not received any offers.</p>
 </div>
 
 
@@ -98,11 +98,11 @@
     </div>
   </div>
 </div>
-<div ng-hide="offersInit.length">
-  <p class="emptyHistory">You have not received any offers.</p>
+<div ng-hide="offersOther.length">
+  <p class="emptyHistory">You have not made any offers.</p>
 </div>
 
-<div ng-show="!requests.length && !offers.length">
+<div ng-show="!requestsOther.length && !requestsInit.length && !offersOther.length && !offersInit.length">
   <p>Tip: Why not engage with the <a href="/#">home page</a>, or post a <a href="#/bulletins/create">bulletin</a>?</p>
 </div>
 

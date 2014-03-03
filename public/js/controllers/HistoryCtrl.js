@@ -1,10 +1,8 @@
 var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
   $scope.user = [];
-  $scope.requests = [];
+
   $scope.requestsOther = [];
   $scope.requestsInit = [];
-
-  $scope.offers = [];
   $scope.offersInit = [];
   $scope.offersOther = [];
   // Currently (02/26/2014), a bulletin is never marked as resolved. If this is added, we should support that here
@@ -13,43 +11,15 @@ var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
 
   $http.get('/profile/me').success(function(data) {
     $scope.user = data;
-    var baseUrl = '/messages?user_id=' + $scope.user.id;
-    // Get requests
-    $http.get(baseUrl + "&offer=0").success(function(data) { 
-      // HACK: Map user_id to user object. This is needed since we get back two separate lists: history objects and user objects. The user object is possibly shorter if multiple histories from the same user.
-      var user_map = {};
-      _.each(data.users, function(elem, index) {
-        user_map[elem.id] = elem;  
-      }); 
-      console.log('requests user map', user_map);
-    	_.each(data.histories, function(elem, index) {
-		    $scope.requests.push({ 
-		    	'user': user_map[elem.offerer_id],
-		    	'history': elem
-		   	});
-		  });
-      console.log('requests', $scope.requests);
-      $scope.requestsOther = _.filter($scope.requests, function(elem) { return elem.history.initiator == "requester"; });
-      $scope.requestsInit = _.filter($scope.requests, function(elem) { return elem.history.initiator == "offerer"; });
-      console.log('requestsOther', $scope.requestsOther);
-      console.log('requestsInit', $scope.requestsInit);
+    $http.get('/messages?user_id=' + $scope.user.id).success(function(data) {
+      console.log("made request to messages", data);
+      $scope.requestsOther = data.requestsOther;
+      $scope.requestsInit = data.requestsInit;
+
+      $scope.offersOther = data.offersOther;
+      $scope.offersInit = data.offersInit;
     });
-    // Get offers
-    $http.get(baseUrl + "&offer=1").success(function(data) {    	
-    	var user_map = {};
-      _.each(data.users, function(elem, index) {
-        user_map[elem.id] = elem;  
-      });
-      _.each(data.histories, function(elem, index) {
-		    $scope.offers.push({ 
-		    	'user': user_map[elem.requester_id],
-		    	'history': elem
-		   	});
-		  });
-      console.log('offers', $scope.offers);
-      $scope.offersOther = _.filter($scope.offers, function(elem){ return elem.history.initiator == "requester"; });
-      $scope.offersInit = _.filter($scope.offers, function(elem){ return elem.history.initiator == "offerer"; });
-    });
+
     // Get bulletins
     $http.get('/bulletins/me').success(function(bulletins) {
       $scope.bulletinsOpen = _.remove(bulletins, function(bulletin) {
