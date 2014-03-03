@@ -6,21 +6,21 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
   $scope.foundLocation = '';
 
   $scope.defaultItems = [
-  	{ item: 'Salt', id: 443 },
-    { item: 'Milk (Any)', id: 247 },
-    { item: 'Egg (Whole)', id: 338 },
-    { item: 'Butter (Unsalted)', id: 186 },
-    { item: 'Pepper (Black)', id: 444 },
-    { item: 'Flour (All-Purpose)', id: 255 },
-    { item: 'Rice (Brown)', id: 266 }
+  	{ item: 'Salt', id: 439 },
+    { item: 'Reduced Fat Milk', id: 206 },
+    { item: 'Whole Egg', id: 336 },
+    { item: 'Unsalted Butter', id: 186 },
+    { item: 'Black Pepper', id: 440 },
+    { item: 'All-Purpose Flour', id: 253 },
+    { item: 'White Rice', id: 266 }
   ];
   $scope.selectedItems = {
-    443: true,
-    247: true,
-    338: true,
+    439: true,
+    206: true,
+    336: true,
     186: true,
-    444: true,
-    255: true,
+    440: true,
+    253: true,
     266: true
   };
 

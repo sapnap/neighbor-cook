@@ -1,104 +1,113 @@
 <h3>Activity History</h3>
+<hr>
+<h4>People who requested from you:</h4>
+<div ng-show="requestsInit.length">
+  <div class="list-group">
+    <div ng-repeat="req in requestsInit | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{req.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ req.user.first_name }} {{ req.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{req.history.item.name}}</p>
+          <p class="pull-right">{{req.history.createdAt | fromNow}} ({{req.user.location}})</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-hide="requestsInit.length">
+  <p class="emptyHistory">No one has requested items from you.</p>
+</div>
+
+
+<h4>People who you requested from:</h4>
+<div ng-show="requestsOther.length">
+  <div class="list-group">
+    <div ng-repeat="req in requestsOther |  filter: history.initiator:'requestor' | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{req.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ req.user.first_name }} {{ req.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{req.history.item.name}}</p>
+          <p class="pull-right">{{req.history.createdAt | fromNow}} ({{req.user.location}})</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-hide="requestsOther.length">
+  <p class="emptyHistory">You have not made any requests.</p>
+</div>
+
+<h4>People who offered to you:</h4>
+<div ng-show="offersInit.length">
+  <div class="list-group">
+    <div ng-repeat="offer in offersInit | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{offer.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ offer.user.first_name }} {{ offer.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{offer.history.item.name}}</p>
+          <p class="pull-right">{{offer.history.createdAt | fromNow}} ({{offer.user.location}})</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-hide="offersInit.length">
+  <p class="emptyHistory">You have not made any offers.</p>
+</div>
+
+
+<h4>People you offered to:</h4>
+<div ng-show="offersOther.length">
+  <div class="list-group">
+    <div ng-repeat="offer in offersOther | orderBy: 'history.createdAt':true | limitTo:5">
+      <div class="list-group-item">
+        <div class="list-group-item-text media">
+          <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
+          <a href="#/profile/{{offer.user.id}}" class="link_color"> 
+            <div class="panel-heading">
+            <h5 class="panel-title">
+                {{ offer.user.first_name }} {{ offer.user.last_name }}
+            </h5>          
+            </div>
+          </a>
+          <p class="pull-left">{{offer.history.item.name}}</p>
+          <p class="pull-right">{{offer.history.createdAt | fromNow}} ({{offer.user.location}})</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-hide="offersInit.length">
+  <p class="emptyHistory">You have not received any offers.</p>
+</div>
 
 <div ng-show="!requests.length && !offers.length">
-  <p>You have no recent requests or offers! Why not engage with the activity on the <a href="/#">home page</a>, or post a <a href="#/bulletins/create">bulletin</a>?</p>
-</div>
-
-<div ng-show="requestsInit.length || requestsOther.length">
-	<!-- TODO: add filtering/sorting by time here -->
-  <h4>Recent requests:</h4>
-  <div ng-show="requestsInit.length">
-  <p>Others emailed you:</p>
-    <div class="list-group">
-      <div ng-repeat="req in requestsInit | orderBy: 'history.createdAt':true | limitTo:5">
-        <div class="list-group-item">
-          <div class="list-group-item-text media">
-            <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
-            <a href="#/profile/{{req.user.id}}" class="link_color"> 
-              <div class="panel-heading">
-              <h5 class="panel-title">
-                  {{ req.user.first_name }} {{ req.user.last_name }}
-              </h5>          
-              </div>
-            </a>
-            <p class="pull-left">{{req.history.item.name}}</p>
-            <p class="pull-right">{{req.history.createdAt | fromNow}} ({{req.user.location}})</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div ng-show="requestsOther.length">
-    <p>You emailed others:</p>
-    <div class="list-group">
-      <div ng-repeat="req in requestsOther |  filter: history.initiator:'requestor' | orderBy: 'history.createdAt':true | limitTo:5">
-        <div class="list-group-item">
-          <div class="list-group-item-text media">
-            <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
-            <a href="#/profile/{{req.user.id}}" class="link_color"> 
-              <div class="panel-heading">
-              <h5 class="panel-title">
-                  {{ req.user.first_name }} {{ req.user.last_name }}
-              </h5>          
-              </div>
-            </a>
-            <p class="pull-left">{{req.history.item.name}}</p>
-            <p class="pull-right">{{req.history.createdAt | fromNow}} ({{req.user.location}})</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div ng-show="offersInit.length || offersOther.length">
-	<h4>Recent offers:</h4>
-  <div ng-show="offersInit.length">
-    <p>You emailed others:</p>
-    <div class="list-group">
-      <div ng-repeat="offer in offersInit | orderBy: 'history.createdAt':true | limitTo:5">
-        <div class="list-group-item">
-          <div class="list-group-item-text media">
-            <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
-            <a href="#/profile/{{offer.user.id}}" class="link_color"> 
-              <div class="panel-heading">
-              <h5 class="panel-title">
-                  {{ offer.user.first_name }} {{ offer.user.last_name }}
-              </h5>          
-              </div>
-            </a>
-            <p class="pull-left">{{offer.history.item.name}}</p>
-            <p class="pull-right">{{offer.history.createdAt | fromNow}} ({{offer.user.location}})</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div ng-show="offersOther.length">
-    <p>Others emailed you:</p>
-    <div class="list-group">
-      <div ng-repeat="offer in offersOther | orderBy: 'history.createdAt':true | limitTo:5">
-        <div class="list-group-item">
-          <div class="list-group-item-text media">
-            <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
-            <a href="#/profile/{{offer.user.id}}" class="link_color"> 
-              <div class="panel-heading">
-              <h5 class="panel-title">
-                  {{ offer.user.first_name }} {{ offer.user.last_name }}
-              </h5>          
-              </div>
-            </a>
-            <p class="pull-left">{{offer.history.item.name}}</p>
-            <p class="pull-right">{{offer.history.createdAt | fromNow}} ({{offer.user.location}})</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p>Tip: Why not engage with the <a href="/#">home page</a>, or post a <a href="#/bulletins/create">bulletin</a>?</p>
 </div>
 
 <div ng-show="bulletinsOpen.length || bulletinsExpired.length">
+  <hr>
   <div class="panel-group" id="accordion">
     <div ng-show="bulletinsOpen.length">
       <h4>Open bulletins</h4>
