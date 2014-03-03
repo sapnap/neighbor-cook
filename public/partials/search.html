@@ -34,7 +34,7 @@
             </div>
           </a>
           <p>Location: <strong>{{result.location}}</strong></p>
-          <p ng-if="result.distance != undefined">Distance: <strong>{{result.distance}}</strong> miles</p>
+          <p ng-if="result.distance != undefined">Distance: <strong>{{result.distance | number:2}}</strong> miles</p>
           <p>
             <a href="#/messages/compose/{{result.id}}?item={{doneQuery}}&offer=0"
                class="btn btn-default btn-sm pull-right">
