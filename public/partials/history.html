@@ -1,9 +1,9 @@
 <h3>Activity History</h3>
 <hr>
 <h4>People who requested from you:</h4>
-<div ng-show="requestsInit.length">
+<div ng-show="offerResponses.length">
   <div class="list-group">
-    <div ng-repeat="req in requestsInit | orderBy: 'history.createdAt':true | limitTo:5">
+    <div ng-repeat="req in offerResponses | limitTo:5">
       <div class="list-group-item">
         <div class="list-group-item-text media">
           <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
@@ -21,15 +21,15 @@
     </div>
   </div>
 </div>
-<div ng-hide="requestsInit.length">
+<div ng-hide="offerResponses.length">
   <p class="emptyHistory">No one has requested items from you.</p>
 </div>
 
 
 <h4>People who you requested from:</h4>
-<div ng-show="requestsOther.length">
+<div ng-show="requestInitiations.length">
   <div class="list-group">
-    <div ng-repeat="req in requestsOther |  filter: history.initiator:'requestor' | orderBy: 'history.createdAt':true | limitTo:5">
+    <div ng-repeat="req in requestInitiations | limitTo:5">
       <div class="list-group-item">
         <div class="list-group-item-text media">
           <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
@@ -47,14 +47,14 @@
     </div>
   </div>
 </div>
-<div ng-hide="requestsOther.length">
+<div ng-hide="requestInitiations.length">
   <p class="emptyHistory">You have not made any requests.</p>
 </div>
 
 <h4>People who offered to you:</h4>
-<div ng-show="offersInit.length">
+<div ng-show="requestResponses.length">
   <div class="list-group">
-    <div ng-repeat="offer in offersInit | orderBy: 'history.createdAt':true | limitTo:5">
+    <div ng-repeat="offer in requestResponses | limitTo:5">
       <div class="list-group-item">
         <div class="list-group-item-text media">
           <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
@@ -72,15 +72,15 @@
     </div>
   </div>
 </div>
-<div ng-hide="offersInit.length">
+<div ng-hide="requestResponses.length">
   <p class="emptyHistory">You have not received any offers.</p>
 </div>
 
 
 <h4>People you offered to:</h4>
-<div ng-show="offersOther.length">
+<div ng-show="offerInitiations.length">
   <div class="list-group">
-    <div ng-repeat="offer in offersOther | orderBy: 'history.createdAt':true | limitTo:5">
+    <div ng-repeat="offer in offerInitiations | limitTo:5">
       <div class="list-group-item">
         <div class="list-group-item-text media">
           <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
@@ -98,11 +98,11 @@
     </div>
   </div>
 </div>
-<div ng-hide="offersOther.length">
+<div ng-hide="offerInitiations.length">
   <p class="emptyHistory">You have not made any offers.</p>
 </div>
 
-<div ng-show="!requestsOther.length && !requestsInit.length && !offersOther.length && !offersInit.length">
+<div ng-show="!requestResponses.length && !requestInitiations.length && !offerResponses.length && !offerInitiations.length">
   <p>Tip: Why not engage with the <a href="/#">home page</a>, or post a <a href="#/bulletins/create">bulletin</a>?</p>
 </div>
 

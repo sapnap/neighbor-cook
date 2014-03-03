@@ -3,13 +3,12 @@ var _ = require('lodash');
 var nodemailer = require('nodemailer');
 
 exports.view = function(req, res) {
-	var user_id = req.query.user_id;
-	var offer = req.query.offer;
-	console.log('user_id', user_id, "offer", offer);
+	var userID = req.user.id;
   
   db.History
     .findAll({
-    	where: [ "offerer_id=? or requester_id=?", user_id, user_id ],
+    	where: [ "offerer_id=? OR requester_id=?", userID, userID ],
+      order: '"createdAt" DESC',
     	include: [ db.Item ]
     })
     .success(function(histories) {
@@ -26,33 +25,42 @@ exports.view = function(req, res) {
           attributes: ['id', 'first_name', 'last_name', 'img_path', 'location']
         })
     		.success(function(users) {
-    			// HACK: Map user_id to user object. This is needed since we get back two separate lists: history objects and user objects. The user object is possibly shorter if multiple histories from the same user.
-    			var user_map = {};
-		      _.each(users, function(elem, index) {
-		        user_map[elem.id] = elem;  
+    			// HACK: Map user_id to user object. This is needed since we get back two separate lists: history objects and user objects.
+    			//       The user object is possibly shorter if multiple histories from the same user.
+    			var userMap = {};
+		      _.each(users, function(user) {
+		        userMap[user.id] = user;
 		      });
+
 		      var requests = [];
 		      var offers = [];
-		      _.each(histories, function(elem, index) {
-		      	if (user_id == elem.requester_id) {
+		      _.each(histories, function(history) {
+		      	if (userID == history.requester_id) {
 					    requests.push({
-					    	'user': user_map[elem.offerer_id],
-					    	'history': elem
+					    	'user': userMap[history.offerer_id],
+					    	'history': history
 					   	});
 				  	} else {
 				  		offers.push({
-					    	'user': user_map[elem.requester_id],
-					    	'history': elem
+					    	'user': userMap[history.requester_id],
+					    	'history': history
 					   	});
 				  	}
 				  });
-				  // build 4 types of offers/requests
-		      var requestsOther = _.filter(requests, function(elem) { return elem.history.initiator == "requester"; });
-		      var requestsInit = _.filter(requests, function(elem) { return elem.history.initiator == "offerer"; });
 
-		      var offersOther = _.filter(offers, function(elem){ return elem.history.initiator == "requester"; });
-		      var offersInit = _.filter(offers, function(elem){ return elem.history.initiator == "offerer"; });
-    			res.json({ requestsOther: requestsOther, requestsInit: requestsInit, offersOther: offersOther, offersInit: offersInit });
+				  // build 4 types of offers/requests
+          // initiations: started by user
+          // responses: sent to user
+		      var requestResponses = _.filter(requests, function(elem) { return elem.history.initiator == "offerer"; });
+		      var requestInitiations = _.filter(requests, function(elem) { return elem.history.initiator == "requester"; });
+		      var offersResponses = _.filter(offers, function(elem){ return elem.history.initiator == "requester"; });
+		      var offersInitiations = _.filter(offers, function(elem){ return elem.history.initiator == "offerer"; });
+    			res.json({
+            requestResponses: requestResponses,
+            requestInitiations: requestInitiations,
+            offerResponses: offersResponses,
+            offerInitiations: offersInitiations
+          });
     		});
     });
 };
