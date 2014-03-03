@@ -24,6 +24,7 @@ var SearchCtrl = function($scope, $http, $location, TypeaheadService, TransferSe
     $http.get('/search?query=' + $scope.query).success(function(data) {
       $scope.results = data.results;
       $scope.doneQuery = data.query;
+      ga('send', 'event', 'search', 'click');
     });
   };
 
