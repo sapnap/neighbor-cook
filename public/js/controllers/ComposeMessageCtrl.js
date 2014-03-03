@@ -1,4 +1,4 @@
-var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $window, UserService) {
+var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $window, $q, UserService) {
   $scope.offer = $location.search().offer === '1';
   $scope.item = $location.search().item;
   $scope.recipient = { name: '', email: '' };
@@ -38,10 +38,6 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
       };
     }
     
-    $http.post('/messages', data).success(function(data) {
-      console.log("logged history", data);
-    });
-    
     var email_data = {
       sender_email: $scope.user.email,
       recipient_email: $scope.recipient.email,
@@ -50,12 +46,17 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
       subject: $scope.subject,
       body: $scope.body
     };
-    $http.post('/email', email_data).success(function(data) {
+
+    $q.all({
+      history: $http.post('/messages', data),
+      email: $http.post('/email', email_data)
+    }).then(function() {
+      ga('send', 'event', 'email', 'click');
       $location.search('notice', 'Your email has been sent!').path("/");
     });
   };
 };
 
 ComposeMessageCtrl.$inject = [
-  '$scope', '$http', '$routeParams', '$location', '$window', 'UserService'
+  '$scope', '$http', '$routeParams', '$location', '$window', '$q', 'UserService'
 ];

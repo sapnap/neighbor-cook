@@ -1,3 +1,8 @@
+<div ng-show="notice" class="alert alert-info">
+    <a class="close" ng-click="resetNotice()">×</a>
+    <div>{{notice}}</div>
+</div>
+
 <div class="row">
     <div class="col-xs-12">
         <form ng-submit="transferSearch()" class="input-group right-inner-addon">
