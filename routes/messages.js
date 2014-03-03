@@ -91,7 +91,7 @@ exports.email = function(req, res) {
     reply_to: req.body.sender_email,
     subject: req.body.subject,
     generateTextFromHTML: true,
-    html: "<h1>You have a new message on <a href='http://www.epulo.us'>Epulo!</a></h1><hr>" +
+    html: "<h1>You have a new message on <a href='http://www.epulo.us/#/history'>Epulo!</a></h1><hr>" +
     			"<p>" + req.body.body + "</p>"
   };
   smtpTransport.sendMail(mailOptions, function(error, response){

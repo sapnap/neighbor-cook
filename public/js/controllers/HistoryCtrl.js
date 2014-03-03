@@ -1,7 +1,12 @@
 var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
   $scope.user = [];
   $scope.requests = [];
+  $scope.requestsOther = [];
+  $scope.requestsInit = [];
+
   $scope.offers = [];
+  $scope.offersInit = [];
+  $scope.offersOther = [];
   // Currently (02/26/2014), a bulletin is never marked as resolved. If this is added, we should support that here
   $scope.bulletinsOpen = [];
   $scope.bulletinsExpired = [];
@@ -24,6 +29,10 @@ var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
 		   	});
 		  });
       console.log('requests', $scope.requests);
+      $scope.requestsOther = _.filter($scope.requests, function(elem) { return elem.history.initiator == "requester"; });
+      $scope.requestsInit = _.filter($scope.requests, function(elem) { return elem.history.initiator == "offerer"; });
+      console.log('requestsOther', $scope.requestsOther);
+      console.log('requestsInit', $scope.requestsInit);
     });
     // Get offers
     $http.get(baseUrl + "&offer=1").success(function(data) {    	
@@ -38,6 +47,8 @@ var HistoryCtrl = function($scope, $http, $routeParams, $location, $window) {
 		   	});
 		  });
       console.log('offers', $scope.offers);
+      $scope.offersOther = _.filter($scope.offers, function(elem){ return elem.history.initiator == "requester"; });
+      $scope.offersInit = _.filter($scope.offers, function(elem){ return elem.history.initiator == "offerer"; });
     });
     // Get bulletins
     $http.get('/bulletins/me').success(function(bulletins) {
