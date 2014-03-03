@@ -214,3 +214,8 @@ nav.navbar {
 .no_bottom_margin {
     margin-bottom: 0px;
 }
+
+.emptyHistory {
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
