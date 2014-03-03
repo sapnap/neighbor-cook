@@ -26,13 +26,15 @@ var ComposeMessageCtrl = function($scope, $http, $routeParams, $location, $windo
       data = {
         offerer_id: $scope.user.id,
         requester_id: $routeParams.recipientID,
-        item: $scope.item
+        item: $scope.item,
+        initiator: 'offerer'
       };
     } else {
       data = {
         offerer_id: $routeParams.recipientID,
         requester_id: $scope.user.id,
-        item: $scope.item
+        item: $scope.item,
+        initiator: 'requester'
       };
     }
     
