@@ -7,50 +7,54 @@ exports.view = function(req, res) {
 	var offer = req.query.offer;
 	console.log('user_id', user_id, "offer", offer);
   
-  if (offer == '1') {
-  	db.History
-	    .findAll({ 
-	    	where: { offerer_id: user_id },
-      	include: [ db.Item ]
-	    })
-	    .success(function(histories) {
-	    	// look up users involved in message
-	    	var userIds = [];
-	    	_.each(histories, function(val) {
-			    userIds.push(val.requester_id);
-			  });
+  db.History
+    .findAll({
+    	where: [ "offerer_id=? or requester_id=?", user_id, user_id ],
+    	include: [ db.Item ]
+    })
+    .success(function(histories) {
+    	// look up users involved in message
+    	var userIds = [];
+    	_.each(histories, function(val) {
+		    userIds.push(val.requester_id);
+		    userIds.push(val.offerer_id);
+		  });
 
-	    	db.User
-	    		.findAll({
-            where: { id: userIds },
-            attributes: ['id', 'first_name', 'last_name', 'img_path', 'location']
-          })
-	    		.success(function(users) {
-	    			res.json({ users: users, histories: histories });
-	    		});
-	    });
-  } else {
-  	db.History
-	    .findAll({
-        where: { requester_id: user_id },
-	    	include: [ db.Item ]
-	    })
-	    .success(function(histories) {
-	    	var userIds = [];
-	    	_.each(histories, function(val) {
-			    userIds.push(val.offerer_id);
-			  });
+    	db.User
+    		.findAll({
+          where: { id: userIds },
+          attributes: ['id', 'first_name', 'last_name', 'img_path', 'location']
+        })
+    		.success(function(users) {
+    			// HACK: Map user_id to user object. This is needed since we get back two separate lists: history objects and user objects. The user object is possibly shorter if multiple histories from the same user.
+    			var user_map = {};
+		      _.each(users, function(elem, index) {
+		        user_map[elem.id] = elem;  
+		      });
+		      var requests = [];
+		      var offers = [];
+		      _.each(histories, function(elem, index) {
+		      	if (user_id == elem.requester_id) {
+					    requests.push({
+					    	'user': user_map[elem.offerer_id],
+					    	'history': elem
+					   	});
+				  	} else {
+				  		offers.push({
+					    	'user': user_map[elem.requester_id],
+					    	'history': elem
+					   	});
+				  	}
+				  });
+				  // build 4 types of offers/requests
+		      var requestsOther = _.filter(requests, function(elem) { return elem.history.initiator == "requester"; });
+		      var requestsInit = _.filter(requests, function(elem) { return elem.history.initiator == "offerer"; });
 
-	    	db.User
-	    		.findAll({
-            where: { id: userIds },
-            attributes: ['id', 'first_name', 'last_name', 'img_path', 'location']
-          })
-	    		.success(function(users) {
-	    			res.json({ users: users, histories: histories });
-	    		});
-	    });
-  }
+		      var offersOther = _.filter(offers, function(elem){ return elem.history.initiator == "requester"; });
+		      var offersInit = _.filter(offers, function(elem){ return elem.history.initiator == "offerer"; });
+    			res.json({ requestsOther: requestsOther, requestsInit: requestsInit, offersOther: offersOther, offersInit: offersInit });
+    		});
+    });
 };
 
 exports.add = function(req, res) {
