@@ -20,7 +20,7 @@
             </div>
           </a>
           <p class="pull-left">{{req.history.item.name}}</p>
-          <p class="pull-right">{{req.history.createdAt | fromNow}}, from {{req.user.location}}</p>
+          <p class="pull-right">{{req.history.createdAt | fromNow}} ({{req.user.location}})</p>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
             </div>
           </a>
           <p class="pull-left">{{offer.history.item.name}}</p>
-          <p class="pull-right">{{offer.history.createdAt | fromNow}}, to {{offer.user.location}}</p>
+          <p class="pull-right">{{offer.history.createdAt | fromNow}} ({{offer.user.location}})</p>
         </div>
       </div>
     </div>

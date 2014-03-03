@@ -65,7 +65,8 @@ exports.add = function(req, res) {
 	  	db.History
 		    .create({
 		    	offerer_id: req.body.offerer_id,
-		    	requester_id: req.body.requester_id
+		    	requester_id: req.body.requester_id,
+		    	initiator: req.body.initiator
 		    })
 		    .success(function(history) {
 		    	history.setItem(item);
@@ -75,8 +76,7 @@ exports.add = function(req, res) {
 };
 
 exports.email = function(req, res) {
-	console.log('gonna send an email');
-	console.log(req.body);
+	console.log('Sending email', req.body);
 	var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -91,7 +91,7 @@ exports.email = function(req, res) {
     reply_to: req.body.sender_email,
     subject: req.body.subject,
     generateTextFromHTML: true,
-    html: "<h1>You have a new message on Epulo!</h1><hr>" +
+    html: "<h1>You have a new message on <a href='http://www.epulo.us'>Epulo!</a></h1><hr>" +
     			"<p>" + req.body.body + "</p>"
   };
   smtpTransport.sendMail(mailOptions, function(error, response){
