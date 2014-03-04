@@ -110,6 +110,7 @@ app.get('/splash', index.splash);
 app.get('/', ensureLoggedIn, index.view);
 app.get('/search', ensureLoggedIn, index.search);
 app.get('/search/typeahead', index.searchTypeahead);
+app.get('/location', index.location);
 
 // profile
 app.get('/profile/me', ensureLoggedIn, profile.me);
