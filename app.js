@@ -135,7 +135,8 @@ app.delete('/bulletins/:bulletinID', ensureLoggedIn, bulletin.delete);
 // messages
 app.get('/messages', ensureLoggedIn, messages.view);
 app.post('/messages', ensureLoggedIn, messages.add);
-app.post('/email', ensureLoggedIn, messages.email);
+// app.post('/email', ensureLoggedIn, messages.email);
+app.get('/email', messages.email);
 
 // login and logout
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));

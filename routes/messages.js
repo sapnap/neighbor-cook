@@ -1,5 +1,6 @@
 var db = require('../models');
 var _ = require('lodash');
+var fs = require('fs');
 var nodemailer = require('nodemailer');
 
 exports.view = function(req, res) {
@@ -96,15 +97,28 @@ exports.email = function(req, res) {
       pass: process.env.EMAIL_PASSWORD
     }
 	});
-	var mailOptions = {
+  // var mailOptions = {
+  //   from: "Epulo <epulo.us@gmail.com>",
+  //   to: req.body.recipient_email,
+  //   bcc: "epulo.us@gmail.com",
+  //   reply_to: req.body.sender_email,
+  //   subject: req.body.subject,
+  //   generateTextFromHTML: true,
+  //   html: "<h1>You have a new message on <a href='http://www.epulo.us/#/history'>Epulo!</a></h1><hr>" +
+  //         "<p>" + req.body.body + "</p>"
+  // };
+  templatePath = "./views/email.html";
+  templateContent = fs.readFileSync(templatePath, encoding="utf8");
+  var html = _.template(templateContent, {'body' : " "});
+  console.log(html);
+
+  var mailOptions = {
     from: "Epulo <epulo.us@gmail.com>",
-    to: req.body.recipient_email,
-		bcc: "epulo.us@gmail.com",
-    reply_to: req.body.sender_email,
-    subject: req.body.subject,
+    to: 'patels@stanford.edu',
+    subject: "epulo html email test",
     generateTextFromHTML: true,
-    html: "<h1>You have a new message on <a href='http://www.epulo.us/#/history'>Epulo!</a></h1><hr>" +
-    			"<p>" + req.body.body + "</p>"
+    forceEmbeddedImages: true,
+    html: html
   };
   smtpTransport.sendMail(mailOptions, function(error, response){
     if (error) {
