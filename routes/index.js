@@ -1,6 +1,7 @@
 var db = require('../models');
 var _ = require('lodash');
 var haversine = require('haversine');
+var https = require('https');
 
 /*
  * GET home page.
@@ -11,10 +12,28 @@ exports.view = function(req, res){
 };
 
 exports.splash = function(req, res) {
-  data = {
+  var data = {
     app_id: process.env.FACEBOOK_APP_ID
   };
   res.render('splash', data);
+};
+
+exports.location = function(req, res) {
+  https.get('https://maps.googleapis.com/maps/api/geocode/json?' +
+            'latlng=' + req.query.gps + '&' +
+            'sensor=true&' +
+            'result_type=political&' +
+            'key=' + process.env.GOOGLE_API_KEY,
+    function(response) {
+      var body = '';
+      response.on('data', function(chunk) {
+        body += chunk;
+      });
+      response.on('end', function() {
+        var data = JSON.parse(body);
+        res.json({ foundLocation: data.results[0].formatted_address });
+      });
+    });
 };
 
 // AJAX call to this endpoint

@@ -34,10 +34,9 @@ var EditProfileCtrl = function($scope, $http, $location, UserService) {
 
   var showPosition = function(position) {
     $scope.foundGPS = position.coords.latitude + "," + position.coords.longitude;
-    $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + $scope.foundGPS +
-              '&sensor=true&result_type=political&key=AIzaSyC68chSmCbBG81PT19hH65G8Ai1jtm-6yE').
+    $http.get('/location?gps=' + $scope.foundGPS).
       success(function(data) {
-        $scope.foundLocation = data.results[0].formatted_address;
+        $scope.foundLocation = data.foundLocation;
       });
     $scope.gpsStatus = "Found GPS, thanks!";
     $scope.gpsDisable = true;
