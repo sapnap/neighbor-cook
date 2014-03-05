@@ -52,7 +52,7 @@ var InitInventoryCtrl = function($scope, $http, $q, $location, UserService) {
       user: $http.put('/profile/me', $scope.userField),
       inventory: $http.put('/inventory', { inventory: itemIDs })
     }).then(function() {
-      $location.path('/profile/' + $scope.user.id);
+      $location.path('/tutorial');
     });
   };
 

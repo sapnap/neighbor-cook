@@ -26,8 +26,9 @@ angular.module('ncook', dependencies).
     when('/tos', {
       templateUrl: '/partials/tos.html'
     }).
-    when('/help/getStarted', {
-      templateUrl: '/partials/help-getStarted.html'
+    when('/tutorial', {
+      templateUrl: '/partials/tutorial.html',
+      controller: 'TutorialCtrl'
     }).
     when('/search', {
       templateUrl: '/partials/search.html',
