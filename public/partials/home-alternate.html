@@ -33,12 +33,12 @@
     <h5>People around you need:</h5>
     <div class="bull panel-group" id="accordion-requests">
         <div class="panel panel-primary" ng-repeat="req in requests">
-            <div class="panel-heading-epulo">
-                <a class="bulletin-header" data-toggle="collapse" data-parent="#accordion-requests"
+            <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-requests"
                    data-target="#bulletin-detail-{{req.id}}">
+                <a class="p-title bulletin-header">
                 <div class="media">
                     <img class="pull-left media-object img-rounded" ng-src="{{req.user.img_path}}" alt="{{req.user.first_name}} {{req.user.last_name}} image" />
-                    <div class="p-title media-body">
+                    <div class="media-body">
                         <strong class="media-heading">
                             {{req.user.first_name}} {{req.user.last_name}}
                         </strong><br>
@@ -52,10 +52,10 @@
                     <span ng-show="req.message">{{ req.message }}</span>
                     <span ng-hide="req.message"><em>No message</em></span><br>
                     <span>
-                      - <a href="#/profile/{{ req.user.id }}">{{ req.user.first_name }} {{ req.user.last_name }}</a>
+                      - <a class="profile-link" href="#/profile/{{ req.user.id }}">{{ req.user.first_name }} {{ req.user.last_name }}</a>
                     </span>
                     <a href="#/messages/compose/{{ req.user.id }}?item={{ req.item.name }}&offer=1"
-                       class="btn btn-default btn-sm pull-right" ng-click="recordEvent('request_response', req.id)">
+                       class="email-btn btn btn-default btn-sm pull-right" ng-click="recordEvent('request_response', req.id)">
                         <i class="fa fa-envelope-o fa-fw"></i> Email
                     </a>
                 </div>
@@ -68,9 +68,9 @@
     <h5>People around you are offering:</h5>
     <div class="bull panel-group" id="accordion-offers">
         <div class="panel panel-primary" ng-repeat="offer in offers">
-            <div class="panel-heading-epulo">
-                <a class="bulletin-header" data-toggle="collapse" data-parent="#accordion-offers"
+            <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-offers"
                    data-target="#bulletin-detail-{{offer.id}}">
+                <a class="p-title bulletin-header">
                     <div class="media">
                         <img class="pull-left media-object img-rounded" ng-src="{{offer.user.img_path}}" alt="{{offer.user.first_name}} {{offer.user.last_name}} image" />
                         <div class="media-body">
@@ -87,10 +87,10 @@
                     <span ng-show="offer.message">{{ offer.message }}</span>
                     <span ng-hide="offer.message"><em>No message</em></span><br>
                     <span>
-                      - <a href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
+                      - <a class="profile-link" href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
                     </span>
                     <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=0"
-                       class="btn btn-default btn-sm pull-right" ng-click="recordEvent('offer_response', offer.id)">
+                       class="email-btn btn btn-default btn-sm pull-right" ng-click="recordEvent('offer_response', offer.id)">
                         <i class="fa fa-envelope-o fa-fw"></i> Email
                     </a>
                 </div>
@@ -104,9 +104,9 @@
     <h5>Your open bulletins:</h5>
     <div class="bull panel-group" id="accordion-authored">
         <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
-            <div class="panel-heading-epulo">
-                <a class="p-title panel-title" data-toggle="collapse" data-parent="#accordion-authored"
+            <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-authored"
                    data-target="#bulletin-detail-{{bulletin.id}}">
+                <a class="p-title panel-title">
                     {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
                     <span ng-if="bulletin.type === 'request'"> by</span>
                     <span ng-if="bulletin.type === 'offer'"> until</span>
