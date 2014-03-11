@@ -1,19 +1,29 @@
 body {
-    background: url('/images/epulo_wallpaper.png') repeat;
-    font-family: 'Noto Serif', serif;
-    color: #363536;
+    /*background: url('/images/epulo_wallpaper.png') repeat;*/
+    background-color: #FAF8F2;
+    /*font-family: 'Noto Serif', serif;*/
+    font-family: 'Imprima', sans-serif;
+    /*color: #222930;*/
 }
 
 body.splash {
     background: none;
-    background-color: #E0E4CC;
+    background-color: #FAF8F2;
+}
+
+.top-nav {
+    background-color:red;
+}
+
+.active_pill {
+
 }
 
 .content {
     margin-top: 75px; 
     padding-top: 10px;
     padding-bottom: 20px;
-    background-color: #E0E4CC;
+    /*background-color: #FFFCD9;*/
     border-radius: 10px;
 }
 
@@ -61,6 +71,14 @@ body.splash {
 
 .help-links ul {
     list-style-type: circle; 
+}
+
+.help-link {
+    color: #514E47;
+}
+
+.help-link:hover {
+    color: #44848B;
 }
 
 #search-summary {
@@ -114,18 +132,18 @@ body.splash {
 }
 
 footer {
-    background: #428BCA;
+    background: #94CFD5;
     padding: 18px 0;
     border-top: 1px solid #000;
     margin-top: 10px;
 }
 
 footer a {
-    color: #E0E4CC;
+    color: #514E47;
 }
 
 footer a:hover {
-    color: #363536;
+    color: #44848B;
 }
 
 .wrapper > .container {
@@ -136,7 +154,7 @@ h1.header {
     text-align: center;
     margin-top: 0;
     margin-bottom: 45px;
-    color: #428BCA;
+    color: #514E47;
     font-size: 60px;
 }
 
@@ -160,30 +178,83 @@ h1.header {
 }
 
 .panel-primary {
-    border-color: #428BCA;
+    border-color: #44848B;
 }
 
 .panel-heading-epulo {
-    background-color: #428BCA;  
+    background-color: #44848B;  
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    color: #E0E4CC;
+    color: #FAF8F2;
+}
+
+.bull .panel-heading-epulo:hover {
+    color: #94CFD5;
+}
+
+.splash {
+    border-color: #8DB63F;
+}
+
+.splash-heading {
+    background-color: #8DB63F;
+}
+
+.p-title:hover {
+    color: #94CFD5;
+}
+
+.profile-link {
+    color:#8DB63F;
+}
+
+.profile-link:hover {
+    color:#44848B;
+}
+
+.email-btn {
+    background-color:#94CFD5;
+}
+
+.auto-btn {
+    color: #FAF8F2;
+    background-color: #514E47;
 }
 
 .epulo_body {
-    background-color: #E0E4CC;
+    background-color: #FAF8F2;
+    color: #514E47;
 }
 
 .btn-success {
-    background-color: #69D2E7;
-    border: #363536;
+    background-color: #8DB63F;
+    border: #F19C37;
 }
 
-.btn-success:hover {
-    background-color: #69D2E7;
+.btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active {
+    background-color: #8DB63F;
+    border: #F19C37;
 }
+
+.btn-success:hover, 
+.btn-success:focus  {
+    background-color: #44848B;
+    border: #44848B;
+}
+
+.btn-danger {
+    background-color: #514E47;
+    border: #514E47;
+    color:#FAF8F2;
+}
+
+.btn-danger:hover {
+    background-color: #44848B;
+    border: #44848B;
+}
+
 
 .epulo_button {
     background-color: #F38630;
@@ -214,4 +285,63 @@ nav.navbar {
 .emptyHistory {
     padding-left: 15px;
     padding-bottom: 10px;
+}
+
+.top-nav {
+    background-color: #514E47;
+    border: #514E47;
+}
+
+.nav-pill>li>a:hover {
+    color: #44848B;
+    background-color: #FAF8F2;
+}
+
+
+.nav-pill>li.active>a, .nav-pill>li.active>a:hover {
+    background-color: #8DB63F;
+}
+
+
+.nav>pill>li.focus {
+    background-color: orange;
+}
+
+.nav-icon {
+    color: #8DB63F;
+}
+
+/*.search-bar {
+    background-color: #94CFD5;
+    color: #514E47;
+    border-color: #CCC;
+}
+
+.search-btn {
+    background-color: #94CFD5;
+    border-color: #CCC;
+}*/
+
+.inv-panel {
+    background-color: #94CFD5;
+}
+
+.inv-title {
+    color: #514E47;
+}
+
+.inv-title:hover {
+    color:#FAF8F2;
+}
+
+h5.history {
+    color: #44848B;
+}
+
+h5.result {
+    color: #44848B;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    background-color: #8DB63F;
 }
