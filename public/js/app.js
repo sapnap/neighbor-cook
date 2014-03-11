@@ -10,13 +10,7 @@ angular.module('ncook', dependencies).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
-      templateUrl: function() {
-        if(cxApi.chooseVariation() == 0) {
-          return '/partials/home.html';
-        } else {
-          return '/partials/home-alternate.html';
-        }
-      },
+      templateUrl: '/partials/home-alternate.html',
       controller: 'HomeCtrl'
     }).
     when('/help', {
