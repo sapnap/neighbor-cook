@@ -293,8 +293,8 @@ nav.navbar {
 }
 
 .nav-pill>li>a:hover {
-    color: #44848B;
-    background-color: #FAF8F2;
+    color: #363536;
+    background-color: #94CFD5;
 }
 
 
@@ -344,4 +344,8 @@ h5.result {
 
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
     background-color: #8DB63F;
+}
+
+.inv-label {
+    color: #44848B;
 }
