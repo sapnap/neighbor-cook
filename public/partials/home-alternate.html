@@ -31,14 +31,14 @@
 </div>
 <div ng-show="requests">
     <h5>People around you need:</h5>
-    <div class="panel-group" id="accordion-requests">
+    <div class="bull panel-group" id="accordion-requests">
         <div class="panel panel-primary" ng-repeat="req in requests">
             <div class="panel-heading-epulo">
                 <a class="bulletin-header" data-toggle="collapse" data-parent="#accordion-requests"
                    data-target="#bulletin-detail-{{req.id}}">
                 <div class="media">
                     <img class="pull-left media-object img-rounded" ng-src="{{req.user.img_path}}" alt="{{req.user.first_name}} {{req.user.last_name}} image" />
-                    <div class="media-body">
+                    <div class="p-title media-body">
                         <strong class="media-heading">
                             {{req.user.first_name}} {{req.user.last_name}}
                         </strong><br>
@@ -66,7 +66,7 @@
 
 <div ng-show="offers">
     <h5>People around you are offering:</h5>
-    <div class="panel-group" id="accordion-offers">
+    <div class="bull panel-group" id="accordion-offers">
         <div class="panel panel-primary" ng-repeat="offer in offers">
             <div class="panel-heading-epulo">
                 <a class="bulletin-header" data-toggle="collapse" data-parent="#accordion-offers"
@@ -102,10 +102,10 @@
 <!-- TODO: can put this into directive by "Isolating the Scope of a Directive" -->
 <div ng-show="authored">
     <h5>Your open bulletins:</h5>
-    <div class="panel-group" id="accordion-authored">
+    <div class="bull panel-group" id="accordion-authored">
         <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
             <div class="panel-heading-epulo">
-                <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
+                <a class="p-title panel-title" data-toggle="collapse" data-parent="#accordion-authored"
                    data-target="#bulletin-detail-{{bulletin.id}}">
                     {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
                     <span ng-if="bulletin.type === 'request'"> by</span>
