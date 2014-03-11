@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form ng-submit="search()" class="input-group right-inner-addon">
+    <form ng-submit="search()" class="search-bar input-group right-inner-addon">
       <p ng-click="clearQuery()" ng-show="query.length > 0">
         <i class="fa fa-times-circle"></i>
       </p>
@@ -29,7 +29,7 @@
           <div class="media-body">
             <a href="#/profile/{{result.id}}" class="link_color">
               <div class="media-heading">
-                <h5 class="panel-title">
+                <h5 class="result panel-title">
                   {{ result.first_name }} {{ result.last_name }}
                 </h5>
               </div>
@@ -39,7 +39,7 @@
           </div>
           <p>
             <a href="#/messages/compose/{{result.id}}?item={{doneQuery}}&offer=0"
-               class="btn btn-default btn-sm pull-right">
+               class="email-btn btn btn-default btn-sm pull-right">
               <i class="fa fa-envelope-o"></i> Email
             </a>
           </p>

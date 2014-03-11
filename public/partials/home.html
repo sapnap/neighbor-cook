@@ -9,11 +9,11 @@
       <p ng-click="clearQuery()" ng-show="query.length > 0">
         <i class="fa fa-times-circle"></i>
       </p>
-      <input type="text" class="form-control" ng-model="query"
+      <input type="text" class="search-bar form-control" ng-model="query"
              ng-options="item.name as item.name for item in typeahead($viewValue)"
              placeholder="Ingredient Search" bs-typeahead>
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-default">Search</button>
+        <button type="submit" class="search-btn btn btn-default">Search</button>
       </span>
     </form>
   </div>
@@ -21,7 +21,7 @@
 
 <div class="row">
   <div class="col-xs-6">
-    <h3>Bulletin Board</h3>
+    <h2>Bulletin Board</h2>
   </div>
   <div class="col-xs-6">
     <a class="btn btn-success pull-right" href="#/bulletins/create" id="create-bulletin">
@@ -30,12 +30,12 @@
   </div>
 </div>
 <div ng-show="requests">
-	<h5>People around you need:</h5>
-  <div class="panel-group" id="accordion-requests">
+	<h4>People around you need:</h4>
+  <div class="bull panel-group" id="accordion-requests">
     <div class="panel panel-primary" ng-repeat="req in requests">
-      <div class="panel-heading-epulo">
-        <a class="panel-title" data-toggle="collapse" data-parent="#accordion-requests"
+      <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-requests"
            data-target="#bulletin-detail-{{req.id}}">
+        <a class="p-title panel-title">
         {{ req.item.name }} by {{ req.expiration | calendar }}
         </a>
     </div>
@@ -44,10 +44,10 @@
         <span ng-show="req.message">{{ req.message }}</span>
         <span ng-hide="req.message"><em>No message</em></span>
         <p>
-          - <a href="#/profile/{{ req.user.id }}">{{ req.user.first_name }} {{ req.user.last_name }}</a>
+          - <a class="profile-link" href="#/profile/{{ req.user.id }}">{{ req.user.first_name }} {{ req.user.last_name }}</a>
         </p>
         <a href="#/messages/compose/{{ req.user.id }}?item={{ req.item.name }}&offer=1"
-           class="btn btn-default btn-sm pull-right" ng-click="recordEvent('request_response', req.id)">
+           class="email-btn btn btn-default btn-sm pull-right" ng-click="recordEvent('request_response', req.id)">
         <i class="fa fa-envelope-o fa-fw"></i> Email
       </a>
     </div>
@@ -57,12 +57,12 @@
 </div>
 
 <div ng-show="offers">
-	<h5>People around you are offering:</h5>
-  <div class="panel-group" id="accordion-offers">
+	<h4>People around you are offering:</h4>
+  <div class="bull panel-group" id="accordion-offers">
     <div class="panel panel-primary" ng-repeat="offer in offers">
-      <div class="panel-heading-epulo">
-        <a class="panel-title" data-toggle="collapse" data-parent="#accordion-offers"
+      <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-offers"
            data-target="#bulletin-detail-{{offer.id}}">
+        <a class="p-title panel-title">
         {{ offer.item.name }} until {{ offer.expiration | calendar }}
         </a>
     </div>
@@ -71,7 +71,7 @@
         <span ng-show="offer.message">{{ offer.message }}</span>
         <span ng-hide="offer.message"><em>No message</em></span>
         <p>
-          - <a href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
+          - <a class="profile-link" href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
         </p>
         <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=0"
            class="btn btn-default btn-sm pull-right" ng-click="recordEvent('offer_response', offer.id)">
@@ -85,12 +85,12 @@
 
 <!-- TODO: can put this into directive by "Isolating the Scope of a Directive" -->
 <div ng-show="authored">
-	<h5>Your open bulletins:</h5>
-  <div class="panel-group" id="accordion-authored">
+	<h4>Your open bulletins:</h4>
+  <div class="bull panel-group" id="accordion-authored">
     <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in authored">
-      <div class="panel-heading-epulo">
-        <a class="panel-title" data-toggle="collapse" data-parent="#accordion-authored"
+      <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion-authored"
            data-target="#bulletin-detail-{{bulletin.id}}">
+        <a class="p-title panel-title">
         {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
         <span ng-if="bulletin.type === 'request'"> by</span>
         <span ng-if="bulletin.type === 'offer'"> until</span>

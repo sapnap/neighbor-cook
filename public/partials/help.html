@@ -6,7 +6,7 @@
 		<div class="panel-heading-epulo">{{info.category}}</div>
 		<div class="panel-body epulo_body">
 			<div ng-repeat="infoItem in info.questions">
-				<p><a ng-click="toggleInfo(infoItem.id)">{{infoItem.question}}</a></p>
+				<p class="help-q"><a class="help-link" ng-click="toggleInfo(infoItem.id)">{{infoItem.question}}</a></p>
 				<p ng-show="showAnswer[infoItem.id]" ng-bind-html="infoItem.answer"></p>
 			</div>
 		</div>

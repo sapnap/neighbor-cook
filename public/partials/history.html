@@ -9,7 +9,7 @@
           <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
           <a href="#/profile/{{req.user.id}}" class="link_color"> 
             <div class="panel-heading">
-            <h5 class="panel-title">
+            <h5 class="history panel-title">
                 {{ req.user.first_name }} {{ req.user.last_name }}
             </h5>          
             </div>
@@ -35,7 +35,7 @@
           <img ng-src="{{req.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
           <a href="#/profile/{{req.user.id}}" class="link_color"> 
             <div class="panel-heading">
-            <h5 class="panel-title">
+            <h5 class="history panel-title">
                 {{ req.user.first_name }} {{ req.user.last_name }}
             </h5>          
             </div>
@@ -60,7 +60,7 @@
           <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
           <a href="#/profile/{{offer.user.id}}" class="link_color"> 
             <div class="panel-heading">
-            <h5 class="panel-title">
+            <h5 class="history panel-title">
                 {{ offer.user.first_name }} {{ offer.user.last_name }}
             </h5>          
             </div>
@@ -86,7 +86,7 @@
           <img ng-src="{{offer.user.img_path}}" class="img-rounded media-object pull-left" width="64"/>
           <a href="#/profile/{{offer.user.id}}" class="link_color"> 
             <div class="panel-heading">
-            <h5 class="panel-title">
+            <h5 class="history panel-title">
                 {{ offer.user.first_name }} {{ offer.user.last_name }}
             </h5>          
             </div>
@@ -108,12 +108,12 @@
 
 <div ng-show="bulletinsOpen.length || bulletinsExpired.length">
   <hr>
-  <div class="panel-group" id="accordion">
+  <div class="bull panel-group" id="accordion">
     <div ng-show="bulletinsOpen.length">
       <h4>Open bulletins</h4>
       <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsOpen | orderBy: 'expiration'">
-        <div class="panel-heading-epulo">
-          <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
+        <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
+          <a class="p-title panel-title">
           {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
           <span ng-if="bulletin.type === 'request'"> by</span>
           <span ng-if="bulletin.type === 'offer'"> until</span>
@@ -138,12 +138,12 @@
     </div>
   </div>
 
-  <div class="panel-group" id="accordion">
+  <div class="bull panel-group" id="accordion">
     <div ng-show="bulletinsExpired.length">
       <h4>Expired bulletins</h4>
       <div class="panel panel-primary" id="bulletin-{{bulletin.id}}" ng-repeat="bulletin in bulletinsExpired | orderBy: 'expiration' | limitTo:5">
-        <div class="panel-heading-epulo">
-          <a class="panel-title" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
+        <div class="panel-heading-epulo" data-toggle="collapse" data-parent="#accordion" data-target="#bulletin-detail-{{bulletin.id}}">
+          <a class="p-title panel-title">
           {{ bulletin.type | sentenceCase }}: {{ bulletin.item.name }}
           <span ng-if="bulletin.type === 'request'"> by</span>
           <span ng-if="bulletin.type === 'offer'"> until</span>

@@ -35,8 +35,8 @@
       </form>
 
       <div class="panel-group inventory-list" id="accordion">
-        <div class="panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
-          <a data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}" class="link_color">
+        <div data-toggle="collapse" data-parent="#accordion" data-target="#item{{item.id}}" class="inv-panel panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
+          <a class="inv-title link_color">
             <div class="panel-heading">
               <h5 class="panel-title">{{item.name}}</h5>
             </div>
@@ -55,10 +55,10 @@
     <div ng-show="!editable">
       <p ng-show="inventory" class="info_label">Click an item to email {{profile.first_name}}.</p>
       <div class="panel-group inventory-list" id="accordion">
-        <div class="panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
+        <div class="inv-panel panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
           <a href="#/messages/compose/{{profile.id}}?item={{item.name}}&offer=0" class="link_color">
             <div class="panel-heading">
-              <h5 class="panel-title">{{item.name}}</h5>
+              <h5 class="inv-title panel-title">{{item.name}}</h5>
             </div>
           </a>
         </div>
