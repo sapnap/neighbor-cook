@@ -74,7 +74,7 @@
           - <a class="profile-link" href="#/profile/{{ offer.user.id }}">{{ offer.user.first_name }} {{ offer.user.last_name }}</a>
         </p>
         <a href="#/messages/compose/{{ offer.user.id }}?item={{ offer.item.name }}&offer=0"
-           class="btn btn-default btn-sm pull-right" ng-click="recordEvent('offer_response', offer.id)">
+           class="email-btn btn btn-default btn-sm pull-right" ng-click="recordEvent('offer_response', offer.id)">
         <i class="fa fa-envelope-o fa-fw"></i> Email
       </a>
     </div>
