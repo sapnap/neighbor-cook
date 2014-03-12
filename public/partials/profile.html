@@ -53,11 +53,7 @@
     </div>
 
     <div ng-show="!editable">
-<<<<<<< HEAD
       <p ng-show="inventory" class="inv-label info_label">Click an item to email {{profile.first_name}}.</p>
-=======
-      <p ng-show="inventory" class="result">Click an item to email {{profile.first_name}}.</p>
->>>>>>> master
       <div class="panel-group inventory-list" id="accordion">
         <div class="inv-panel panel panel-default inventory-item" ng-repeat="item in inventory | orderBy:'name'">
           <a class="inv-title" href="#/messages/compose/{{profile.id}}?item={{item.name}}&offer=0" class="link_color">
