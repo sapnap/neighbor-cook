@@ -330,7 +330,7 @@ nav.navbar {
     color: #514E47;
 }
 
-.inv-title:hover {
+ .inv-panel .inv-title:hover {
     color:#FAF8F2;
 }
 
